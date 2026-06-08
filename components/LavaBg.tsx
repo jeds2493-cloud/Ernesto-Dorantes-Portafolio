@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { useGyroTilt } from "@/components/useGyroTilt";
 
 /**
  * Fondo animado tipo lámpara de lava (naranja tenue) que reacciona
@@ -30,6 +31,15 @@ export default function LavaBg() {
       parent.removeEventListener("mouseleave", reset);
     };
   }, []);
+
+  // giroscopio (móvil) → desplaza la lava
+  const onGyro = useCallback((x: number, y: number) => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.setProperty("--lx", String(x));
+    el.style.setProperty("--ly", String(y));
+  }, []);
+  useGyroTilt(onGyro);
 
   return (
     <div className="lava" ref={ref} aria-hidden="true">
