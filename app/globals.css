@@ -72,7 +72,12 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .hero h1 .ln2{display:block}
 .hero h1 .accent{color:var(--orange)}
 .hero .role-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:clamp(20px,4vh,34px)}
-.hero .role-row .chip{font-family:var(--display);font-size:clamp(13px,1.5vw,16px);font-weight:500;color:var(--fg);background:transparent;-webkit-appearance:none;appearance:none;border:1px solid var(--line);padding:9px 18px;border-radius:30px;cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,background .3s,color .3s,box-shadow .3s}
+.hero .role-row .chip{position:relative;font-family:var(--display);font-size:clamp(13px,1.5vw,16px);font-weight:500;color:var(--fg);background:transparent;-webkit-appearance:none;appearance:none;border:1px solid var(--line);padding:9px 18px;border-radius:30px;cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,background .3s,color .3s,box-shadow .3s}
+.hero .role-row .chip::after{content:"";position:absolute;inset:-1px;border-radius:inherit;border:1.5px solid var(--orange);opacity:0;pointer-events:none;animation:chipPulse 3s ease-out infinite}
+.hero .role-row .chip:nth-child(2)::after{animation-delay:.55s}
+.hero .role-row .chip:nth-child(3)::after{animation-delay:1.1s}
+.hero .role-row .chip:hover::after{animation:none;opacity:0}
+@keyframes chipPulse{0%{opacity:.4;transform:scale(1)}70%{opacity:0;transform:scale(1.16)}100%{opacity:0}}
 .hero .role-row .chip.fill{background:var(--orange);border-color:var(--orange);color:#fff}
 .hero .role-row .chip:hover{transform:translateY(-3px);border-color:var(--orange);color:#fff;background:rgba(255,92,26,.12);box-shadow:0 8px 22px rgba(255,92,26,.2)}
 .hero .role-row .chip.fill:hover{background:var(--orange-soft);border-color:var(--orange-soft);box-shadow:0 8px 26px rgba(255,92,26,.42)}
@@ -184,7 +189,8 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .about .skill:hover .n{transform:translateX(2px)}
 .skill .t{font-size:15px;color:var(--fg);font-weight:500}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
-.case{position:relative;min-height:96vh;display:flex;align-items:flex-end;overflow:hidden;color:#fff;border-top:1px solid var(--line)}
+.case{position:relative;min-height:74vh;display:flex;align-items:flex-end;overflow:hidden;color:#fff;border-top:1px solid var(--line)}
+.case .bg-carousel{touch-action:pan-y}
 .case .bg{position:absolute;inset:0;z-index:0}
 .case .bg img{width:100%;height:100%;object-fit:cover}
 .case .scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(8,8,10,.94) 4%,rgba(8,8,10,.5) 40%,rgba(8,8,10,.1) 72%)}
@@ -242,7 +248,19 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .case .cc-dots button:hover{border-color:#fff}
 .case .cc-dots button.on{background:var(--accent);border-color:var(--accent);transform:scale(1.2)}
 @media(prefers-reduced-motion:reduce){.case .bg-carousel img{transition:opacity .2s ease}}
-.exp{padding:clamp(90px,15vh,160px) 0;background:var(--bg-soft)}
+.exp{position:relative;overflow:hidden;padding:clamp(90px,15vh,160px) 0;background:var(--bg-soft)}
+.exp .wrap{position:relative;z-index:1}
+.exp .lava{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;filter:blur(34px) saturate(1.1)}
+.exp .lava span{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,92,26,.32),rgba(255,92,26,.08) 55%,transparent 72%);will-change:transform}
+.exp .lava span:nth-child(1){width:46vw;height:46vw;left:-10%;top:6%;animation:lava1 17s ease-in-out infinite}
+.exp .lava span:nth-child(2){width:36vw;height:36vw;right:-6%;top:26%;animation:lava2 21s ease-in-out infinite}
+.exp .lava span:nth-child(3){width:32vw;height:32vw;left:28%;bottom:-14%;animation:lava3 19s ease-in-out infinite}
+.exp .lava span:nth-child(4){width:24vw;height:24vw;right:18%;top:-8%;animation:lava4 23s ease-in-out infinite}
+@keyframes lava1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(22%,34%) scale(1.28)}}
+@keyframes lava2{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-18%,-22%) scale(.85)}}
+@keyframes lava3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(14%,-28%) scale(1.22)}}
+@keyframes lava4{0%,100%{transform:translate(0,0) scale(.9)}50%{transform:translate(-12%,26%) scale(1.15)}}
+@media(prefers-reduced-motion:reduce){.exp .lava span{animation:none}}
 .timeline{border-top:1px solid var(--line)}
 .job{display:grid;grid-template-columns:130px 1fr auto;gap:24px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline;transition:padding-left .4s ease}
 .job:hover{padding-left:14px}

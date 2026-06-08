@@ -28,6 +28,12 @@ const jobs = [
 export default function Experience() {
   return (
     <section className="exp" id="experiencia">
+      <div className="lava" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
       <div className="wrap">
         <div className="eyebrow reveal">Experiencia</div>
         <div className="timeline reveal">

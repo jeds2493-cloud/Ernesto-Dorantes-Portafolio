@@ -4,7 +4,7 @@ import type { MouseEvent } from "react";
 
 const skills = [
   "Dirección de arte & branding",
-  "UI/UX & prototipado · Figma",
+  "UI/UX",
   "Diseño publicitario y editorial",
   "Motion graphics",
   "IA aplicada al diseño y eficiencia de procesos",

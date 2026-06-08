@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 
 type Leaf = { src: string; alt: string; contain?: boolean };
 type Slide = {
@@ -60,9 +60,36 @@ export default function CaseCarousel({ images }: { images: Slide[] }) {
 
   const go = (d: number) => setI((p) => (p + d + n) % n);
 
+  // swipe (táctil y arrastre con mouse) en la vista normal
+  const startX = useRef(0);
+  const swiped = useRef(false);
+  const onDown = (e: PointerEvent<HTMLDivElement>) => {
+    startX.current = e.clientX;
+    swiped.current = false;
+  };
+  const onUp = (e: PointerEvent<HTMLDivElement>) => {
+    const dx = e.clientX - startX.current;
+    if (Math.abs(dx) > 40) {
+      swiped.current = true;
+      go(dx < 0 ? 1 : -1);
+    }
+  };
+  // abre el visor solo si no fue un swipe
+  const openZoom = (idx: number) => {
+    if (swiped.current) {
+      swiped.current = false;
+      return;
+    }
+    setZoom(idx);
+  };
+
   return (
     <>
-      <div className="bg bg-carousel">
+      <div
+        className="bg bg-carousel"
+        onPointerDown={onDown}
+        onPointerUp={onUp}
+      >
         {slides.map((s, idx) => (
           <div
             key={idx}
@@ -82,7 +109,7 @@ export default function CaseCarousel({ images }: { images: Slide[] }) {
                     src={l.src}
                     alt={l.alt}
                     className={l.contain ? "contain" : ""}
-                    onClick={() => setZoom(starts[idx] + j)}
+                    onClick={() => openZoom(starts[idx] + j)}
                   />
                 ))}
               </div>
@@ -92,7 +119,7 @@ export default function CaseCarousel({ images }: { images: Slide[] }) {
                 src={s.src}
                 alt={s.alt}
                 className={s.contain ? "contain" : ""}
-                onClick={() => setZoom(starts[idx])}
+                onClick={() => openZoom(starts[idx])}
               />
             )}
           </div>
@@ -100,22 +127,6 @@ export default function CaseCarousel({ images }: { images: Slide[] }) {
       </div>
 
       <div className="cc-ui">
-        <button
-          type="button"
-          className="cc-arrow cc-prev"
-          onClick={() => go(-1)}
-          aria-label="Slide anterior"
-        >
-          ‹
-        </button>
-        <button
-          type="button"
-          className="cc-arrow cc-next"
-          onClick={() => go(1)}
-          aria-label="Slide siguiente"
-        >
-          ›
-        </button>
         <div className="cc-dots">
           {slides.map((_, idx) => (
             <button

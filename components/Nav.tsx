@@ -2,7 +2,6 @@ export default function Nav() {
   return (
     <nav>
       <a href="#top" className="brand">
-        <span className="dot" />
         Ernesto Dorantes
       </a>
       <div className="links">
@@ -11,10 +10,14 @@ export default function Nav() {
         <a href="#experiencia">Experiencia</a>
         <a href="#contacto">Contacto</a>
       </div>
-      <div className="avail">
+      <a
+        className="avail"
+        href="mailto:jeds2493@gmail.com?subject=Proyecto%20—%20quiero%20trabajar%20contigo"
+        aria-label="Disponible para proyectos — enviar correo"
+      >
         <span className="led" />
         Disponible para proyectos
-      </div>
+      </a>
     </nav>
   );
 }
