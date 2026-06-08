@@ -17,8 +17,7 @@ const inter = Inter({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://ernesto-dorantes-portafolio.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ernestodorantes.com";
 
 const description =
   "Portafolio de Ernesto Dorantes, Director Creativo con más de 7 años de experiencia en campañas 360°, dirección de arte, UI/UX e IA aplicada al diseño.";
