@@ -25,9 +25,18 @@ export default function LavaBg() {
     };
     parent.addEventListener("mousemove", onMove);
     parent.addEventListener("mouseleave", reset);
+
+    // pausa las animaciones CSS cuando la sección no está en pantalla
+    const io = new IntersectionObserver(
+      ([entry]) => el.classList.toggle("paused", !entry.isIntersecting),
+      { threshold: 0 }
+    );
+    io.observe(parent);
+
     return () => {
       parent.removeEventListener("mousemove", onMove);
       parent.removeEventListener("mouseleave", reset);
+      io.disconnect();
     };
   }, []);
 

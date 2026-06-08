@@ -85,10 +85,25 @@ export default function Dust() {
 
     let raf = 0;
     let t = 0;
+    let onScreen = true;
     const frame = () => {
       t += 0.016;
       draw(true, t);
       raf = requestAnimationFrame(frame);
+    };
+    const start = () => {
+      if (raf || reduce) return;
+      raf = requestAnimationFrame(frame);
+    };
+    const stop = () => {
+      if (!raf) return;
+      cancelAnimationFrame(raf);
+      raf = 0;
+    };
+    // pausa el loop cuando la pestaña está oculta o el hero salió de pantalla
+    const sync = () => {
+      if (onScreen && !document.hidden) start();
+      else stop();
     };
 
     resize();
@@ -98,11 +113,23 @@ export default function Dust() {
       raf = requestAnimationFrame(frame);
     }
 
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        onScreen = entry.isIntersecting;
+        sync();
+      },
+      { threshold: 0 }
+    );
+    io.observe(parent);
+
     const onResize = () => resize();
     window.addEventListener("resize", onResize);
+    document.addEventListener("visibilitychange", sync);
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      io.disconnect();
       window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", sync);
     };
   }, []);
 

@@ -66,7 +66,7 @@ const cases: Case[] = [
         alt: "Espectacular: ¿Buscando la casa de tus sueños?",
       },
       {
-        src: "/assets/casos/compramos6.png",
+        src: "/assets/casos/compramos6.jpg",
         alt: "Familia feliz en la oficina de Compramos Tu Casa",
       },
       {
@@ -74,7 +74,7 @@ const cases: Case[] = [
         alt: "Anuncio luchador vs coyote: vende a la segura y con confianza",
       },
       {
-        src: "/assets/casos/compramos8.png",
+        src: "/assets/casos/compramos8.jpg",
         alt: "Anuncio: Vende tu casa rápido sin perder el tiempo",
       },
     ],
@@ -340,6 +340,19 @@ export default function Work() {
       <div
         className="flow"
         ref={stageRef}
+        role="group"
+        aria-roledescription="carrusel"
+        aria-label="Casos de trabajo seleccionado"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            go(1);
+          } else if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            go(-1);
+          }
+        }}
         onPointerDown={onDown}
         onPointerUp={onUp}
         onPointerMove={onMove}
@@ -365,7 +378,13 @@ export default function Work() {
               }
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={c.cover} alt={c.title} draggable={false} />
+              <img
+                src={c.cover}
+                alt={c.title}
+                draggable={false}
+                loading="lazy"
+                decoding="async"
+              />
               <span className="flow-glass" />
               <span className="flow-card-no">{c.caseNo}</span>
             </button>

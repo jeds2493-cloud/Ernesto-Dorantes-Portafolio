@@ -108,6 +108,8 @@ export default function CaseCarousel({ images }: { images: Slide[] }) {
                     key={l.src}
                     src={l.src}
                     alt={l.alt}
+                    loading="lazy"
+                    decoding="async"
                     className={l.contain ? "contain" : ""}
                     onClick={() => openZoom(starts[idx] + j)}
                   />
@@ -118,6 +120,8 @@ export default function CaseCarousel({ images }: { images: Slide[] }) {
               <img
                 src={s.src}
                 alt={s.alt}
+                loading="lazy"
+                decoding="async"
                 className={s.contain ? "contain" : ""}
                 onClick={() => openZoom(starts[idx])}
               />
