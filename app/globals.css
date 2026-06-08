@@ -189,6 +189,29 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .about .skill:hover .n{transform:translateX(2px)}
 .skill .t{font-size:15px;color:var(--fg);font-weight:500}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
+/* ===== Trabajo: Cover Flow ===== */
+.work{padding:clamp(70px,10vh,120px) 0 clamp(80px,12vh,140px);overflow:hidden}
+.work .cases-head{padding:0 0 clamp(28px,5vh,56px)}
+.work .flow{position:relative;touch-action:pan-y}
+.work .flow-stage{position:relative;height:clamp(330px,40vw,500px);perspective:1600px}
+.work .flow-card{position:absolute;left:50%;top:50%;width:clamp(220px,25vw,350px);aspect-ratio:4/5;border:0;padding:0;margin:0;border-radius:18px;overflow:hidden;cursor:pointer;background:#16161b;box-shadow:0 30px 70px -24px rgba(0,0,0,.85);transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .5s,filter .5s,box-shadow .4s;-webkit-appearance:none;appearance:none}
+.work .flow-card img{width:100%;height:100%;object-fit:cover;display:block;-webkit-user-drag:none;user-select:none}
+.work .flow-card.is-active{cursor:zoom-in;box-shadow:0 40px 90px -22px rgba(0,0,0,.9),0 0 0 2px var(--accent),0 0 46px -8px var(--accent)}
+.work .flow-card-no{position:absolute;top:12px;left:12px;font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.5);padding:5px 11px;border-radius:20px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.work .flow-dots{display:flex;gap:9px;justify-content:center;margin-top:clamp(22px,4vh,38px)}
+.work .flow-dots button{width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);background:transparent;cursor:pointer;padding:0;transition:width .3s,background .3s,border-color .3s}
+.work .flow-dots button.on{width:26px;border-radius:6px;background:var(--orange);border-color:var(--orange)}
+.work .flow-info{max-width:680px;margin:clamp(26px,5vh,46px) auto 0;padding:0 clamp(20px,5vw,60px);text-align:center;animation:flowInfoIn .5s ease}
+@keyframes flowInfoIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.work .flow-info .num{font-family:var(--display);font-size:12px;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px;color:var(--accent)}
+.work .flow-info .num .sq{width:13px;height:13px;border:1.5px solid var(--accent);border-radius:3px}
+.work .flow-info h2{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,68px);line-height:.96;letter-spacing:-.03em}
+.work .flow-info h2 .sub{display:block;font-family:var(--sans);font-weight:400;font-size:clamp(14px,1.7vw,19px);letter-spacing:.01em;color:var(--accent);margin-top:14px}
+.work .flow-info .flow-concept{font-size:15px;color:rgba(255,255,255,.82);line-height:1.6;margin:18px auto 0;max-width:560px}
+.work .flow-actions{display:flex;flex-wrap:wrap;gap:clamp(10px,1.4vw,16px);justify-content:center;align-items:center;margin-top:clamp(22px,4vh,32px)}
+.work .flow-gallery-btn{font-family:var(--display);font-weight:600;font-size:14px;color:#0a0a0c;background:var(--accent);border:0;border-radius:40px;padding:13px 26px;cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;flex:none}
+.work .flow-gallery-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px var(--accent)}
+@media(prefers-reduced-motion:reduce){.work .flow-info{animation:none}.work .flow-card{transition:none}}
 .case{position:relative;min-height:74vh;display:flex;align-items:flex-end;overflow:hidden;color:#fff;border-top:1px solid var(--line)}
 .case .bg-carousel{touch-action:pan-y}
 .case .bg{position:absolute;inset:0;z-index:0}
@@ -202,9 +225,9 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .case h2 .sub{display:block;font-family:var(--sans);font-weight:400;font-size:clamp(15px,1.8vw,20px);letter-spacing:.01em;color:var(--accent);margin-top:18px}
 .case .case-title-row{display:inline-flex;align-items:center;gap:clamp(12px,1.6vw,20px);flex-wrap:wrap}
 .case .case-spots{display:inline-flex;align-items:center;gap:clamp(10px,1.2vw,16px);flex-wrap:wrap}
-.case .play-btn{flex:none;display:inline-flex;align-items:center;gap:9px;height:clamp(40px,4vw,52px);padding:0 clamp(16px,1.6vw,22px);border-radius:40px;border:1.5px solid var(--accent);background:rgba(0,0,0,.34);color:var(--accent);cursor:pointer;-webkit-appearance:none;appearance:none;font-family:var(--display);font-weight:600;font-size:clamp(12px,1.15vw,15px);letter-spacing:.02em;line-height:1;white-space:nowrap;transition:transform .3s cubic-bezier(.16,1,.3,1),background .3s,color .3s,box-shadow .3s}
-.case .play-btn .play-ic{width:clamp(12px,1.1vw,15px);height:auto;flex:none}
-.case .play-btn:hover{transform:translateY(-2px);background:var(--accent);color:#0a0a0c;box-shadow:0 8px 26px -6px var(--accent)}
+.play-btn{flex:none;display:inline-flex;align-items:center;gap:9px;height:clamp(40px,4vw,52px);padding:0 clamp(16px,1.6vw,22px);border-radius:40px;border:1.5px solid var(--accent);background:rgba(0,0,0,.34);color:var(--accent);cursor:pointer;-webkit-appearance:none;appearance:none;font-family:var(--display);font-weight:600;font-size:clamp(12px,1.15vw,15px);letter-spacing:.02em;line-height:1;white-space:nowrap;transition:transform .3s cubic-bezier(.16,1,.3,1),background .3s,color .3s,box-shadow .3s}
+.play-btn .play-ic{width:clamp(12px,1.1vw,15px);height:auto;flex:none}
+.play-btn:hover{transform:translateY(-2px);background:var(--accent);color:#0a0a0c;box-shadow:0 8px 26px -6px var(--accent)}
 .video-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);padding:clamp(16px,4vw,52px);animation:vmFade .3s ease}
 .video-modal .vm-inner{position:relative;width:min(1120px,100%);aspect-ratio:16/9}
 .video-modal .vm-inner.vertical{width:auto;max-width:100%;height:min(86vh,760px);aspect-ratio:9/16}

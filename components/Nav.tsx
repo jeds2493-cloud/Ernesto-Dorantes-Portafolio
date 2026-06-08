@@ -12,8 +12,10 @@ export default function Nav() {
       </div>
       <a
         className="avail"
-        href="mailto:jeds2493@gmail.com?subject=Proyecto%20—%20quiero%20trabajar%20contigo"
-        aria-label="Disponible para proyectos — enviar correo"
+        href="https://www.linkedin.com/in/ernestodorantes2493"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Disponible para proyectos — ver LinkedIn"
       >
         <span className="led" />
         Disponible para proyectos

@@ -1,20 +1,27 @@
-import type { CSSProperties } from "react";
-import CaseCarousel from "@/components/CaseCarousel";
+"use client";
+
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent,
+} from "react";
 import CasePlay from "@/components/CasePlay";
 
+type Leaf = { src: string; alt: string; contain?: boolean };
+type GItem = {
+  src?: string;
+  alt: string;
+  contain?: boolean;
+  collage?: Leaf[];
+  bg?: "blue" | "dark";
+  cols?: 2 | 3;
+};
 type Case = {
   accent: string;
-  note?: string;
-  img?: string;
-  alt?: string;
-  gallery?: {
-    src?: string;
-    alt: string;
-    contain?: boolean;
-    collage?: { src: string; alt: string; contain?: boolean }[];
-    bg?: "blue" | "dark";
-    cols?: 2 | 3;
-  }[];
+  cover: string;
+  gallery: GItem[];
   videos?: { id: string; label: string; vertical?: boolean }[];
   caseNo: string;
   title: string;
@@ -25,6 +32,7 @@ type Case = {
 const cases: Case[] = [
   {
     accent: "#ff7a42",
+    cover: "/assets/casos/compramos5.jpg",
     gallery: [
       {
         src: "/assets/casos/compramos1.jpg",
@@ -62,6 +70,7 @@ const cases: Case[] = [
   },
   {
     accent: "#8ee84a",
+    cover: "/assets/casos/poison2.jpg",
     gallery: [
       { src: "/assets/casos/poison1.jpg", alt: "Lata Poison Energy Drink" },
       {
@@ -86,6 +95,7 @@ const cases: Case[] = [
   },
   {
     accent: "#3b9ae0",
+    cover: "/assets/casos/dogi1.jpg",
     gallery: [
       {
         src: "/assets/casos/dogi1.jpg",
@@ -134,65 +144,208 @@ const cases: Case[] = [
   },
 ];
 
+function flatten(gallery: GItem[]): Leaf[] {
+  const out: Leaf[] = [];
+  gallery.forEach((g) => {
+    if (g.collage) g.collage.forEach((l) => out.push(l));
+    else if (g.src) out.push({ src: g.src, alt: g.alt, contain: g.contain });
+  });
+  return out;
+}
+
 export default function Work() {
+  const n = cases.length;
+  const [active, setActive] = useState(0);
+  const [zoom, setZoom] = useState<number | null>(null);
+
+  const current = cases[active];
+  const leaves = flatten(current.gallery);
+  const total = leaves.length;
+
+  const go = (d: number) => setActive((p) => (p + d + n) % n);
+
+  // swipe en el cover flow (táctil y arrastre)
+  const startX = useRef(0);
+  const moved = useRef(false);
+  const onDown = (e: PointerEvent<HTMLDivElement>) => {
+    startX.current = e.clientX;
+    moved.current = false;
+  };
+  const onUp = (e: PointerEvent<HTMLDivElement>) => {
+    const dx = e.clientX - startX.current;
+    if (Math.abs(dx) > 45) {
+      moved.current = true;
+      go(dx < 0 ? 1 : -1);
+    }
+  };
+
+  // visor: teclado + bloqueo de scroll
+  useEffect(() => {
+    if (zoom === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setZoom(null);
+      else if (e.key === "ArrowRight")
+        setZoom((p) => (p === null ? p : (p + 1) % total));
+      else if (e.key === "ArrowLeft")
+        setZoom((p) => (p === null ? p : (p - 1 + total) % total));
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [zoom, total]);
+
   return (
-    <section id="trabajo">
+    <section id="trabajo" className="work">
       <div className="wrap cases-head">
         <div className="eyebrow reveal">Trabajo seleccionado</div>
       </div>
-      {cases.map((c) => (
-        <article
-          className="case"
-          key={c.caseNo}
-          style={{ "--accent": c.accent } as CSSProperties}
-        >
-          {c.gallery ? (
-            <CaseCarousel images={c.gallery} />
-          ) : (
-            <>
-              {c.note && <span className="placeholder-note">{c.note}</span>}
-              <div className="bg">
+
+      <div className="flow" onPointerDown={onDown} onPointerUp={onUp}>
+        <div className="flow-stage">
+          {cases.map((c, idx) => {
+            const off = idx - active;
+            const a = Math.abs(off);
+            const sign = Math.sign(off);
+            const style = {
+              transform: `translate(-50%,-50%) translateX(${off * 54}%) translateZ(${
+                -a * 180
+              }px) rotateY(${-sign * 44}deg) scale(${Math.max(0.62, 1 - a * 0.12)})`,
+              zIndex: 100 - a,
+              opacity: a > 2 ? 0 : 1,
+              filter: `brightness(${Math.max(0.45, 1 - a * 0.42)})`,
+              pointerEvents: a > 2 ? "none" : "auto",
+              "--accent": c.accent,
+            } as CSSProperties;
+            return (
+              <button
+                key={c.caseNo}
+                type="button"
+                className={`flow-card${off === 0 ? " is-active" : ""}`}
+                style={style}
+                onClick={() => {
+                  if (moved.current) {
+                    moved.current = false;
+                    return;
+                  }
+                  if (off === 0) setZoom(0);
+                  else setActive(idx);
+                }}
+                aria-label={
+                  off === 0 ? `Abrir galería de ${c.title}` : `Ver ${c.title}`
+                }
+              >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={c.img} alt={c.alt} />
-              </div>
-            </>
+                <img src={c.cover} alt={c.title} draggable={false} />
+                <span className="flow-card-no">{c.caseNo}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="flow-dots">
+        {cases.map((c, idx) => (
+          <button
+            key={c.caseNo}
+            type="button"
+            className={idx === active ? "on" : ""}
+            onClick={() => setActive(idx)}
+            aria-label={`Ir a ${c.title}`}
+          />
+        ))}
+      </div>
+
+      <div
+        className="flow-info"
+        key={current.caseNo}
+        style={{ "--accent": current.accent } as CSSProperties}
+      >
+        <div className="num">
+          <span className="sq" />
+          {current.caseNo}
+        </div>
+        <h2>
+          {current.title}
+          <span className="sub">{current.sub}</span>
+        </h2>
+        <p className="flow-concept">{current.concept}</p>
+        <div className="flow-actions">
+          <button
+            type="button"
+            className="flow-gallery-btn"
+            onClick={() => setZoom(0)}
+          >
+            Ver galería ({total})
+          </button>
+          {current.videos?.map((v) => (
+            <CasePlay
+              key={v.id}
+              id={v.id}
+              label={v.label}
+              vertical={v.vertical}
+              title={current.title}
+            />
+          ))}
+        </div>
+      </div>
+
+      {zoom !== null && (
+        <div
+          className="img-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Visor de imagen"
+          onClick={() => setZoom(null)}
+        >
+          <button
+            type="button"
+            className="im-close"
+            onClick={() => setZoom(null)}
+            aria-label="Cerrar imagen"
+          >
+            ✕
+          </button>
+          {total > 1 && (
+            <button
+              type="button"
+              className="im-nav im-prev"
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoom((p) => (p === null ? p : (p - 1 + total) % total));
+              }}
+              aria-label="Imagen anterior"
+            >
+              ‹
+            </button>
           )}
-          <div className="scrim" />
-          <div className="content">
-            <div className="cinner">
-              <div>
-                <div className="num">
-                  <span className="sq" />
-                  {c.caseNo}
-                </div>
-                <h2>
-                  <span className="case-title-row">
-                    {c.title}
-                    {c.videos && c.videos.length > 0 && (
-                      <span className="case-spots">
-                        {c.videos.map((v) => (
-                          <CasePlay
-                            key={v.id}
-                            id={v.id}
-                            label={v.label}
-                            vertical={v.vertical}
-                            title={c.title}
-                          />
-                        ))}
-                      </span>
-                    )}
-                  </span>
-                  <span className="sub">{c.sub}</span>
-                </h2>
-              </div>
-              <div className="side">
-                <div className="role">Concepto</div>
-                <p>{c.concept}</p>
-              </div>
-            </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className={`im-img${leaves[zoom].contain ? " contain" : ""}`}
+            src={leaves[zoom].src}
+            alt={leaves[zoom].alt}
+            onClick={(e) => e.stopPropagation()}
+          />
+          {total > 1 && (
+            <button
+              type="button"
+              className="im-nav im-next"
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoom((p) => (p === null ? p : (p + 1) % total));
+              }}
+              aria-label="Imagen siguiente"
+            >
+              ›
+            </button>
+          )}
+          <div className="im-count">
+            {zoom + 1} / {total}
           </div>
-        </article>
-      ))}
+        </div>
+      )}
     </section>
   );
 }
