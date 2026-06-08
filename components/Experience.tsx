@@ -1,3 +1,5 @@
+import LavaBg from "@/components/LavaBg";
+
 const jobs = [
   {
     yr: "2024 — 2026",
@@ -28,12 +30,7 @@ const jobs = [
 export default function Experience() {
   return (
     <section className="exp" id="experiencia">
-      <div className="lava" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
+      <LavaBg />
       <div className="wrap">
         <div className="eyebrow reveal">Experiencia</div>
         <div className="timeline reveal">

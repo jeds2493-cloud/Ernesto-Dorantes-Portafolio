@@ -8,6 +8,7 @@ import {
   type PointerEvent,
 } from "react";
 import CasePlay from "@/components/CasePlay";
+import LavaBg from "@/components/LavaBg";
 
 type Leaf = { src: string; alt: string; contain?: boolean };
 type GItem = {
@@ -29,10 +30,21 @@ type Case = {
   concept: string;
 };
 
+// genera una galería de N piezas con nombre secuencial
+const gen = (prefix: string, count: number, alt: string): GItem[] =>
+  Array.from({ length: count }, (_, i) => ({
+    src: `/assets/casos/${prefix}${i + 1}.jpg`,
+    alt: `${alt} ${i + 1}`,
+  }));
+
+const COORD_SUB = "Coordinación de publicidad · Casting, locaciones y dirección de arte";
+const COORD_CONCEPT =
+  "Coordinación de la campaña: casting de modelos, scouting de locaciones, dirección artística, props y mood, y la distribución del material de los shootings en medios exteriores (OOH).";
+
 const cases: Case[] = [
   {
     accent: "#ff7a42",
-    cover: "/assets/casos/compramos5.jpg",
+    cover: "/assets/casos/compramos-portada.jpg",
     gallery: [
       {
         src: "/assets/casos/compramos1.jpg",
@@ -70,7 +82,7 @@ const cases: Case[] = [
   },
   {
     accent: "#8ee84a",
-    cover: "/assets/casos/poison2.jpg",
+    cover: "/assets/casos/poison-portada.jpg",
     gallery: [
       { src: "/assets/casos/poison1.jpg", alt: "Lata Poison Energy Drink" },
       {
@@ -95,7 +107,7 @@ const cases: Case[] = [
   },
   {
     accent: "#3b9ae0",
-    cover: "/assets/casos/dogi1.jpg",
+    cover: "/assets/casos/dogi-portada.jpg",
     gallery: [
       {
         src: "/assets/casos/dogi1.jpg",
@@ -164,6 +176,51 @@ const cases: Case[] = [
     concept:
       "Identidad cálida y juguetona para el descanso en familia: producto, modelos infantiles y piezas para redes y tienda en línea.",
   },
+  {
+    accent: "#e8443a",
+    cover: "/assets/casos/ag-portada.jpg",
+    gallery: gen("ag", 11, "Campaña Action Gear — pieza"),
+    caseNo: "Caso 05",
+    title: "Action Gear",
+    sub: COORD_SUB,
+    concept: COORD_CONCEPT,
+  },
+  {
+    accent: "#62c9c0",
+    cover: "/assets/casos/bopt-portada.jpg",
+    gallery: gen("bopt", 13, "Campaña Baby Optima — pieza"),
+    caseNo: "Caso 06",
+    title: "Baby Optima",
+    sub: COORD_SUB,
+    concept: COORD_CONCEPT,
+  },
+  {
+    accent: "#e3242b",
+    cover: "/assets/casos/baby-portada.jpg",
+    gallery: gen("baby", 8, "Campaña Baby Creysi — pieza"),
+    caseNo: "Caso 07",
+    title: "Baby Creysi",
+    sub: COORD_SUB,
+    concept: COORD_CONCEPT,
+  },
+  {
+    accent: "#e6dcc4",
+    cover: "/assets/casos/skiny-portada.jpg",
+    gallery: gen("skiny", 7, "Campaña Skiny — pieza"),
+    caseNo: "Caso 08",
+    title: "Skiny",
+    sub: COORD_SUB,
+    concept: COORD_CONCEPT,
+  },
+  {
+    accent: "#f3a08a",
+    cover: "/assets/casos/tb-portada.jpg",
+    gallery: gen("tb", 23, "Campaña Tops & Bottoms — pieza"),
+    caseNo: "Caso 09",
+    title: "Tops & Bottoms",
+    sub: COORD_SUB,
+    concept: COORD_CONCEPT,
+  },
 ];
 
 function flatten(gallery: GItem[]): Leaf[] {
@@ -186,7 +243,8 @@ export default function Work() {
 
   const go = (d: number) => setActive((p) => (p + d + n) % n);
 
-  // swipe en el cover flow (táctil y arrastre)
+  // swipe + tilt en el escenario
+  const stageRef = useRef<HTMLDivElement>(null);
   const startX = useRef(0);
   const moved = useRef(false);
   const onDown = (e: PointerEvent<HTMLDivElement>) => {
@@ -199,6 +257,19 @@ export default function Work() {
       moved.current = true;
       go(dx < 0 ? 1 : -1);
     }
+  };
+  const onMove = (e: PointerEvent<HTMLDivElement>) => {
+    const el = stageRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--tx", String((e.clientX - r.left) / r.width - 0.5));
+    el.style.setProperty("--ty", String((e.clientY - r.top) / r.height - 0.5));
+  };
+  const onLeave = () => {
+    const el = stageRef.current;
+    if (!el) return;
+    el.style.setProperty("--tx", "0");
+    el.style.setProperty("--ty", "0");
   };
 
   // visor: teclado + bloqueo de scroll
@@ -219,52 +290,74 @@ export default function Work() {
     };
   }, [zoom, total]);
 
+  const cardStyle = (idx: number): CSSProperties => {
+    const off = idx - active;
+    const a = Math.abs(off);
+    const sign = Math.sign(off);
+    if (off === 0) {
+      return {
+        transform:
+          "translate(-50%,-50%) translateZ(60px) rotateX(calc(var(--ty,0) * 7deg)) rotateY(calc(var(--tx,0) * -10deg)) scale(1)",
+        zIndex: 60,
+        opacity: 1,
+        "--accent": cases[idx].accent,
+      } as CSSProperties;
+    }
+    const tx = sign * (40 + (a - 1) * 17);
+    const tz = -(50 + a * 80);
+    const sc = Math.max(0.55, 1 - a * 0.1);
+    return {
+      transform: `translate(-50%,-50%) translateX(${tx}%) translateZ(${tz}px) rotateY(${
+        -sign * 46
+      }deg) scale(${sc})`,
+      zIndex: 50 - a,
+      opacity: a > 3 ? 0 : 1 - (a - 1) * 0.14,
+      filter: `brightness(${Math.max(0.4, 1 - a * 0.26)})`,
+      pointerEvents: a > 3 ? "none" : "auto",
+      "--accent": cases[idx].accent,
+    } as CSSProperties;
+  };
+
   return (
     <section id="trabajo" className="work">
+      <LavaBg />
       <div className="wrap cases-head">
         <div className="eyebrow reveal">Trabajo seleccionado</div>
       </div>
 
-      <div className="flow" onPointerDown={onDown} onPointerUp={onUp}>
+      <div
+        className="flow"
+        ref={stageRef}
+        onPointerDown={onDown}
+        onPointerUp={onUp}
+        onPointerMove={onMove}
+        onPointerLeave={onLeave}
+      >
         <div className="flow-stage">
-          {cases.map((c, idx) => {
-            const off = idx - active;
-            const a = Math.abs(off);
-            const sign = Math.sign(off);
-            const style = {
-              transform: `translate(-50%,-50%) translateX(${off * 54}%) translateZ(${
-                -a * 180
-              }px) rotateY(${-sign * 44}deg) scale(${Math.max(0.62, 1 - a * 0.12)})`,
-              zIndex: 100 - a,
-              opacity: a > 2 ? 0 : 1,
-              filter: `brightness(${Math.max(0.45, 1 - a * 0.42)})`,
-              pointerEvents: a > 2 ? "none" : "auto",
-              "--accent": c.accent,
-            } as CSSProperties;
-            return (
-              <button
-                key={c.caseNo}
-                type="button"
-                className={`flow-card${off === 0 ? " is-active" : ""}`}
-                style={style}
-                onClick={() => {
-                  if (moved.current) {
-                    moved.current = false;
-                    return;
-                  }
-                  if (off === 0) setZoom(0);
-                  else setActive(idx);
-                }}
-                aria-label={
-                  off === 0 ? `Abrir galería de ${c.title}` : `Ver ${c.title}`
+          {cases.map((c, idx) => (
+            <button
+              key={c.caseNo}
+              type="button"
+              className={`flow-card${idx === active ? " is-active" : ""}`}
+              style={cardStyle(idx)}
+              onClick={() => {
+                if (moved.current) {
+                  moved.current = false;
+                  return;
                 }
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={c.cover} alt={c.title} draggable={false} />
-                <span className="flow-card-no">{c.caseNo}</span>
-              </button>
-            );
-          })}
+                if (idx === active) setZoom(0);
+                else setActive(idx);
+              }}
+              aria-label={
+                idx === active ? `Abrir galería de ${c.title}` : `Ver ${c.title}`
+              }
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.cover} alt={c.title} draggable={false} />
+              <span className="flow-glass" />
+              <span className="flow-card-no">{c.caseNo}</span>
+            </button>
+          ))}
         </div>
       </div>
 
