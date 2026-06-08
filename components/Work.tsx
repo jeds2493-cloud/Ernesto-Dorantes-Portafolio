@@ -8,7 +8,6 @@ import {
   type PointerEvent,
 } from "react";
 import CasePlay from "@/components/CasePlay";
-import LavaBg from "@/components/LavaBg";
 
 type Leaf = { src: string; alt: string; contain?: boolean };
 type GItem = {
@@ -320,7 +319,6 @@ export default function Work() {
 
   return (
     <section id="trabajo" className="work">
-      <LavaBg />
       <div className="wrap cases-head">
         <div className="eyebrow reveal">Trabajo seleccionado</div>
       </div>

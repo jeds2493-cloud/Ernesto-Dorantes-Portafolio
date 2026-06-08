@@ -190,7 +190,7 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .skill .t{font-size:15px;color:var(--fg);font-weight:500}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
 /* ===== Trabajo: Cover Flow ===== */
-.work{position:relative;padding:clamp(10px,2vh,28px) 0 clamp(70px,11vh,130px);overflow:hidden}
+.work{position:relative;padding:clamp(10px,2vh,28px) 0 clamp(60px,9vh,110px);overflow:hidden}
 .work .cases-head,.work .flow,.work .flow-dots,.work .flow-info{position:relative;z-index:1}
 .work .cases-head{padding:0 0 clamp(24px,4vh,48px)}
 .work .flow-card .flow-glass{position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(125deg,rgba(255,255,255,.28),rgba(255,255,255,.07) 28%,transparent 52%);mix-blend-mode:soft-light}
@@ -275,10 +275,11 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .case .cc-dots button:hover{border-color:#fff}
 .case .cc-dots button.on{background:var(--accent);border-color:var(--accent);transform:scale(1.2)}
 @media(prefers-reduced-motion:reduce){.case .bg-carousel img{transition:opacity .2s ease}}
-.exp{position:relative;overflow:hidden;padding:clamp(90px,15vh,160px) 0;background:var(--bg-soft)}
+.work-exp{position:relative;overflow:hidden}
+.exp{position:relative;padding:clamp(80px,13vh,150px) 0}
 .exp .wrap{position:relative;z-index:1}
-.lava{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;filter:blur(34px) saturate(1.1);transition:transform .5s ease-out;transform:translate(calc(var(--lx,0)*36px),calc(var(--ly,0)*30px));will-change:transform}
-.lava span{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,92,26,.32),rgba(255,92,26,.08) 55%,transparent 72%);will-change:transform}
+.lava{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;filter:blur(30px) saturate(1.15);transition:transform .5s ease-out;transform:translate(calc(var(--lx,0)*36px),calc(var(--ly,0)*30px));will-change:transform}
+.lava span{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,96,28,.5),rgba(255,92,26,.14) 52%,transparent 72%);will-change:transform}
 .lava span:nth-child(1){width:46vw;height:46vw;left:-10%;top:6%;animation:lava1 17s ease-in-out infinite}
 .lava span:nth-child(2){width:36vw;height:36vw;right:-6%;top:26%;animation:lava2 21s ease-in-out infinite}
 .lava span:nth-child(3){width:32vw;height:32vw;left:28%;bottom:-14%;animation:lava3 19s ease-in-out infinite}
