@@ -7,12 +7,10 @@ import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import ScrollReveal from "@/components/ScrollReveal";
 import LavaBg from "@/components/LavaBg";
-import GyroEnabler from "@/components/GyroEnabler";
 
 export default function Home() {
   return (
     <>
-      <GyroEnabler />
       <Nav />
       <Hero />
       <Brands />

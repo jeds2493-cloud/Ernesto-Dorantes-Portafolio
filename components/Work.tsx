@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  useCallback,
   useEffect,
   useRef,
   useState,
@@ -9,7 +8,6 @@ import {
   type PointerEvent,
 } from "react";
 import CasePlay from "@/components/CasePlay";
-import { useGyroTilt } from "@/components/useGyroTilt";
 
 type Leaf = { src: string; alt: string; contain?: boolean };
 type GItem = {
@@ -272,14 +270,6 @@ export default function Work() {
     el.style.setProperty("--tx", "0");
     el.style.setProperty("--ty", "0");
   };
-  // giroscopio (móvil) → mismo tilt que el mouse
-  const onGyro = useCallback((x: number, y: number) => {
-    const el = stageRef.current;
-    if (!el) return;
-    el.style.setProperty("--tx", String(x));
-    el.style.setProperty("--ty", String(y));
-  }, []);
-  useGyroTilt(onGyro);
 
   // visor: teclado + bloqueo de scroll
   useEffect(() => {
