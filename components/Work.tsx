@@ -65,6 +65,18 @@ const cases: Case[] = [
         src: "/assets/casos/compramos5.jpg",
         alt: "Espectacular: ¿Buscando la casa de tus sueños?",
       },
+      {
+        src: "/assets/casos/compramos6.png",
+        alt: "Familia feliz en la oficina de Compramos Tu Casa",
+      },
+      {
+        src: "/assets/casos/compramos7.jpg",
+        alt: "Anuncio luchador vs coyote: vende a la segura y con confianza",
+      },
+      {
+        src: "/assets/casos/compramos8.png",
+        alt: "Anuncio: Vende tu casa rápido sin perder el tiempo",
+      },
     ],
     videos: [
       { id: "oWTXFA5YAEY", label: "Spot 1" },
