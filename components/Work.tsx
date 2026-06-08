@@ -296,7 +296,7 @@ export default function Work() {
     if (off === 0) {
       return {
         transform:
-          "translate(-50%,-50%) translateZ(60px) rotateX(calc(var(--ty,0) * 7deg)) rotateY(calc(var(--tx,0) * -10deg)) scale(1)",
+          "translate(-50%,-50%) translateX(calc(var(--tx,0) * 16px)) translateY(calc(var(--ty,0) * 12px)) translateZ(80px) rotateX(calc(var(--ty,0) * 13deg)) rotateY(calc(var(--tx,0) * -17deg)) scale(1.03)",
         zIndex: 60,
         opacity: 1,
         "--accent": cases[idx].accent,
