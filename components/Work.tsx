@@ -142,6 +142,28 @@ const cases: Case[] = [
     concept:
       "Ternura y descanso como territorio de marca. “Where pets truly rest” — campaña OOH y merchandising cálido.",
   },
+  {
+    accent: "#f4cf52",
+    cover: "/assets/casos/pocho-portada.jpg",
+    gallery: [
+      { src: "/assets/casos/pocho6.jpg", alt: "Niños modelando pijamas Pochokino" },
+      {
+        src: "/assets/casos/pocho3.jpg",
+        alt: "Pijama Pochokino que brilla en la oscuridad",
+      },
+      { src: "/assets/casos/pocho4.jpg", alt: "Pijama infantil Pochokino" },
+      { src: "/assets/casos/pocho5.jpg", alt: "Pijama infantil Pochokino" },
+      { src: "/assets/casos/pocho7.jpg", alt: "Pieza de campaña Pochokino" },
+      { src: "/assets/casos/pocho8.jpg", alt: "Pieza de campaña Pochokino" },
+      { src: "/assets/casos/pocho1.jpg", alt: "Pieza de campaña Pochokino" },
+      { src: "/assets/casos/pocho2.jpg", alt: "Pieza de campaña Pochokino" },
+    ],
+    caseNo: "Caso 04",
+    title: "Pochokino",
+    sub: "Pijamas infantiles · Branding & dirección de arte",
+    concept:
+      "Identidad cálida y juguetona para el descanso en familia: producto, modelos infantiles y piezas para redes y tienda en línea.",
+  },
 ];
 
 function flatten(gallery: GItem[]): Leaf[] {
