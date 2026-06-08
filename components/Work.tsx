@@ -323,6 +323,8 @@ export default function Work() {
         <div className="eyebrow reveal">Trabajo seleccionado</div>
       </div>
 
+      <div className="work-cols">
+        <div className="flow-col">
       <div
         className="flow"
         ref={stageRef}
@@ -370,6 +372,7 @@ export default function Work() {
           />
         ))}
       </div>
+        </div>
 
       <div
         className="flow-info"
@@ -403,6 +406,7 @@ export default function Work() {
             />
           ))}
         </div>
+      </div>
       </div>
 
       {zoom !== null && (
