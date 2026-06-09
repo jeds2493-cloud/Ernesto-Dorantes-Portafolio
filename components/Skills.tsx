@@ -19,7 +19,7 @@ const CERT_URL =
 
 export default function Skills() {
   // mueve el reflector (glow) a la posición del cursor dentro de la card
-  const onMove = (e: MouseEvent<HTMLDivElement>) => {
+  const onMove = (e: MouseEvent<HTMLElement>) => {
     const el = e.currentTarget;
     const r = el.getBoundingClientRect();
     el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
