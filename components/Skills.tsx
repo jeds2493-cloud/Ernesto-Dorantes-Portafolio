@@ -15,7 +15,7 @@ const skills = [
 ];
 
 const CERT_URL =
-  "https://skillshop.docebosaas.com/learn/courses/9439/certificacion-en-creatividades-de-google-ads?hash=4872c5b630ae47aed8c6916037a0785f903a072d&generated_by=3580668";
+  "https://www.credential.net/fd1adad0-eea7-47b8-a03b-53f94bd7bb4e";
 
 export default function Skills() {
   // mueve el reflector (glow) a la posición del cursor dentro de la card
