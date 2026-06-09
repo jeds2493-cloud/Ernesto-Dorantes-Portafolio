@@ -23,6 +23,12 @@ const certs: Cert[] = [
     title: "Google Ads · Creatividades",
     url: "https://www.credential.net/fd1adad0-eea7-47b8-a03b-53f94bd7bb4e",
   },
+  {
+    img: "/assets/certs/google-analytics.png",
+    alt: "Certificación de Google Analytics",
+    title: "Google Analytics",
+    url: "https://www.credential.net/81d55265-b3a7-474e-bba1-b486e90dab45",
+  },
 ];
 
 export default function Skills() {
