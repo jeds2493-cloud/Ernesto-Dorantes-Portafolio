@@ -188,6 +188,14 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .skill .n{font-family:var(--display);font-size:13px;color:var(--orange);font-weight:600;transition:transform .35s}
 .about .skill:hover .n{transform:translateX(2px)}
 .skill .t{font-size:15px;color:var(--fg);font-weight:500}
+.cert-skill{flex-direction:row;align-items:center;gap:16px;text-decoration:none;cursor:pointer}
+.cert-skill .cert-badge{width:76px;height:76px;flex:none;border-radius:50%;background:#fff;object-fit:contain;padding:2px;box-shadow:0 8px 22px -8px rgba(0,0,0,.65);transition:transform .35s}
+.about .cert-skill:hover .cert-badge{transform:scale(1.05) rotate(-3deg)}
+.cert-skill .cert-meta{display:flex;flex-direction:column;gap:5px}
+.cert-skill .cert-eyebrow{font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:600}
+.cert-skill .t{font-weight:600}
+.cert-skill .cert-link{font-size:13px;color:var(--muted);transition:color .3s,transform .3s}
+.about .cert-skill:hover .cert-link{color:var(--orange);transform:translateX(3px)}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
 /* ===== Trabajo: Cover Flow ===== */
 .work{position:relative;padding:clamp(10px,2vh,28px) 0 clamp(60px,9vh,110px);overflow:hidden}

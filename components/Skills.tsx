@@ -14,6 +14,9 @@ const skills = [
   "Campañas ATL / BTL",
 ];
 
+const CERT_URL =
+  "https://skillshop.docebosaas.com/learn/courses/9439/certificacion-en-creatividades-de-google-ads?hash=4872c5b630ae47aed8c6916037a0785f903a072d&generated_by=3580668";
+
 export default function Skills() {
   // mueve el reflector (glow) a la posición del cursor dentro de la card
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -31,6 +34,27 @@ export default function Skills() {
           <span className="t">{t}</span>
         </div>
       ))}
+      <a
+        className="skill cert-skill reveal"
+        href={CERT_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseMove={onMove}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className="cert-badge"
+          src="/assets/certs/google-ads-creative.png"
+          alt="Certificación en Creatividades de Google Ads"
+          loading="lazy"
+          decoding="async"
+        />
+        <span className="cert-meta">
+          <span className="cert-eyebrow">Certificación</span>
+          <span className="t">Google Ads · Creatividades</span>
+          <span className="cert-link">Ver credencial →</span>
+        </span>
+      </a>
     </div>
   );
 }
