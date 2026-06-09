@@ -29,6 +29,12 @@ const certs: Cert[] = [
     title: "Google Analytics",
     url: "https://www.credential.net/81d55265-b3a7-474e-bba1-b486e90dab45",
   },
+  {
+    img: "/assets/certs/hubspot-content-marketing.png",
+    alt: "HubSpot Academy — Content Marketing Certified",
+    title: "HubSpot · Content Marketing",
+    url: "https://app.hubspot.com/academy/achievements/pwyy5x46/en/1/ernesto-soto/content-marketing-certified",
+  },
 ];
 
 export default function Skills() {
