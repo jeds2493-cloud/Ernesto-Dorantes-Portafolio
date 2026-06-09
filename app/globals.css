@@ -196,6 +196,34 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .cert-skill .t{font-weight:600}
 .cert-skill .cert-link{font-size:13px;color:var(--muted);transition:color .3s,transform .3s}
 .about .cert-skill:hover .cert-link{color:var(--orange);transform:translateX(3px)}
+/* Certificaciones (estáticas, arriba) + skills */
+.skills-wrap{display:flex;flex-direction:column;gap:14px}
+.certs{display:flex;flex-wrap:wrap;gap:14px}
+.certs .cert-skill{flex:0 1 360px}
+/* En móvil: certificaciones a ancho completo y skills en carrusel deslizable */
+@media(max-width:700px){
+  .certs .cert-skill{flex:1 1 100%}
+  .about .skills{
+    display:flex;
+    grid-template-columns:none;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    gap:12px;
+    padding:2px 0 14px;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+  }
+  .about .skills::-webkit-scrollbar{display:none}
+  .about .skills .skill{
+    flex:0 0 76%;
+    scroll-snap-align:center;
+    min-height:120px;
+    justify-content:center;
+  }
+  /* en el carrusel las cards no dependen del reveal horizontal */
+  .about .skills .skill.reveal{opacity:1;transform:none}
+}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
 /* ===== Trabajo: Cover Flow ===== */
 .work{position:relative;padding:clamp(10px,2vh,28px) 0 clamp(60px,9vh,110px);overflow:hidden}
