@@ -13,6 +13,13 @@ const steps: Step[] = [
   { name: "Optimización", desc: "Iteración y A/B testing" },
 ];
 
+const proof = [
+  { label: "Impresiones", value: "671,966" },
+  { label: "Clics", value: "8,802" },
+  { label: "Leads", value: "710+" },
+  { label: "Conversión", value: "8.07%" },
+];
+
 export default function Process() {
   return (
     <section className="process" id="proceso">
@@ -44,6 +51,30 @@ export default function Process() {
           <b>acelerar la producción</b>, validar conceptos y optimizar recursos{" "}
           <b>sin comprometer la calidad visual</b>.
         </p>
+
+        {/* Respaldo con datos reales de un ecosistema de campañas */}
+        <div className="proof reveal">
+          <div className="proof-head">El proceso, en resultados de negocio</div>
+          <div className="proof-grid">
+            {proof.map((p) => (
+              <div className="proof-kpi" key={p.label}>
+                <span className="proof-v">{p.value}</span>
+                <span className="proof-l">{p.label}</span>
+              </div>
+            ))}
+          </div>
+          <p className="proof-note">
+            Contribución creativa a un ecosistema de campañas multicanal (Meta,
+            Google y TikTok) para <b>Compramos Tu Casa.mx</b>, que aportó a la
+            generación de <b>700+ leads</b>.
+          </p>
+          <p className="proof-learning">
+            <b>Aprendizaje.</b> Las creatividades centradas en personas y
+            beneficios tangibles superaron de forma consistente a las piezas
+            genéricas; la regionalización (CDMX, Edomex, Querétaro e Hidalgo)
+            permitió adaptar mensaje y arte por mercado.
+          </p>
+        </div>
       </div>
     </section>
   );
