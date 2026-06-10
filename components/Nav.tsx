@@ -6,8 +6,8 @@ export default function Nav() {
       </a>
       <div className="links">
         <a href="#sobre">Sobre mí</a>
-        <a href="#trabajo">Trabajo</a>
-        <a href="#experiencia">Experiencia</a>
+        <a href="#trabajo">Casos</a>
+        <a href="#experiencia">Carrera</a>
         <a href="#contacto">Contacto</a>
       </div>
       <a
