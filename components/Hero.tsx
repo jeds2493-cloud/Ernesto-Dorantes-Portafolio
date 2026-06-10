@@ -18,7 +18,7 @@ export default function Hero() {
     if (reduce) return;
     const id = setInterval(() => {
       setIcon((prev) => CYCLE[(CYCLE.indexOf(prev) + 1) % CYCLE.length]);
-    }, 2000);
+    }, 5000);
     return () => clearInterval(id);
   }, [cycleKey]);
 
