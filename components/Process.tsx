@@ -29,20 +29,43 @@ const proof = [
   { label: "CPC promedio", value: "$6.82" },
 ];
 
-const ads = [
+type AdItem = {
+  type: "image" | "video";
+  src: string;
+  poster?: string;
+  alt: string;
+};
+
+const ads: AdItem[] = [
   {
+    type: "image",
     src: "/assets/ads/ad-feed.jpg",
     alt: "Anuncio: ¿Quieres vender tu casa? Empieza con un diagnóstico gratis",
   },
   {
+    type: "video",
+    src: "/assets/ads/ad-vid1.mp4",
+    poster: "/assets/ads/ad-vid1-poster.jpg",
+    alt: "Spot de video: cierra el ciclo y vende tu casa",
+  },
+  {
+    type: "image",
     src: "/assets/ads/ad-square.jpg",
     alt: "Anuncio: Vende tu casa de interés social, compra directa sin intermediarios",
   },
   {
+    type: "video",
+    src: "/assets/ads/ad-vid2.mp4",
+    poster: "/assets/ads/ad-vid2-poster.jpg",
+    alt: "Spot de video: solución a tu deuda vendiendo tu casa",
+  },
+  {
+    type: "image",
     src: "/assets/ads/ad-story1.jpg",
     alt: "Anuncio: Recibe una oferta por tu casa",
   },
   {
+    type: "image",
     src: "/assets/ads/ad-story2.jpg",
     alt: "Anuncio: Compramos casas de interés social",
   },
@@ -51,6 +74,7 @@ const ads = [
 export default function Process() {
   const [isMobile, setIsMobile] = useState(false);
   const [active, setActive] = useState(0);
+  const [autoKey, setAutoKey] = useState(0);
   const [zoom, setZoom] = useState<number | null>(null);
   const n = steps.length;
 
@@ -63,6 +87,20 @@ export default function Process() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  // auto-avance continuo del cover flow (se reinicia al interactuar)
+  useEffect(() => {
+    if (!isMobile) return;
+    if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+    const id = setInterval(() => setActive((p) => (p + 1) % n), 3200);
+    return () => clearInterval(id);
+  }, [isMobile, autoKey, n]);
+
+  // fija una card y reinicia el temporizador
+  const select = (idx: number) => {
+    setActive(idx);
+    setAutoKey((k) => k + 1);
+  };
+
   // swipe del cover flow
   const startX = useRef(0);
   const moved = useRef(false);
@@ -74,7 +112,7 @@ export default function Process() {
     const dx = e.clientX - startX.current;
     if (Math.abs(dx) > 40) {
       moved.current = true;
-      setActive((p) => Math.min(n - 1, Math.max(0, p + (dx < 0 ? 1 : -1))));
+      select(Math.min(n - 1, Math.max(0, active + (dx < 0 ? 1 : -1))));
     }
   };
 
@@ -147,7 +185,7 @@ export default function Process() {
                       moved.current = false;
                       return;
                     }
-                    setActive(idx);
+                    select(idx);
                   }}
                 >
                   <span className="pstep-i">
@@ -164,7 +202,7 @@ export default function Process() {
                   key={s.name}
                   type="button"
                   className={idx === active ? "on" : ""}
-                  onClick={() => setActive(idx)}
+                  onClick={() => select(idx)}
                   aria-label={`Ir a ${s.name}`}
                 />
               ))}
@@ -238,12 +276,22 @@ export default function Process() {
                 <button
                   key={ad.src}
                   type="button"
-                  className="proof-ad"
+                  className={`proof-ad${ad.type === "video" ? " is-video" : ""}`}
                   onClick={() => setZoom(i)}
                   aria-label={`Ampliar: ${ad.alt}`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={ad.src} alt={ad.alt} loading="lazy" decoding="async" />
+                  <img
+                    src={ad.type === "video" ? ad.poster : ad.src}
+                    alt={ad.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {ad.type === "video" && (
+                    <span className="proof-ad-play" aria-hidden="true">
+                      ▶
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
@@ -279,13 +327,26 @@ export default function Process() {
           >
             ‹
           </button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="im-img contain"
-            src={ads[zoom].src}
-            alt={ads[zoom].alt}
-            onClick={(e) => e.stopPropagation()}
-          />
+          {ads[zoom].type === "video" ? (
+            <video
+              className="im-img contain"
+              src={ads[zoom].src}
+              poster={ads[zoom].poster}
+              controls
+              autoPlay
+              loop
+              playsInline
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              className="im-img contain"
+              src={ads[zoom].src}
+              alt={ads[zoom].alt}
+              onClick={(e) => e.stopPropagation()}
+            />
+          )}
           <button
             type="button"
             className="im-nav im-next"

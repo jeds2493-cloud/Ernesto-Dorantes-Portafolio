@@ -78,9 +78,9 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 .hero .dust{position:absolute;inset:0;z-index:2;pointer-events:none}
 .hero-inner{position:relative;z-index:2;width:100%;max-width:1280px;margin:0 auto;will-change:transform;transition:transform .6s cubic-bezier(.16,1,.3,1)}
 .hero .neon-bulb{position:absolute;top:30px;left:32%;width:142px;z-index:3;pointer-events:none;animation:neonFlicker 7s linear infinite}
-.hero .neon-bulb svg{width:100%;height:auto;display:block;overflow:visible;transform-origin:center;animation:neonPop .5s cubic-bezier(.16,1,.3,1);filter:drop-shadow(0 0 2px #ffeede) drop-shadow(0 0 7px #ff8a4f) drop-shadow(0 0 18px #ff5c1a) drop-shadow(0 0 36px #ff5c1a)}
+.hero .neon-bulb svg{width:100%;height:auto;display:block;overflow:visible;transform-origin:center;animation:neonPop .5s cubic-bezier(.16,1,.3,1);filter:drop-shadow(0 0 1px #fff0e6) drop-shadow(0 0 3px #ff8a4f) drop-shadow(0 0 8px rgba(255,92,26,.85))}
 /* todos en contorno fino (line-art) para un neón consistente */
-.hero .neon-bulb path{fill:none;stroke:#ffd8c2;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.hero .neon-bulb path{fill:none;stroke:#ffe2d2;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 @keyframes neonFlicker{0%,40%,100%{opacity:1}41%{opacity:.74}43%{opacity:1}44%{opacity:.82}46%{opacity:1}72%{opacity:1}73%{opacity:.7}74.5%{opacity:1}}
 @keyframes neonPop{0%{opacity:0;transform:scale(.7)}55%{opacity:1;transform:scale(1.08)}100%{transform:scale(1)}}
 @media(max-width:900px){.hero .neon-bulb{top:clamp(94px,13vh,128px);left:auto;right:clamp(10px,4vw,26px);width:clamp(66px,20vw,90px)}}
@@ -228,29 +228,14 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 .skills-wrap{display:flex;flex-direction:column;gap:14px}
 .certs{display:flex;flex-wrap:wrap;gap:14px}
 .certs .cert-skill{flex:0 1 360px}
-/* En móvil: certificaciones a ancho completo y skills en carrusel deslizable */
+/* Skills en marquee continuo (móvil) */
+.skills-marquee{position:relative;overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.skills-marquee .skills-track{display:flex;gap:12px;width:max-content;animation:skillsMarquee 34s linear infinite}
+.skills-marquee .skill{flex:0 0 auto;width:min(62vw,250px);min-height:118px;justify-content:center}
+@keyframes skillsMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.skills-marquee{overflow-x:auto;scrollbar-width:none}.skills-marquee .skills-track{animation:none}}
 @media(max-width:700px){
   .certs .cert-skill{flex:1 1 100%}
-  .about .skills{
-    display:flex;
-    grid-template-columns:none;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    gap:12px;
-    padding:2px 0 14px;
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
-    overscroll-behavior-x:contain;
-  }
-  .about .skills::-webkit-scrollbar{display:none}
-  .about .skills .skill{
-    flex:0 0 76%;
-    scroll-snap-align:center;
-    min-height:120px;
-    justify-content:center;
-  }
-  /* en el carrusel las cards no dependen del reveal horizontal */
-  .about .skills .skill.reveal{opacity:1;transform:none}
 }
 /* ===== Cómo trabajo (proceso) ===== */
 .process{position:relative;z-index:1;padding:clamp(28px,4.5vh,60px) 0 clamp(28px,4.5vh,60px)}
@@ -309,6 +294,8 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 .proof-ad{flex:0 0 auto;height:clamp(140px,20vw,170px);border:1px solid var(--line);border-radius:12px;overflow:hidden;padding:0;cursor:pointer;background:#0e0e12;transition:transform .3s,border-color .3s,box-shadow .3s;-webkit-appearance:none;appearance:none}
 .proof-ad img{height:100%;width:auto;display:block;object-fit:cover}
 .proof-ad:hover{transform:translateY(-3px);border-color:rgba(255,92,26,.5);box-shadow:0 12px 26px -12px rgba(255,92,26,.45)}
+.proof-ad.is-video{position:relative}
+.proof-ad-play{position:absolute;top:50%;left:50%;transform:translate(-40%,-50%);width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;background:rgba(255,92,26,.92);border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,.5);pointer-events:none}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
 /* ===== Trabajo: Cover Flow ===== */

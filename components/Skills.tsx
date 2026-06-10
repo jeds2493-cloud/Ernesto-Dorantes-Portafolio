@@ -1,6 +1,6 @@
 "use client";
 
-import type { MouseEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 const skills = [
   "Dirección de arte & branding",
@@ -38,6 +38,16 @@ const certs: Cert[] = [
 ];
 
 export default function Skills() {
+  // en móvil las skills fluyen en marquee continuo; en desktop son grid
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width:700px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   // mueve el reflector (glow) a la posición del cursor dentro de la card
   const onMove = (e: MouseEvent<HTMLElement>) => {
     const el = e.currentTarget;
@@ -76,15 +86,34 @@ export default function Skills() {
         ))}
       </div>
 
-      {/* Skills — grid en desktop, carrusel deslizable en móvil */}
-      <div className="skills">
-        {skills.map((t, i) => (
-          <div className="skill reveal" key={t} onMouseMove={onMove}>
-            <span className="n">{String(i + 1).padStart(2, "0")}</span>
-            <span className="t">{t}</span>
+      {/* Skills — grid en desktop, marquee continuo en móvil */}
+      {isMobile ? (
+        <div className="skills-marquee" aria-label="Habilidades">
+          <div className="skills-track">
+            {[...skills, ...skills].map((t, i) => (
+              <div
+                className="skill"
+                key={i}
+                aria-hidden={i >= skills.length}
+              >
+                <span className="n">
+                  {String((i % skills.length) + 1).padStart(2, "0")}
+                </span>
+                <span className="t">{t}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="skills">
+          {skills.map((t, i) => (
+            <div className="skill reveal" key={t} onMouseMove={onMove}>
+              <span className="n">{String(i + 1).padStart(2, "0")}</span>
+              <span className="t">{t}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
