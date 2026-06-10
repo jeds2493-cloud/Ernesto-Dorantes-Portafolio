@@ -38,7 +38,7 @@ const gen = (prefix: string, count: number, alt: string): GItem[] =>
 
 const COORD_SUB = "Coordinación de publicidad · Casting, locaciones y dirección de arte";
 const COORD_CONCEPT =
-  "Coordinación de la campaña: casting de modelos, scouting de locaciones, dirección artística, props y mood, y la distribución del material de los shootings en medios exteriores (OOH).";
+  "Dirigí la campaña de principio a fin —casting, scouting de locaciones, dirección artística, props y mood— y la bajada del material a medios exteriores (OOH), asegurando una marca consistente en cada punto de contacto.";
 
 const cases: Case[] = [
   {
@@ -89,7 +89,7 @@ const cases: Case[] = [
     title: "Compramos Tu Casa",
     sub: "PropTech · Lead Content, Graphics & Product Designer",
     concept:
-      "Branding, UI/UX y campañas potenciadas con IA. Conceptos como “Más rápido que comprar una pizza” y ads optimizados para A/B testing.",
+      "Lideré branding, UI/UX y campañas potenciadas con IA: implementé flujos que recortaron los tiempos de producción de creatividades y desarrollé anuncios optimizados para A/B testing, con conceptos como “Más rápido que comprar una pizza”.",
   },
   {
     accent: "#8ee84a",
@@ -114,7 +114,7 @@ const cases: Case[] = [
     title: "Poison",
     sub: "Energy Drink · Branding & dirección de arte",
     concept:
-      "Identidad oscura de inspiración metal: lata, sistema gráfico y campaña OOH. “Pure raw energy — drink at your own risk.”",
+      "Desarrollé el sistema visual completo de un energy drink desde cero —lata, identidad gráfica y campaña OOH— con una estética oscura de inspiración metal. “Pure raw energy — drink at your own risk.”",
   },
   {
     accent: "#3b9ae0",
@@ -163,7 +163,7 @@ const cases: Case[] = [
     title: "dogi-dogi",
     sub: "Camas para mascotas · Dirección de arte",
     concept:
-      "Ternura y descanso como territorio de marca. “Where pets truly rest” — campaña OOH y merchandising cálido.",
+      "Posicioné la ternura y el descanso como territorio de marca con “Where pets truly rest”: dirección de arte, campaña OOH y merchandising que unificaron toda la línea de producto.",
   },
   {
     accent: "#f4cf52",
@@ -185,7 +185,7 @@ const cases: Case[] = [
     title: "Pochokino",
     sub: "Pijamas infantiles · Branding & dirección de arte",
     concept:
-      "Identidad cálida y juguetona para el descanso en familia: producto, modelos infantiles y piezas para redes y tienda en línea.",
+      "Construí una identidad cálida y juguetona para el descanso en familia, con un sistema visual aplicado a producto, sesiones con modelos infantiles y piezas para redes y e-commerce.",
   },
   {
     accent: "#e8443a",

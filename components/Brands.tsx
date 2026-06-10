@@ -23,8 +23,8 @@ export default function Brands() {
   return (
     <section className="brands" aria-label="Experiencia y marcas con las que he trabajado">
       <p className="brands-line wrap">
-        <b>7+</b> años de experiencia · grandes historias para <b>+5</b> marcas ·
-        arte publicitario en campañas <b>360°</b> ATL, BTL y digital{" "}
+        <b>7+</b> años creando <b>sistemas visuales, campañas y contenido</b>{" "}
+        para marcas en <b>retail, proptech, moda y consumo</b>{" "}
         <span className="brands-tag">— marcas con las que he trabajado</span>
       </p>
       <div className="marquee">
