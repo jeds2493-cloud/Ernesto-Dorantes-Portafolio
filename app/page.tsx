@@ -15,15 +15,13 @@ export default function Home() {
       <Nav />
       <Hero />
       <Brands />
-      {/* Fondo cálido continuo desde Sobre mí hasta Carrera (sin costuras) */}
-      <div className="ambient">
-        <About />
-        <div className="work-exp">
-          <LavaBg />
-          <Work />
-          <Process />
-          <Experience />
-        </div>
+      <About />
+      {/* Casos + Pipeline + Carrera comparten un fondo continuo con una sola lava */}
+      <div className="work-exp">
+        <LavaBg />
+        <Work />
+        <Process />
+        <Experience />
       </div>
       <Contact />
       <ScrollReveal />
