@@ -130,8 +130,26 @@ export default function Hero() {
     };
   }, [isMobile]);
 
-  const chips = (
-    <div className="role-row">
+  // ruleta de chips: centra el chip activo (solo móvil, dentro del video)
+  const chipsTrackRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!isMobile) return;
+    const center = () => {
+      const track = chipsTrackRef.current;
+      const container = track?.parentElement;
+      const active = track?.querySelector<HTMLElement>(".chip.fill");
+      if (!track || !container || !active) return;
+      const offset =
+        container.clientWidth / 2 - (active.offsetLeft + active.offsetWidth / 2);
+      track.style.transform = `translateX(${offset}px)`;
+    };
+    center();
+    window.addEventListener("resize", center);
+    return () => window.removeEventListener("resize", center);
+  }, [icon, isMobile]);
+
+  const chipButtons = (
+    <>
       <button
         type="button"
         className={`chip${icon === "arte" ? " fill" : ""}`}
@@ -153,7 +171,7 @@ export default function Hero() {
       >
         Campañas 360°
       </button>
-    </div>
+    </>
   );
 
   const media_el = useVideo ? (
@@ -191,7 +209,11 @@ export default function Hero() {
               <span className="sq" />
               Portafolio 2026
             </span>
-            <div className="hero-chips">{chips}</div>
+            <div className="hero-chips">
+              <div className="role-row" ref={chipsTrackRef}>
+                {chipButtons}
+              </div>
+            </div>
           </div>
           <h1 className="hero-name">
             <span className="ln1">Ernesto</span>
@@ -230,7 +252,7 @@ export default function Hero() {
               <span className="ln1">Ernesto</span>
               <span className="ln2 accent">Dorantes</span>
             </h1>
-            {chips}
+            <div className="role-row">{chipButtons}</div>
           </div>
         </>
       )}
