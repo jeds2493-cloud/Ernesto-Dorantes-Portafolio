@@ -63,6 +63,15 @@ export default function Process() {
               </div>
             ))}
           </div>
+          <div className="proof-highlight">
+            <span className="ph-value">39.37%</span>
+            <span className="ph-text">
+              de conversión en el <b>mejor segmento</b> —campañas de adquisición
+              en Meta Ads, con CPL de ~$32 MXN—, frente al <b>8.07%</b> del
+              promedio multicanal. Ahí concentré las creatividades centradas en
+              personas.
+            </span>
+          </div>
           <p className="proof-note">
             Contribución creativa a un ecosistema de campañas multicanal (Meta,
             Google y TikTok) para <b>Compramos Tu Casa.mx</b>, que aportó a la
