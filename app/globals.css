@@ -469,7 +469,7 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 }
 /* ===== Móvil: hero como tarjeta de video vertical ===== */
 @media(max-width:760px){
-  .hero{min-height:auto;align-items:flex-start;justify-content:center;padding:clamp(86px,14vh,118px) clamp(18px,5vw,30px) clamp(36px,6vh,60px)}
+  .hero{min-height:auto;align-items:flex-start;justify-content:center;padding:clamp(60px,7.5vh,76px) clamp(18px,5vw,30px) clamp(36px,6vh,60px)}
   .hero .diffuser{opacity:.36}
   .hero-inner-mobile{width:100%;max-width:430px;margin:0 auto}
   .hero-video{position:relative;width:100%;aspect-ratio:9/16;max-height:62vh;margin:0 auto;border-radius:22px;overflow:hidden;background:#0d0d11;box-shadow:0 30px 70px -26px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.05)}
