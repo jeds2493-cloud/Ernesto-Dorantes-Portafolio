@@ -23,10 +23,6 @@ export default function TubeMan() {
           <div className="s s1">
             <div className="s s2">
               <div className="s s3">
-                <div className="tm-shirt">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/assets/ed-logo.png" alt="" />
-                </div>
                 <span className="arm arm-l" />
                 <span className="arm arm-r" />
                 <div className="head">
