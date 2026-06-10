@@ -42,19 +42,13 @@ export default function Hero() {
     setIcon(v);
     setCycleKey((k) => k + 1);
   };
-  // los videos solo en pantallas grandes y sin reduce-motion; reacciona al
-  // rotar/redimensionar cruzando el breakpoint
+  // los videos se reproducen en desktop y móvil; solo se respeta reduce-motion
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion:reduce)");
-    const wide = window.matchMedia("(min-width:768px)");
-    const update = () => setAllowVideo(!motion.matches && wide.matches);
+    const update = () => setAllowVideo(!motion.matches);
     update();
     motion.addEventListener("change", update);
-    wide.addEventListener("change", update);
-    return () => {
-      motion.removeEventListener("change", update);
-      wide.removeEventListener("change", update);
-    };
+    return () => motion.removeEventListener("change", update);
   }, []);
 
   const media = MEDIA[icon];
