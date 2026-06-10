@@ -264,9 +264,12 @@ export default function Work() {
   };
   const onUp = (e: PointerEvent<HTMLDivElement>) => {
     const dx = e.clientX - startX.current;
-    if (Math.abs(dx) > 45) {
+    if (Math.abs(dx) > 28) {
       moved.current = true;
-      go(dx < 0 ? 1 : -1);
+      // swipe largo avanza varias cards
+      const stepW = (stageRef.current?.clientWidth ?? 320) * 0.42;
+      const steps = Math.max(1, Math.round(Math.abs(dx) / stepW));
+      setActive((p) => Math.min(n - 1, Math.max(0, p + steps * (dx < 0 ? 1 : -1))));
     }
   };
   const onMove = (e: PointerEvent<HTMLDivElement>) => {
@@ -314,9 +317,9 @@ export default function Work() {
         "--accent": cases[idx].accent,
       } as CSSProperties;
     }
-    const tx = sign * (40 + (a - 1) * 17);
-    const tz = -(50 + a * 80);
-    const sc = Math.max(0.55, 1 - a * 0.1);
+    const tx = sign * (56 + (a - 1) * 24);
+    const tz = -(70 + a * 95);
+    const sc = Math.max(0.52, 1 - a * 0.11);
     return {
       transform: `translate(-50%,-50%) translateX(${tx}%) translateZ(${tz}px) rotateY(${
         -sign * 46
@@ -405,7 +408,7 @@ export default function Work() {
                           setZoom(0);
                         }}
                       >
-                        Ver galería ({flatten(c.gallery).length})
+                        Galería ({flatten(c.gallery).length})
                       </button>
                       {c.videos?.map((v) => (
                         <CasePlay
@@ -423,6 +426,23 @@ export default function Work() {
             })}
           </div>
         </div>
+
+        <button
+          type="button"
+          className="flow-arrow prev"
+          onClick={() => go(-1)}
+          aria-label="Caso anterior"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          className="flow-arrow next"
+          onClick={() => go(1)}
+          aria-label="Siguiente caso"
+        >
+          ›
+        </button>
 
         <div className="flow-dots">
           {cases.map((c, idx) => (
