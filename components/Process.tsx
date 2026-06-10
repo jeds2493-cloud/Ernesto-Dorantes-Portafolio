@@ -17,7 +17,7 @@ const proof = [
   { label: "Impresiones", value: "671,966" },
   { label: "Clics", value: "8,802" },
   { label: "Leads", value: "710+" },
-  { label: "Conversión", value: "8.07%" },
+  { label: "Clic → Lead", value: "8.07%" },
 ];
 
 export default function Process() {
