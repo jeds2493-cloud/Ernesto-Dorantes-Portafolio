@@ -20,7 +20,28 @@ nav .links a:hover{color:var(--fg)}
 nav .avail{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);border:1px solid var(--line);padding:7px 14px;border-radius:30px}
 nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-shadow:0 0 8px #3ddc84;animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-@media(max-width:760px){nav .links{display:none}}
+/* Menú móvil: hamburguesa + overlay */
+nav .brand{position:relative;z-index:130}
+nav .nav-toggle{display:none;position:relative;width:30px;height:24px;background:none;border:0;padding:0;cursor:pointer;z-index:130}
+nav .nav-toggle span{position:absolute;left:3px;right:3px;height:2px;border-radius:2px;background:var(--fg);transition:transform .3s ease,opacity .25s ease,top .3s ease}
+nav .nav-toggle span:nth-child(1){top:4px}
+nav .nav-toggle span:nth-child(2){top:11px}
+nav .nav-toggle span:nth-child(3){top:18px}
+nav .nav-toggle.open span:nth-child(1){top:11px;transform:rotate(45deg)}
+nav .nav-toggle.open span:nth-child(2){opacity:0}
+nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
+.nav-overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(8,8,10,.94);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);opacity:0;pointer-events:none;transition:opacity .3s ease}
+.nav-overlay.open{opacity:1;pointer-events:auto}
+.nav-overlay .nav-close{position:absolute;top:18px;right:clamp(20px,5vw,60px);width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:24px;line-height:1;color:var(--fg);background:none;border:0;cursor:pointer}
+.nav-overlay-inner{display:flex;flex-direction:column;align-items:center;gap:clamp(18px,4.5vh,32px)}
+.nav-overlay-inner a{font-family:var(--display);font-weight:600;font-size:clamp(28px,9vw,40px);letter-spacing:-.02em;color:var(--fg);transition:color .25s}
+.nav-overlay-inner a:active{color:var(--orange)}
+.nav-overlay-inner .nav-cv{margin-top:12px;font-size:clamp(15px,4.5vw,18px);font-weight:600;color:#fff;background:var(--orange);border-radius:30px;padding:13px 28px;box-shadow:0 10px 28px -8px rgba(255,92,26,.5)}
+@media(max-width:760px){
+  nav .links{display:none}
+  nav .nav-toggle{display:block}
+  nav .avail{display:none}
+}
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:clamp(80px,12vh,120px) clamp(20px,5vw,60px) clamp(40px,7vh,70px);overflow:hidden}
 .hero .diffuser{position:absolute;top:-16%;right:-8%;width:62vw;max-width:860px;height:132%;z-index:0;pointer-events:none;
   background:

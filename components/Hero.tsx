@@ -42,12 +42,19 @@ export default function Hero() {
     setIcon(v);
     setCycleKey((k) => k + 1);
   };
-  // decide si se pueden reproducir videos (no en móvil ni con reduce-motion)
+  // los videos solo en pantallas grandes y sin reduce-motion; reacciona al
+  // rotar/redimensionar cruzando el breakpoint
   useEffect(() => {
-    const ok =
-      !window.matchMedia("(prefers-reduced-motion:reduce)").matches &&
-      window.matchMedia("(min-width:768px)").matches;
-    setAllowVideo(ok);
+    const motion = window.matchMedia("(prefers-reduced-motion:reduce)");
+    const wide = window.matchMedia("(min-width:768px)");
+    const update = () => setAllowVideo(!motion.matches && wide.matches);
+    update();
+    motion.addEventListener("change", update);
+    wide.addEventListener("change", update);
+    return () => {
+      motion.removeEventListener("change", update);
+      wide.removeEventListener("change", update);
+    };
   }, []);
 
   const media = MEDIA[icon];
