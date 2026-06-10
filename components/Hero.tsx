@@ -9,7 +9,10 @@ const CYCLE: NeonVariant[] = ["arte", "story", "campanas"];
 // Medios del hero por modo: imagen (póster) y, si existe, video animado.
 const MEDIA: Record<NeonVariant, { img: string; video?: string }> = {
   arte: { img: "/assets/hero-arte-poster.jpg", video: "/assets/hero-arte.mp4" },
-  story: { img: "/assets/ernesto-noir.jpg" },
+  story: {
+    img: "/assets/hero-story-poster.jpg",
+    video: "/assets/hero-story.mp4",
+  },
   campanas: {
     img: "/assets/hero-campanas-poster.jpg",
     video: "/assets/hero-campanas.mp4",
