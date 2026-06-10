@@ -335,109 +335,106 @@ export default function Work() {
         <div className="eyebrow reveal">Casos prácticos</div>
       </div>
 
-      <div className="work-cols">
-        <div className="flow-col">
-      <div
-        className="flow"
-        ref={stageRef}
-        role="group"
-        aria-roledescription="carrusel"
-        aria-label="Casos de trabajo seleccionado"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowRight") {
-            e.preventDefault();
-            go(1);
-          } else if (e.key === "ArrowLeft") {
-            e.preventDefault();
-            go(-1);
-          }
-        }}
-        onPointerDown={onDown}
-        onPointerUp={onUp}
-        onPointerMove={onMove}
-        onPointerLeave={onLeave}
-      >
-        <div className="flow-stage">
+      <div className="flow-wrap">
+        <div
+          className="flow"
+          ref={stageRef}
+          role="group"
+          aria-roledescription="carrusel"
+          aria-label="Casos de trabajo seleccionado"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowRight") {
+              e.preventDefault();
+              go(1);
+            } else if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              go(-1);
+            }
+          }}
+          onPointerDown={onDown}
+          onPointerUp={onUp}
+          onPointerMove={onMove}
+          onPointerLeave={onLeave}
+        >
+          <div className="flow-stage">
+            {cases.map((c, idx) => {
+              const isActive = idx === active;
+              return (
+                <div
+                  key={c.caseNo}
+                  className={`flow-card${isActive ? " is-active" : ""}`}
+                  style={cardStyle(idx)}
+                  role="button"
+                  tabIndex={-1}
+                  aria-label={
+                    isActive ? `Abrir galería de ${c.title}` : `Ver ${c.title}`
+                  }
+                  onClick={() => {
+                    if (moved.current) {
+                      moved.current = false;
+                      return;
+                    }
+                    if (isActive) setZoom(0);
+                    else setActive(idx);
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={c.cover}
+                    alt={c.title}
+                    draggable={false}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span className="flow-glass" />
+                  <span className="flow-card-no">{c.caseNo}</span>
+                  <div className="flow-card-info">
+                    <h3>
+                      {c.title}
+                      <span className="sub">{c.sub}</span>
+                    </h3>
+                    <p className="flow-card-concept">{c.concept}</p>
+                    <div className="flow-card-actions">
+                      <button
+                        type="button"
+                        className="flow-gallery-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActive(idx);
+                          setZoom(0);
+                        }}
+                      >
+                        Ver galería ({flatten(c.gallery).length})
+                      </button>
+                      {c.videos?.map((v) => (
+                        <CasePlay
+                          key={v.id}
+                          id={v.id}
+                          label={v.label}
+                          vertical={v.vertical}
+                          title={c.title}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="flow-dots">
           {cases.map((c, idx) => (
             <button
               key={c.caseNo}
               type="button"
-              className={`flow-card${idx === active ? " is-active" : ""}`}
-              style={cardStyle(idx)}
-              onClick={() => {
-                if (moved.current) {
-                  moved.current = false;
-                  return;
-                }
-                if (idx === active) setZoom(0);
-                else setActive(idx);
-              }}
-              aria-label={
-                idx === active ? `Abrir galería de ${c.title}` : `Ver ${c.title}`
-              }
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={c.cover}
-                alt={c.title}
-                draggable={false}
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="flow-glass" />
-              <span className="flow-card-no">{c.caseNo}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="flow-dots">
-        {cases.map((c, idx) => (
-          <button
-            key={c.caseNo}
-            type="button"
-            className={idx === active ? "on" : ""}
-            onClick={() => setActive(idx)}
-            aria-label={`Ir a ${c.title}`}
-          />
-        ))}
-      </div>
-        </div>
-
-      <div
-        className="flow-info"
-        key={current.caseNo}
-        style={{ "--accent": current.accent } as CSSProperties}
-      >
-        <div className="num">
-          <span className="sq" />
-          {current.caseNo}
-        </div>
-        <h2>
-          {current.title}
-          <span className="sub">{current.sub}</span>
-        </h2>
-        <p className="flow-concept">{current.concept}</p>
-        <div className="flow-actions">
-          <button
-            type="button"
-            className="flow-gallery-btn"
-            onClick={() => setZoom(0)}
-          >
-            Ver galería ({total})
-          </button>
-          {current.videos?.map((v) => (
-            <CasePlay
-              key={v.id}
-              id={v.id}
-              label={v.label}
-              vertical={v.vertical}
-              title={current.title}
+              className={idx === active ? "on" : ""}
+              onClick={() => setActive(idx)}
+              aria-label={`Ir a ${c.title}`}
             />
           ))}
         </div>
-      </div>
       </div>
 
       {zoom !== null && (
