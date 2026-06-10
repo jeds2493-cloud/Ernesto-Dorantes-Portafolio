@@ -16,11 +16,11 @@ export default function Home() {
       <Hero />
       <Brands />
       <About />
-      <Process />
-      {/* Trabajo + Experiencia comparten un fondo continuo con una sola lava */}
+      {/* Casos + Pipeline + Carrera comparten un fondo continuo con una sola lava */}
       <div className="work-exp">
         <LavaBg />
         <Work />
+        <Process />
         <Experience />
       </div>
       <Contact />

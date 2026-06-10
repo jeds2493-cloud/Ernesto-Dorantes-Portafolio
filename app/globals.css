@@ -104,7 +104,7 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
 .eyebrow{font-family:var(--display);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:14px;margin-bottom:34px}
 .eyebrow::before{content:"";width:30px;height:1px;background:var(--orange);opacity:.6}
-.about{padding:clamp(90px,15vh,160px) 0 clamp(40px,6vh,70px);position:relative;overflow:hidden}
+.about{padding:clamp(90px,15vh,160px) 0 clamp(24px,4vh,52px);position:relative;overflow:hidden}
 .about .wrap{position:relative}
 /* ===== Inflable danzante + banderín SALE ===== */
 .tubeman{position:absolute;top:clamp(-18px,1vh,12px);right:clamp(170px,20vw,275px);width:236px;height:258px;pointer-events:none;animation:tmBob 4.5s ease-in-out infinite}
@@ -225,7 +225,7 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
   .about .skills .skill.reveal{opacity:1;transform:none}
 }
 /* ===== Cómo trabajo (proceso) ===== */
-.process{padding:clamp(70px,11vh,130px) 0 clamp(10px,2vh,24px)}
+.process{position:relative;z-index:1;padding:clamp(28px,4.5vh,60px) 0 clamp(28px,4.5vh,60px)}
 .process-title{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,46px);line-height:1.06;letter-spacing:-.02em;max-width:18ch;margin:18px 0 clamp(34px,5vh,54px)}
 .process-title .o{color:var(--orange)}
 .pipeline{display:flex;flex-direction:column;gap:10px}
@@ -262,7 +262,7 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 @media(min-width:760px){.proof-grid{grid-template-columns:repeat(4,1fr)}}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
 /* ===== Trabajo: Cover Flow ===== */
-.work{position:relative;padding:clamp(10px,2vh,28px) 0 clamp(60px,9vh,110px);overflow:hidden}
+.work{position:relative;padding:clamp(24px,4vh,48px) 0 clamp(20px,3.5vh,44px);overflow:hidden}
 .work .cases-head,.work .flow,.work .flow-dots,.work .flow-info{position:relative;z-index:1}
 .work .cases-head{padding:0 0 clamp(24px,4vh,48px)}
 .work .flow-card .flow-glass{position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(125deg,rgba(255,255,255,.28),rgba(255,255,255,.07) 28%,transparent 52%);mix-blend-mode:soft-light}
@@ -367,7 +367,7 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .case .cc-dots button.on{background:var(--accent);border-color:var(--accent);transform:scale(1.2)}
 @media(prefers-reduced-motion:reduce){.case .bg-carousel img{transition:opacity .2s ease}}
 .work-exp{position:relative;overflow:hidden}
-.exp{position:relative;padding:clamp(80px,13vh,150px) 0}
+.exp{position:relative;padding:clamp(34px,5.5vh,72px) 0 clamp(50px,8vh,96px)}
 .exp .wrap{position:relative;z-index:1}
 .lava{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;filter:blur(30px) saturate(1.15);transition:transform .5s ease-out;transform:translate(calc(var(--lx,0)*36px),calc(var(--ly,0)*30px));will-change:transform}
 .lava span{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,96,28,.5),rgba(255,92,26,.14) 52%,transparent 72%);will-change:transform}
