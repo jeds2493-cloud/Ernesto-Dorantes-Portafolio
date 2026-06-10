@@ -59,7 +59,7 @@ export default function NeonBulb({
 }) {
   const icon = ICONS[variant];
   return (
-    <div className="neon-bulb" aria-hidden="true">
+    <div className={`neon-bulb is-${variant}`} aria-hidden="true">
       <svg viewBox={icon.viewBox} key={variant}>
         {icon.d.map((d, i) => (
           <path key={i} d={d} />
