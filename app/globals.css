@@ -72,15 +72,11 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .hero h1 .ln2{display:block}
 .hero h1 .accent{color:var(--orange)}
 .hero .role-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:clamp(20px,4vh,34px)}
-.hero .role-row .chip{position:relative;font-family:var(--display);font-size:clamp(13px,1.5vw,16px);font-weight:500;color:var(--fg);background:transparent;-webkit-appearance:none;appearance:none;border:1px solid var(--line);padding:9px 18px;border-radius:30px;cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,background .3s,color .3s,box-shadow .3s}
-.hero .role-row .chip::after{content:"";position:absolute;inset:-1px;border-radius:inherit;border:1.5px solid var(--orange);opacity:0;pointer-events:none;animation:chipPulse 3s ease-out infinite}
-.hero .role-row .chip:nth-child(2)::after{animation-delay:.55s}
-.hero .role-row .chip:nth-child(3)::after{animation-delay:1.1s}
-.hero .role-row .chip:hover::after{animation:none;opacity:0}
-@keyframes chipPulse{0%{opacity:.4;transform:scale(1)}70%{opacity:0;transform:scale(1.16)}100%{opacity:0}}
-.hero .role-row .chip.fill{background:var(--orange);border-color:var(--orange);color:#fff}
-.hero .role-row .chip:hover{transform:translateY(-3px);border-color:var(--orange);color:#fff;background:rgba(255,92,26,.12);box-shadow:0 8px 22px rgba(255,92,26,.2)}
-.hero .role-row .chip.fill:hover{background:var(--orange-soft);border-color:var(--orange-soft);box-shadow:0 8px 26px rgba(255,92,26,.42)}
+.hero .role-row .chip{position:relative;overflow:hidden;font-family:var(--display);font-size:clamp(13px,1.5vw,16px);font-weight:500;color:var(--fg);background:rgba(255,255,255,.06);-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);-webkit-appearance:none;appearance:none;border:1px solid rgba(255,255,255,.16);padding:10px 20px;border-radius:30px;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -10px 18px rgba(0,0,0,.16),0 6px 18px rgba(0,0,0,.28);transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s,background .35s,color .35s,box-shadow .35s}
+.hero .role-row .chip::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(155deg,rgba(255,255,255,.32),rgba(255,255,255,.06) 38%,transparent 62%);opacity:.75}
+.hero .role-row .chip.fill{color:#fff;background:linear-gradient(155deg,rgba(255,140,76,.46),rgba(255,92,26,.32));border-color:rgba(255,150,92,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.42),inset 0 -10px 18px rgba(120,30,0,.18),0 8px 26px rgba(255,92,26,.4)}
+.hero .role-row .chip:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.3);box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 12px 28px rgba(0,0,0,.34)}
+.hero .role-row .chip.fill:hover{border-color:rgba(255,170,110,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 14px 32px rgba(255,92,26,.5)}
 .metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-soft)}
 .metrics .grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
 .metric{background:var(--bg-soft);padding:clamp(20px,3.4vh,34px) clamp(20px,4vw,48px)}
@@ -106,7 +102,7 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .eyebrow::before{content:"";width:30px;height:1px;background:var(--orange);opacity:.6}
 .about{padding:clamp(90px,15vh,160px) 0 clamp(24px,4vh,52px);position:relative;overflow:hidden}
 /* Fondo propio de Sobre mí: retícula sutil + brillo contenido tras las tarjetas */
-.about::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.4px);background-size:24px 24px;-webkit-mask-image:radial-gradient(125% 92% at 50% 54%,#000 50%,transparent 100%);mask-image:radial-gradient(125% 92% at 50% 54%,#000 50%,transparent 100%)}
+.about::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.085) 1.1px,transparent 1.5px);background-size:23px 23px;-webkit-mask-image:radial-gradient(125% 92% at 50% 54%,#000 50%,transparent 100%);mask-image:radial-gradient(125% 92% at 50% 54%,#000 50%,transparent 100%)}
 .about::after{content:"";position:absolute;z-index:0;pointer-events:none;left:50%;bottom:-4%;width:min(940px,90%);height:58%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,92,26,.12),transparent 76%);filter:blur(8px)}
 .about .wrap{position:relative;z-index:1}
 /* ===== Inflable danzante + banderín SALE ===== */

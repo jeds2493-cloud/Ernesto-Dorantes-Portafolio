@@ -4,9 +4,29 @@ import { useEffect, useRef, useState } from "react";
 import NeonBulb, { type NeonVariant } from "@/components/NeonBulb";
 import Dust from "@/components/Dust";
 
+const CYCLE: NeonVariant[] = ["arte", "story", "campanas"];
+
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const [icon, setIcon] = useState<NeonVariant>("arte");
+  // contador para reiniciar el temporizador cuando el usuario hace clic
+  const [cycleKey, setCycleKey] = useState(0);
+
+  // alterna automáticamente entre los chips cada 2s (se respeta reduce-motion)
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    if (reduce) return;
+    const id = setInterval(() => {
+      setIcon((prev) => CYCLE[(CYCLE.indexOf(prev) + 1) % CYCLE.length]);
+    }, 2000);
+    return () => clearInterval(id);
+  }, [cycleKey]);
+
+  // clic manual: fija el chip y reinicia el ciclo para darle 2s completos
+  const pick = (v: NeonVariant) => {
+    setIcon(v);
+    setCycleKey((k) => k + 1);
+  };
   const poster =
     icon === "story"
       ? "/assets/ernesto-noir.jpg"
@@ -122,21 +142,21 @@ export default function Hero() {
           <button
             type="button"
             className={`chip${icon === "arte" ? " fill" : ""}`}
-            onClick={() => setIcon("arte")}
+            onClick={() => pick("arte")}
           >
             Dirección de arte
           </button>
           <button
             type="button"
             className={`chip${icon === "story" ? " fill" : ""}`}
-            onClick={() => setIcon("story")}
+            onClick={() => pick("story")}
           >
             Storytelling visual
           </button>
           <button
             type="button"
             className={`chip${icon === "campanas" ? " fill" : ""}`}
-            onClick={() => setIcon("campanas")}
+            onClick={() => pick("campanas")}
           >
             Campañas 360°
           </button>
