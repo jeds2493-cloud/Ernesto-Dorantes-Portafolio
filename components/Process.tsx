@@ -69,10 +69,9 @@ export default function Process() {
             generación de <b>700+ leads</b>.
           </p>
           <p className="proof-learning">
-            <b>Aprendizaje.</b> Las creatividades centradas en personas y
-            beneficios tangibles superaron de forma consistente a las piezas
-            genéricas; la regionalización (CDMX, Edomex, Querétaro e Hidalgo)
-            permitió adaptar mensaje y arte por mercado.
+            <b>Aprendizaje.</b> La emoción le gana al dato: las piezas con
+            rostro humano y beneficios reales convirtieron por encima de las
+            genéricas, y regionalizar el mensaje por mercado afinó cada campaña.
           </p>
         </div>
       </div>
