@@ -54,6 +54,11 @@ const ads: AdItem[] = [
     alt: "Anuncio: Vende tu casa de interés social, compra directa sin intermediarios",
   },
   {
+    type: "image",
+    src: "/assets/ads/ad-square2.jpg",
+    alt: "Anuncio: Compramos tu casa de interés social, sin intermediarios ni publicar",
+  },
+  {
     type: "video",
     src: "/assets/ads/ad-vid2.mp4",
     poster: "/assets/ads/ad-vid2-poster.jpg",
