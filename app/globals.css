@@ -265,7 +265,7 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
 .proof-note b{color:var(--fg);font-weight:600}
 .proof-learning{font-size:14px;line-height:1.6;color:var(--muted);margin:14px 0 0;max-width:68ch}
 .proof-learning b{color:var(--orange);font-weight:600}
-@media(min-width:760px){.proof-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:760px){.proof-grid{grid-template-columns:repeat(3,1fr)}}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
 /* ===== Trabajo: Cover Flow ===== */
 .work{position:relative;padding:clamp(24px,4vh,48px) 0 clamp(20px,3.5vh,44px);overflow:hidden}

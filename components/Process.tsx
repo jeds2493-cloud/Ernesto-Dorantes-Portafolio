@@ -18,6 +18,8 @@ const proof = [
   { label: "Clics", value: "8,802" },
   { label: "Leads", value: "710+" },
   { label: "Clic → Lead", value: "8.07%" },
+  { label: "CPL promedio", value: "$84.50" },
+  { label: "CPC promedio", value: "$6.82" },
 ];
 
 export default function Process() {
@@ -67,15 +69,15 @@ export default function Process() {
             <span className="ph-value">39.37%</span>
             <span className="ph-text">
               de conversión en el <b>mejor segmento</b> —campañas de adquisición
-              en Meta Ads, con CPL de ~$32 MXN—, frente al <b>8.07%</b> del
-              promedio multicanal. Ahí concentré las creatividades centradas en
-              personas.
+              en Meta Ads, con CPL de ~$32 MXN—: <b>casi 5× el promedio</b>{" "}
+              (8.07%). Ahí concentré las creatividades centradas en personas.
             </span>
           </div>
           <p className="proof-note">
-            Contribución creativa a un ecosistema de campañas multicanal (Meta,
-            Google y TikTok) para <b>Compramos Tu Casa.mx</b>, que aportó a la
-            generación de <b>700+ leads</b>.
+            Mi trabajo creativo ayudó a <b>identificar y escalar los mensajes
+            de mejor desempeño</b> dentro de un ecosistema de campañas multicanal
+            (Meta, Google y TikTok) para <b>Compramos Tu Casa.mx</b> que generó{" "}
+            <b>700+ leads</b>.
           </p>
           <p className="proof-learning">
             <b>Aprendizaje.</b> La emoción le gana al dato: las piezas con
