@@ -29,7 +29,7 @@ export default function Experience() {
   return (
     <section className="exp" id="experiencia">
       <div className="wrap">
-        <div className="eyebrow reveal">Experiencia</div>
+        <div className="eyebrow reveal">Carrera profesional</div>
         <div className="timeline reveal">
           {jobs.map((j) => (
             <div className="job" key={j.yr}>

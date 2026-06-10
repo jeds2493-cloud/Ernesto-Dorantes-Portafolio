@@ -24,7 +24,7 @@ export default function Process() {
   return (
     <section className="process" id="proceso">
       <div className="wrap">
-        <div className="eyebrow reveal">Cómo trabajo</div>
+        <div className="eyebrow reveal">Pipeline creativo</div>
         <h2 className="process-title reveal">
           Un proceso de punta a punta, <span className="o">no solo diseño</span>.
         </h2>

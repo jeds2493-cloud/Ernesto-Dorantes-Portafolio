@@ -332,7 +332,7 @@ export default function Work() {
   return (
     <section id="trabajo" className="work">
       <div className="wrap cases-head">
-        <div className="eyebrow reveal">Trabajo seleccionado</div>
+        <div className="eyebrow reveal">Casos prácticos</div>
       </div>
 
       <div className="work-cols">
