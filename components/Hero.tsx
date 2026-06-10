@@ -22,12 +22,20 @@ const MEDIA: Record<NeonVariant, { img: string; video?: string }> = {
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const [icon, setIcon] = useState<NeonVariant>("arte");
-  // contador para reiniciar el temporizador cuando el usuario hace clic
   const [cycleKey, setCycleKey] = useState(0);
-  // los videos solo se activan en pantallas grandes y sin reduce-motion
   const [allowVideo, setAllowVideo] = useState(false);
+  // el layout de tarjeta vertical es solo para móvil
+  const [isMobile, setIsMobile] = useState(false);
 
-  // alterna automáticamente entre los chips cada 2s (se respeta reduce-motion)
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width:760px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // alterna automáticamente entre los chips cada 7s (se respeta reduce-motion)
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
     if (reduce) return;
@@ -37,11 +45,11 @@ export default function Hero() {
     return () => clearInterval(id);
   }, [cycleKey]);
 
-  // clic manual: fija el chip y reinicia el ciclo para darle 2s completos
   const pick = (v: NeonVariant) => {
     setIcon(v);
     setCycleKey((k) => k + 1);
   };
+
   // los videos se reproducen en desktop y móvil; solo se respeta reduce-motion
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion:reduce)");
@@ -54,12 +62,10 @@ export default function Hero() {
   const media = MEDIA[icon];
   const useVideo = allowVideo && !!media.video;
 
+  // parallax con el mouse (solo desktop)
   useEffect(() => {
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion:reduce)"
-    ).matches;
-    if (reduce) return;
-
+    if (isMobile) return;
+    if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
     const hero = heroRef.current;
     if (!hero) return;
     const diffuser = hero.querySelector<HTMLElement>(".diffuser");
@@ -93,15 +99,12 @@ export default function Hero() {
       portrait!.style.transform = "translate(" + cx * 22 + "px,0)";
       if (poster)
         poster.style.transform =
-          "rotate(-1.2deg) rotateY(" +
-          cx * -5 +
-          "deg) rotateX(" +
-          cy * 3 +
-          "deg)";
+          "rotate(-1.2deg) rotateY(" + cx * -5 + "deg) rotateX(" + cy * 3 + "deg)";
       inner!.style.transform =
         "translate(" + cx * -14 + "px," + cy * -8 + "px)";
       if (sheen)
-        sheen.style.backgroundPosition = 50 + cx * 34 + "% " + (50 + cy * 20) + "%";
+        sheen.style.backgroundPosition =
+          50 + cx * 34 + "% " + (50 + cy * 20) + "%";
       if (active || Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) {
         raf = requestAnimationFrame(loop);
       } else {
@@ -125,77 +128,112 @@ export default function Hero() {
       hero.removeEventListener("mouseleave", onLeave);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isMobile]);
+
+  const chips = (
+    <div className="role-row">
+      <button
+        type="button"
+        className={`chip${icon === "arte" ? " fill" : ""}`}
+        onClick={() => pick("arte")}
+      >
+        Dirección de arte
+      </button>
+      <button
+        type="button"
+        className={`chip${icon === "story" ? " fill" : ""}`}
+        onClick={() => pick("story")}
+      >
+        Storytelling visual
+      </button>
+      <button
+        type="button"
+        className={`chip${icon === "campanas" ? " fill" : ""}`}
+        onClick={() => pick("campanas")}
+      >
+        Campañas 360°
+      </button>
+    </div>
+  );
+
+  const media_el = useVideo ? (
+    <video
+      key={media.video}
+      autoPlay
+      muted
+      loop
+      playsInline
+      poster={media.img}
+      aria-hidden="true"
+    >
+      <source src={media.video} type="video/mp4" />
+    </video>
+  ) : (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      key={media.img}
+      src={media.img}
+      alt="Ernesto Dorantes, Director Creativo"
+    />
+  );
 
   return (
     <header className="hero" id="top" ref={heroRef}>
       <div className="diffuser" aria-hidden="true" />
-      <div className="portrait">
-        <div className="poster">
-          {useVideo ? (
-            <video
-              key={media.video}
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster={media.img}
-              aria-hidden="true"
-            >
-              <source src={media.video} type="video/mp4" />
-            </video>
-          ) : (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={media.img}
-              src={media.img}
-              alt="Ernesto Dorantes, Director Creativo"
-            />
-          )}
-          <span className="sheen" />
-          <span className="tape tape-tl" />
-          <span className="tape tape-br" />
-        </div>
-      </div>
       <Dust />
-      <div className="hero-inner">
-        <NeonBulb variant={icon} />
-        <span className="tag">
-          <span className="sq" />
-          Portafolio 2026
-        </span>
-        <p className="sup">
-          Diseño <b>campañas, marcas y experiencias visuales</b> que convierten
-          ideas en <b>sistemas memorables</b>.
-        </p>
-        <h1>
-          <span className="ln1">Ernesto</span>
-          <span className="ln2 accent">Dorantes</span>
-        </h1>
-        <div className="role-row">
-          <button
-            type="button"
-            className={`chip${icon === "arte" ? " fill" : ""}`}
-            onClick={() => pick("arte")}
-          >
-            Dirección de arte
-          </button>
-          <button
-            type="button"
-            className={`chip${icon === "story" ? " fill" : ""}`}
-            onClick={() => pick("story")}
-          >
-            Storytelling visual
-          </button>
-          <button
-            type="button"
-            className={`chip${icon === "campanas" ? " fill" : ""}`}
-            onClick={() => pick("campanas")}
-          >
-            Campañas 360°
-          </button>
+
+      {isMobile ? (
+        // ===== Móvil: tarjeta de video vertical =====
+        <div className="hero-inner hero-inner-mobile">
+          <div className="hero-video">
+            {media_el}
+            <span className="hero-tag">
+              <span className="sq" />
+              Portafolio 2026
+            </span>
+            <div className="hero-chips">{chips}</div>
+          </div>
+          <h1 className="hero-name">
+            <span className="ln1">Ernesto</span>
+            <span className="ln2 accent">Dorantes</span>
+          </h1>
+          <div className="hero-bottom">
+            <p className="sup">
+              Diseño <b>campañas, marcas y experiencias visuales</b> que
+              convierten ideas en <b>sistemas memorables</b>.
+            </p>
+            <NeonBulb variant={icon} />
+          </div>
         </div>
-      </div>
+      ) : (
+        // ===== Desktop: layout original =====
+        <>
+          <div className="portrait">
+            <div className="poster">
+              {media_el}
+              <span className="sheen" />
+              <span className="tape tape-tl" />
+              <span className="tape tape-br" />
+            </div>
+          </div>
+          <div className="hero-inner">
+            <NeonBulb variant={icon} />
+            <span className="tag">
+              <span className="sq" />
+              Portafolio 2026
+            </span>
+            <p className="sup">
+              Diseño <b>campañas, marcas y experiencias visuales</b> que
+              convierten ideas en <b>sistemas memorables</b>.
+            </p>
+            <h1>
+              <span className="ln1">Ernesto</span>
+              <span className="ln2 accent">Dorantes</span>
+            </h1>
+            {chips}
+          </div>
+        </>
+      )}
     </header>
   );
 }
