@@ -224,6 +224,25 @@ nav .avail .led{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-sh
   /* en el carrusel las cards no dependen del reveal horizontal */
   .about .skills .skill.reveal{opacity:1;transform:none}
 }
+/* ===== Cómo trabajo (proceso) ===== */
+.process{padding:clamp(70px,11vh,130px) 0 clamp(10px,2vh,24px)}
+.process-title{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,46px);line-height:1.06;letter-spacing:-.02em;max-width:18ch;margin:18px 0 clamp(34px,5vh,54px)}
+.process-title .o{color:var(--orange)}
+.pipeline{display:flex;flex-direction:column;gap:10px}
+.pstep{flex:1 1 0;position:relative;background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;transition:border-color .35s,transform .35s,box-shadow .35s,background .35s}
+.pstep:hover{transform:translateY(-4px);border-color:rgba(255,92,26,.45);box-shadow:0 18px 40px -18px rgba(255,92,26,.4)}
+.pstep-i{font-family:var(--display);font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.12em}
+.pstep-name{font-family:var(--display);font-size:clamp(17px,1.7vw,20px);font-weight:600;color:var(--fg)}
+.pstep-desc{font-size:13px;line-height:1.4;color:var(--muted)}
+.pstep.ai{border-color:rgba(255,92,26,.55);background:linear-gradient(150deg,rgba(255,92,26,.14),rgba(255,92,26,.03) 60%),var(--bg-card);box-shadow:0 0 0 1px rgba(255,92,26,.25),0 16px 40px -18px rgba(255,92,26,.5)}
+.pstep.ai .pstep-i,.pstep.ai .pstep-name{color:var(--orange)}
+.pchevron{align-self:center;color:var(--orange);font-size:20px;line-height:1;flex:0 0 auto;opacity:.7;transform:rotate(90deg)}
+.process-note{font-family:var(--display);font-size:clamp(16px,1.8vw,21px);line-height:1.5;color:var(--muted);max-width:60ch;margin:clamp(30px,5vh,48px) 0 0}
+.process-note b{color:var(--fg);font-weight:600}
+@media(min-width:1000px){
+  .pipeline{flex-direction:row;align-items:stretch}
+  .pchevron{transform:none}
+}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
 /* ===== Trabajo: Cover Flow ===== */
 .work{position:relative;padding:clamp(10px,2vh,28px) 0 clamp(60px,9vh,110px);overflow:hidden}

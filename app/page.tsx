@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Brands from "@/components/Brands";
 import About from "@/components/About";
+import Process from "@/components/Process";
 import Work from "@/components/Work";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <Brands />
       <About />
+      <Process />
       {/* Trabajo + Experiencia comparten un fondo continuo con una sola lava */}
       <div className="work-exp">
         <LavaBg />
