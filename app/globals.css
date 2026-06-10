@@ -288,6 +288,28 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 .proof-learning{font-size:14px;line-height:1.6;color:var(--muted);margin:14px 0 0;max-width:68ch}
 .proof-learning b{color:var(--orange);font-weight:600}
 @media(min-width:760px){.proof-grid{grid-template-columns:repeat(3,1fr)}}
+/* Cover flow del pipeline (solo móvil) */
+.pipe-flow{position:relative;touch-action:pan-y;margin-top:6px}
+.pipe-stage{position:relative;height:min(78vw,340px);perspective:1100px}
+.pipe-card{position:absolute;left:50%;top:50%;width:min(67vw,290px);height:min(67vw,290px);border-radius:18px;background:var(--bg-card);border:1px solid var(--line);padding:clamp(18px,5vw,24px);display:flex;flex-direction:column;justify-content:center;gap:9px;cursor:pointer;text-align:left;color:inherit;-webkit-appearance:none;appearance:none;transform-origin:center;box-shadow:0 30px 60px -22px rgba(0,0,0,.7);transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .55s,box-shadow .45s,border-color .45s}
+.pipe-card .pstep-i{font-family:var(--display);font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.12em}
+.pipe-card .pstep-name{font-family:var(--display);font-size:clamp(24px,7vw,32px);font-weight:700;line-height:1.04;color:var(--fg)}
+.pipe-card .pstep-desc{font-size:14px;line-height:1.45;color:var(--muted)}
+.pipe-card.is-active{border-color:rgba(255,92,26,.5);box-shadow:0 38px 72px -22px rgba(0,0,0,.82),0 0 0 1px rgba(255,92,26,.3),0 0 54px -10px rgba(255,92,26,.42)}
+.pipe-card.ai{background:linear-gradient(150deg,rgba(255,92,26,.14),rgba(255,92,26,.03) 60%),var(--bg-card)}
+.pipe-card.ai .pstep-i,.pipe-card.ai .pstep-name{color:var(--orange)}
+.pipe-dots{display:flex;gap:8px;justify-content:center;margin-top:clamp(20px,4vh,30px)}
+.pipe-dots button{width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);background:transparent;cursor:pointer;padding:0;transition:width .3s,background .3s,border-color .3s}
+.pipe-dots button.on{width:24px;border-radius:5px;background:var(--orange);border-color:var(--orange)}
+/* Tira de creativas de la campaña */
+.proof-ads{margin:clamp(24px,4vh,36px) 0 0;padding-top:clamp(20px,3vh,28px);border-top:1px solid var(--line)}
+.proof-ads-head{font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.proof-ads-strip{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.proof-ads-strip::-webkit-scrollbar{display:none}
+.proof-ad{flex:0 0 auto;height:clamp(140px,20vw,170px);border:1px solid var(--line);border-radius:12px;overflow:hidden;padding:0;cursor:pointer;background:#0e0e12;transition:transform .3s,border-color .3s,box-shadow .3s;-webkit-appearance:none;appearance:none}
+.proof-ad img{height:100%;width:auto;display:block;object-fit:cover}
+.proof-ad:hover{transform:translateY(-3px);border-color:rgba(255,92,26,.5);box-shadow:0 12px 26px -12px rgba(255,92,26,.45)}
+.cases-head{padding:clamp(70px,10vh,110px) 0 0}
 .cases-head{padding:clamp(70px,10vh,110px) 0 0}
 /* ===== Trabajo: Cover Flow ===== */
 .work{position:relative;padding:clamp(24px,4vh,48px) 0 clamp(20px,3.5vh,44px);overflow:hidden}
