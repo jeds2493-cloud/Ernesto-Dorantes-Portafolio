@@ -6,11 +6,23 @@ import Dust from "@/components/Dust";
 
 const CYCLE: NeonVariant[] = ["arte", "story", "campanas"];
 
+// Medios del hero por modo: imagen (póster) y, si existe, video animado.
+const MEDIA: Record<NeonVariant, { img: string; video?: string }> = {
+  arte: { img: "/assets/hero-arte-poster.jpg", video: "/assets/hero-arte.mp4" },
+  story: { img: "/assets/ernesto-noir.jpg" },
+  campanas: {
+    img: "/assets/hero-campanas-poster.jpg",
+    video: "/assets/hero-campanas.mp4",
+  },
+};
+
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const [icon, setIcon] = useState<NeonVariant>("arte");
   // contador para reiniciar el temporizador cuando el usuario hace clic
   const [cycleKey, setCycleKey] = useState(0);
+  // los videos solo se activan en pantallas grandes y sin reduce-motion
+  const [allowVideo, setAllowVideo] = useState(false);
 
   // alterna automáticamente entre los chips cada 2s (se respeta reduce-motion)
   useEffect(() => {
@@ -27,12 +39,16 @@ export default function Hero() {
     setIcon(v);
     setCycleKey((k) => k + 1);
   };
-  const poster =
-    icon === "story"
-      ? "/assets/ernesto-noir.jpg"
-      : icon === "campanas"
-        ? "/assets/ernesto-billboard.jpg"
-        : "/assets/ernesto-poster.jpg";
+  // decide si se pueden reproducir videos (no en móvil ni con reduce-motion)
+  useEffect(() => {
+    const ok =
+      !window.matchMedia("(prefers-reduced-motion:reduce)").matches &&
+      window.matchMedia("(min-width:768px)").matches;
+    setAllowVideo(ok);
+  }, []);
+
+  const media = MEDIA[icon];
+  const useVideo = allowVideo && !!media.video;
 
   useEffect(() => {
     const reduce = window.matchMedia(
@@ -112,12 +128,26 @@ export default function Hero() {
       <div className="diffuser" aria-hidden="true" />
       <div className="portrait">
         <div className="poster">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            key={poster}
-            src={poster}
-            alt="Ernesto Dorantes, Director Creativo"
-          />
+          {useVideo ? (
+            <video
+              key={media.video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={media.img}
+              aria-hidden="true"
+            >
+              <source src={media.video} type="video/mp4" />
+            </video>
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={media.img}
+              src={media.img}
+              alt="Ernesto Dorantes, Director Creativo"
+            />
+          )}
           <span className="sheen" />
           <span className="tape tape-tl" />
           <span className="tape tape-br" />
