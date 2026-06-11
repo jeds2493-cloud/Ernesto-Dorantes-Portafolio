@@ -3,9 +3,11 @@
 import { useRef, useState } from "react";
 import type { FormEvent, MouseEvent } from "react";
 
-// Endpoint de Google Apps Script (Web App) que escribe en tu Google Sheet.
-// Se configura como variable de entorno en Vercel: NEXT_PUBLIC_FORM_ENDPOINT
-const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "";
+// Endpoint de Google Apps Script (Web App) que escribe en la Google Sheet.
+// Se puede sobreescribir con la variable de entorno NEXT_PUBLIC_FORM_ENDPOINT.
+const FORM_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORM_ENDPOINT ??
+  "https://script.google.com/macros/s/AKfycbzSb1Ytz9pM47eDS5grx9AG65S7KozZBzqUgd4QLol9ZFeH0oT16XcXnxr-UNFo3nUD/exec";
 const MAIL = "jeds2493@gmail.com";
 
 const projectTypes = [
@@ -95,7 +97,7 @@ export default function Contact() {
         </p>
 
         {status === "sent" ? (
-          <div className="contact-ok reveal">
+          <div className="contact-ok">
             <span className="contact-ok-ic">✓</span>
             <h3>¡Gracias! Mensaje recibido.</h3>
             <p>
@@ -111,7 +113,7 @@ export default function Contact() {
             </button>
           </div>
         ) : (
-          <form className="contact-form reveal" onSubmit={onSubmit}>
+          <form className="contact-form" onSubmit={onSubmit}>
             <div className="cf-row">
               <label className="cf-field">
                 <span>Nombre *</span>
