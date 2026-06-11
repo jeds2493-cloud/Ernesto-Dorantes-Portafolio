@@ -1,18 +1,6 @@
 "use client";
 
-import { useEffect, useState, type MouseEvent } from "react";
-
-const skills = [
-  "Dirección de arte & branding",
-  "UI/UX",
-  "Diseño publicitario y editorial",
-  "Motion graphics",
-  "IA aplicada al diseño y eficiencia de procesos",
-  "Adobe Creative Suite",
-  "Liderazgo creativo de equipos",
-  "Storytelling & copywriting",
-  "Campañas ATL / BTL",
-];
+import { type MouseEvent } from "react";
 
 type Cert = { img: string; alt: string; title: string; url: string };
 
@@ -37,17 +25,14 @@ const certs: Cert[] = [
   },
 ];
 
-export default function Skills() {
-  // en móvil las skills fluyen en marquee continuo; en desktop son grid
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width:700px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
+const services: [string, string, string][] = [
+  ["01", "Branding e Identidad", "Estrategia, identidad visual y sistema de marca."],
+  ["02", "Campañas y Dirección de Arte", "Conceptos y campañas 360° en todos los formatos."],
+  ["03", "Producto y Experiencias Digitales", "Webs, landing pages e interfaces que convierten."],
+  ["04", "Creative Partner", "Tu director creativo externo, de forma continua."],
+];
 
+export default function Skills() {
   // mueve el reflector (glow) a la posición del cursor dentro de la card
   const onMove = (e: MouseEvent<HTMLElement>) => {
     const el = e.currentTarget;
@@ -58,7 +43,7 @@ export default function Skills() {
 
   return (
     <div className="skills-wrap">
-      {/* Certificaciones — estáticas, arriba del carrusel */}
+      {/* Certificaciones */}
       <div className="certs reveal">
         {certs.map((c) => (
           <a
@@ -86,34 +71,22 @@ export default function Skills() {
         ))}
       </div>
 
-      {/* Skills — grid en desktop, marquee continuo en móvil */}
-      {isMobile ? (
-        <div className="skills-marquee" aria-label="Habilidades">
-          <div className="skills-track">
-            {[...skills, ...skills].map((t, i) => (
-              <div
-                className="skill"
-                key={i}
-                aria-hidden={i >= skills.length}
-              >
-                <span className="n">
-                  {String((i % skills.length) + 1).padStart(2, "0")}
-                </span>
-                <span className="t">{t}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div className="skills">
-          {skills.map((t, i) => (
-            <div className="skill reveal" key={t} onMouseMove={onMove}>
-              <span className="n">{String(i + 1).padStart(2, "0")}</span>
-              <span className="t">{t}</span>
-            </div>
+      {/* Servicios */}
+      <div className="about-services">
+        <div className="eyebrow reveal">Servicios</div>
+        <div className="svc-teaser-grid reveal">
+          {services.map(([n, title, tag]) => (
+            <a key={n} href="/servicios" className="svc-teaser-item">
+              <span className="n">{n}</span>
+              <h3>{title}</h3>
+              <p>{tag}</p>
+              <span className="svc-teaser-arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
           ))}
         </div>
-      )}
+      </div>
     </div>
   );
 }

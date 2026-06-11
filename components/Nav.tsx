@@ -71,10 +71,10 @@ export default function Nav() {
         <a
           className="avail"
           href="/servicios"
-          aria-label="Disponible para proyectos — ver servicios"
+          aria-label="Trabajemos juntos — ver servicios"
         >
           <span className="led" />
-          Disponible para proyectos
+          Trabajemos juntos
         </a>
 
         {/* Botón hamburguesa — solo móvil */}
@@ -112,7 +112,7 @@ export default function Nav() {
           ))}
           <a className="nav-avail-cta" href="/servicios" onClick={closeMenu}>
             <span className="led" />
-            Disponible para proyectos
+            Trabajemos juntos
           </a>
         </div>
       </div>
