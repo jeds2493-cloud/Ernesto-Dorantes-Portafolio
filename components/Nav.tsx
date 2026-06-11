@@ -6,7 +6,6 @@ const LINKS: [string, string][] = [
   ["#sobre", "Sobre mí"],
   ["#trabajo", "Casos"],
   ["#experiencia", "Carrera"],
-  ["/servicios", "Servicios"],
   ["#contacto", "Contacto"],
 ];
 
@@ -71,10 +70,8 @@ export default function Nav() {
         </div>
         <a
           className="avail"
-          href="https://www.linkedin.com/in/ernestodorantes2493"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Disponible para proyectos — ver LinkedIn"
+          href="/servicios"
+          aria-label="Disponible para proyectos — ver servicios"
         >
           <span className="led" />
           Disponible para proyectos
@@ -113,6 +110,10 @@ export default function Nav() {
               {label}
             </a>
           ))}
+          <a className="nav-avail-cta" href="/servicios" onClick={closeMenu}>
+            <span className="led" />
+            Disponible para proyectos
+          </a>
           <a
             className="nav-cv"
             href="/Curriculum_Ernesto_Dorantes.pdf"
