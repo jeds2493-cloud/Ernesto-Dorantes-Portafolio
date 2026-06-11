@@ -59,6 +59,8 @@ export default function Nav() {
     <>
       <nav>
         <a href="#top" className="brand" onClick={goTo("#top")}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/logo-ed.png" alt="" className="brand-logo" />
           Ernesto Dorantes
         </a>
         <div className="links">

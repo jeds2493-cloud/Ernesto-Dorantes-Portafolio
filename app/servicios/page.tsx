@@ -172,6 +172,8 @@ export default function Servicios() {
     <main className="svc">
       <header className="svc-nav">
         <Link href="/" className="brand">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/logo-ed.png" alt="" className="brand-logo" />
           Ernesto Dorantes
         </Link>
         <Link href="/" className="svc-back">
