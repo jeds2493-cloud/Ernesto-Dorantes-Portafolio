@@ -125,29 +125,6 @@ const services: Service[] = [
   },
 ];
 
-const proceso = [
-  {
-    n: "01",
-    title: "Descubrir",
-    desc: "Analizamos el negocio, la audiencia, el mercado y los objetivos para identificar oportunidades de crecimiento.",
-  },
-  {
-    n: "02",
-    title: "Definir",
-    desc: "Construimos una estrategia clara que alinea creatividad y objetivos comerciales.",
-  },
-  {
-    n: "03",
-    title: "Diseñar",
-    desc: "Desarrollo conceptos, sistemas visuales, campañas y experiencias digitales con enfoque estratégico.",
-  },
-  {
-    n: "04",
-    title: "Optimizar",
-    desc: "Iteramos con datos, retroalimentación y aprendizaje continuo para maximizar resultados.",
-  },
-];
-
 const faqs = [
   {
     q: "¿Trabajas con clientes internacionales?",
@@ -262,24 +239,6 @@ export default function Servicios() {
                   <b>Ideal para.</b> {s.idealFor}
                 </p>
               </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="svc-proceso">
-        <div className="wrap">
-          <div className="eyebrow">Mi proceso</div>
-          <h2 className="svc-h2">
-            De la idea al <span className="o">resultado</span>.
-          </h2>
-          <div className="svc-proceso-grid">
-            {proceso.map((p) => (
-              <div className="svc-step" key={p.n}>
-                <span className="svc-step-n">{p.n}</span>
-                <h3>{p.title}</h3>
-                <p>{p.desc}</p>
-              </div>
             ))}
           </div>
         </div>
