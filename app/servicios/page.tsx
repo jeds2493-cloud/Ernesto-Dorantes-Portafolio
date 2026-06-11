@@ -31,7 +31,7 @@ type Service = {
   n: string;
   title: string;
   tagline: string;
-  desc: string;
+  desc: string[];
   includes: string[];
   idealFor: string;
   featured?: boolean;
@@ -43,7 +43,10 @@ const services: Service[] = [
     n: "01",
     title: "Branding e Identidad de Marca",
     tagline: "Construye una marca imposible de ignorar",
-    desc: "Una marca fuerte no es solo un logotipo: es un sistema coherente que transmite confianza, personalidad y valor en cada punto de contacto.",
+    desc: [
+      "Una marca fuerte no es solo un logotipo. Es un sistema visual y estratégico capaz de generar confianza, diferenciación y reconocimiento en cada punto de contacto.",
+      "Trabajo con empresas que buscan lanzar una nueva marca o evolucionar su identidad para competir en mercados cada vez más exigentes.",
+    ],
     includes: [
       "Estrategia de marca",
       "Posicionamiento",
@@ -55,83 +58,58 @@ const services: Service[] = [
       "Aplicaciones digitales e impresas",
     ],
     idealFor:
-      "Startups, empresas en crecimiento y organizaciones que necesitan fortalecer su percepción de marca.",
+      "Startups, empresas en crecimiento y organizaciones que necesitan fortalecer su presencia de marca.",
   },
   {
     n: "02",
-    title: "Dirección de Arte para Campañas",
+    title: "Campañas y Dirección de Arte",
     tagline: "Una idea poderosa. Todos los puntos de contacto.",
-    desc: "Conceptos creativos capaces de vivir de forma consistente a través de campañas digitales, contenido audiovisual, medios exteriores, redes y experiencias de marca.",
+    desc: [
+      "Desarrollo conceptos creativos que viven de forma consistente a través de campañas digitales, contenido audiovisual, redes sociales, pauta y medios exteriores.",
+      "Cada campaña nace de una idea estratégica diseñada para captar atención, generar recordación y construir valor para el negocio.",
+    ],
     includes: [
       "Concepto creativo",
       "Dirección de arte",
+      "Campañas 360°",
       "Key Visual",
       "Storytelling",
-      "Campañas 360°",
-      "Desarrollo de mensajes",
-      "Adaptaciones multiformato",
-      "Supervisión creativa",
+      "Producción de contenido",
+      "Motion Graphics",
+      "Creatividades para pauta digital",
+      "Producción acelerada con IA",
     ],
     idealFor:
-      "Lanzamientos de producto, campañas de posicionamiento, promociones y comunicación de marca.",
+      "Marcas que buscan lanzar productos, posicionarse en el mercado o generar resultados mediante campañas creativas.",
   },
   {
     n: "03",
-    title: "Performance Creative",
-    tagline: "Creatividades diseñadas para convertir",
-    desc: "Anuncios y contenidos optimizados para plataformas digitales, combinando estrategia, análisis y creatividad para mejorar el rendimiento de las campañas.",
-    includes: [
-      "Creativos para Meta Ads",
-      "Creativos para Google Ads",
-      "Creativos para TikTok Ads",
-      "Motion Graphics",
-      "Conceptos UGC",
-      "Testing creativo",
-      "Adaptaciones para pauta digital",
-    ],
-    idealFor:
-      "Empresas que buscan mejorar sus resultados en adquisición, generación de leads o ventas.",
-  },
-  {
-    n: "04",
-    title: "Diseño de Producto Digital",
+    title: "Diseño de Producto y Experiencias Digitales",
     tagline: "Experiencias digitales que convierten",
-    desc: "Interfaces y experiencias digitales enfocadas en facilitar decisiones, mejorar la experiencia del usuario y aumentar conversiones. De una landing a un sistema completo.",
+    desc: [
+      "Diseño sitios web, landing pages e interfaces digitales enfocadas en mejorar la experiencia de usuario y aumentar conversiones.",
+      "Combino estrategia, UX, UI y pensamiento de producto para crear experiencias funcionales, intuitivas y alineadas con objetivos de negocio.",
+    ],
     includes: [
       "UX Audit",
-      "Investigación y análisis",
       "Arquitectura de información",
       "Wireframes",
       "Diseño UI",
-      "Sistemas de diseño",
       "Landing Pages",
+      "Sitios web",
+      "Sistemas de diseño",
       "Optimización de conversión",
     ],
     idealFor:
-      "SaaS, fintech, proptech, ecommerce y empresas que dependen de canales digitales.",
+      "Empresas que dependen de canales digitales para generar leads, ventas o crecimiento.",
   },
   {
-    n: "05",
-    title: "Producción Creativa Acelerada con IA",
-    tagline: "Más exploración. Menos desperdicio.",
-    desc: "Integro IA dentro del proceso creativo para acelerar la producción, ampliar la exploración de ideas y reducir tiempos sin sacrificar calidad. Potencia estrategia y creatividad.",
-    includes: [
-      "Generación de imágenes",
-      "Producción de video con IA",
-      "Motion Graphics asistidos por IA",
-      "Voice Over con IA",
-      "Concept development",
-      "Prototipado rápido",
-      "Automatización creativa",
-    ],
-    idealFor:
-      "Marcas que necesitan producir más contenido, validar ideas más rápido y optimizar presupuestos.",
-  },
-  {
-    n: "06",
+    n: "04",
     title: "Creative Partner",
     tagline: "Tu director creativo externo",
-    desc: "Acompañamiento continuo sin construir un departamento creativo interno. Me integro como socio estratégico: visión, dirección y ejecución en múltiples disciplinas.",
+    desc: [
+      "Acompañamiento continuo sin construir un departamento creativo interno. Me integro como socio estratégico: visión, dirección y ejecución en múltiples disciplinas.",
+    ],
     includes: [
       "Director Creativo Externo",
       "Director de Arte",
@@ -257,7 +235,11 @@ export default function Servicios() {
                   <span className="svc-n">{s.n}</span>
                   <h2>{s.title}</h2>
                   <p className="svc-tag">{s.tagline}</p>
-                  <p className="svc-desc">{s.desc}</p>
+                  {s.desc.map((d, i) => (
+                    <p className="svc-desc" key={i}>
+                      {d}
+                    </p>
+                  ))}
                 </div>
                 <div className="svc-price">
                   <span className="svc-price-v">A medida</span>
