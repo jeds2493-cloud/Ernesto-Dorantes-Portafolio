@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Faq from "@/components/Faq";
 import LavaBg from "@/components/LavaBg";
+import AgendaButton from "@/components/AgendaButton";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://ernestodorantes.com";
@@ -18,14 +19,6 @@ export const metadata: Metadata = {
     url: `${siteUrl}/servicios`,
   },
 };
-
-const MAIL = "jeds2493@gmail.com";
-const mailto = (servicio: string) =>
-  `mailto:${MAIL}?subject=${encodeURIComponent(
-    "Sesión estratégica — " + servicio
-  )}&body=${encodeURIComponent(
-    `Hola Ernesto, me interesa el servicio de ${servicio}. Me gustaría agendar una sesión estratégica para platicar sobre mi proyecto.`
-  )}`;
 
 type Service = {
   n: string;
@@ -179,9 +172,7 @@ export default function Servicios() {
         <Link href="/" className="svc-back">
           ← Portafolio
         </Link>
-        <a className="svc-nav-cta" href={mailto("Sesión estratégica")}>
-          Agenda una sesión
-        </a>
+        <AgendaButton className="svc-nav-cta">Agenda una sesión</AgendaButton>
       </header>
 
       <section className="svc-hero">
@@ -224,9 +215,7 @@ export default function Servicios() {
                   <span className="svc-price-v">A medida</span>
                   <span className="svc-price-l">Cotización personalizada</span>
                 </div>
-                <a className="svc-cta" href={mailto(s.title)}>
-                  Agenda una sesión
-                </a>
+                <AgendaButton className="svc-cta">Agenda una sesión</AgendaButton>
                 <ul className="svc-includes">
                   {s.includes.map((it) => (
                     <li key={it}>
@@ -267,9 +256,9 @@ export default function Servicios() {
             medida de tus objetivos.
           </p>
           <div className="svc-final-cta">
-            <a className="primary" href={mailto("Sesión estratégica")}>
+            <AgendaButton className="primary">
               Agenda una sesión estratégica
-            </a>
+            </AgendaButton>
             <Link href="/">Ver portafolio ↗</Link>
           </div>
           <p className="foot">

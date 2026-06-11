@@ -334,7 +334,7 @@ export default function Process() {
           </button>
           {ads[zoom].type === "video" ? (
             <video
-              className="im-img contain"
+              className="im-img"
               src={ads[zoom].src}
               poster={ads[zoom].poster}
               controls
@@ -346,7 +346,7 @@ export default function Process() {
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              className="im-img contain"
+              className="im-img"
               src={ads[zoom].src}
               alt={ads[zoom].alt}
               onClick={(e) => e.stopPropagation()}
