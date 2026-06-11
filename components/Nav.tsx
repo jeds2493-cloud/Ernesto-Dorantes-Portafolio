@@ -114,14 +114,6 @@ export default function Nav() {
             <span className="led" />
             Disponible para proyectos
           </a>
-          <a
-            className="nav-cv"
-            href="/Curriculum_Ernesto_Dorantes.pdf"
-            download
-            onClick={closeMenu}
-          >
-            Descargar CV ↓
-          </a>
         </div>
       </div>
     </>

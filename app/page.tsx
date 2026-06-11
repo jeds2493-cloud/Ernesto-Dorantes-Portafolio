@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Brands from "@/components/Brands";
+import ServicesTeaser from "@/components/ServicesTeaser";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import Work from "@/components/Work";
@@ -15,6 +16,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <Brands />
+      <ServicesTeaser />
       <About />
       {/* Casos + Pipeline + Carrera comparten un fondo continuo con una sola lava */}
       <div className="work-exp">

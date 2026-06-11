@@ -46,9 +46,6 @@ export default function Contact() {
           >
             LinkedIn ↗
           </a>
-          <a href="/Curriculum_Ernesto_Dorantes.pdf" download>
-            Descargar CV ↓
-          </a>
         </div>
         <p className="foot">
           Ernesto Dorantes · Director Creativo
