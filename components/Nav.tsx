@@ -6,6 +6,7 @@ const LINKS: [string, string][] = [
   ["#sobre", "Sobre mí"],
   ["#trabajo", "Casos"],
   ["#experiencia", "Carrera"],
+  ["/servicios", "Servicios"],
   ["#contacto", "Contacto"],
 ];
 
@@ -29,6 +30,12 @@ export default function Nav() {
   // scroll explícito de la ventana (algunas secciones viven dentro de un
   // contenedor overflow:hidden que rompe el salto nativo a anclas)
   const goTo = (href: string) => (e: MouseEvent<HTMLAnchorElement>) => {
+    // enlaces de ruta (p. ej. /servicios): navegación normal del navegador
+    if (!href.startsWith("#")) {
+      setOpen(false);
+      document.body.style.overflow = "";
+      return;
+    }
     e.preventDefault();
     setOpen(false);
     document.body.style.overflow = "";
