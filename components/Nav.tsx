@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState, type MouseEvent } from "react";
+import LavaBg from "@/components/LavaBg";
+
+const MAIL = "jeds2493@gmail.com";
 
 const LINKS: [string, string][] = [
   ["#sobre", "Sobre mí"],
@@ -98,24 +101,64 @@ export default function Nav() {
         className={`nav-overlay${open ? " open" : ""}`}
         onClick={() => setOpen(false)}
       >
-        <button
-          type="button"
-          className="nav-close"
-          onClick={() => setOpen(false)}
-          aria-label="Cerrar menú"
-        >
-          ✕
-        </button>
+        {open && <LavaBg />}
         <div className="nav-overlay-inner" onClick={(e) => e.stopPropagation()}>
-          {LINKS.map(([href, label]) => (
-            <a key={href} href={href} onClick={goTo(href)}>
-              {label}
+          <div className="nav-overlay-top">
+            <a href="#top" className="brand" onClick={goTo("#top")}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/logo-ed.png" alt="" className="brand-logo" />
+              Ernesto Dorantes
             </a>
-          ))}
-          <a className="nav-avail-cta" href="/servicios" onClick={closeMenu}>
-            <span className="led" />
-            Trabajemos juntos
-          </a>
+            <button
+              type="button"
+              className="nav-close"
+              onClick={() => setOpen(false)}
+              aria-label="Cerrar menú"
+            >
+              <span />
+              <span />
+            </button>
+          </div>
+
+          <div className="nav-links" role="navigation" aria-label="Menú principal">
+            {LINKS.map(([href, label], i) => (
+              <a key={href} href={href} onClick={goTo(href)}>
+                <span className="nav-link-i">0{i + 1}</span>
+                {label}
+              </a>
+            ))}
+          </div>
+
+          <div className="nav-foot">
+            <a className="nav-avail-cta" href="/servicios" onClick={closeMenu}>
+              <span className="led" />
+              Trabajemos juntos
+            </a>
+            <div className="nav-foot-grid">
+              <div className="nav-foot-col">
+                <span className="nav-foot-label">Ubicación</span>
+                <p>
+                  Toluca de Lerdo,
+                  <br />
+                  México
+                </p>
+              </div>
+              <div className="nav-foot-col">
+                <span className="nav-foot-label">Contacto</span>
+                <a
+                  className="nav-mail"
+                  href={`mailto:${MAIL}`}
+                  onClick={closeMenu}
+                >
+                  Escríbeme ↗
+                </a>
+              </div>
+            </div>
+            <div className="nav-foot-legal">
+              <span>© 2026 Ernesto Dorantes</span>
+              <span>Director Creativo</span>
+            </div>
+          </div>
         </div>
       </div>
     </>
