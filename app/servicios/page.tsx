@@ -37,8 +37,7 @@ const services: Service[] = [
     title: "Branding e Identidad de Marca",
     tagline: "Construye una marca imposible de ignorar",
     desc: [
-      "Una marca fuerte no es solo un logotipo. Es un sistema visual y estratégico capaz de generar confianza, diferenciación y reconocimiento en cada punto de contacto.",
-      "Trabajo con empresas que buscan lanzar una nueva marca o evolucionar su identidad para competir en mercados cada vez más exigentes.",
+      "Más que un logotipo: un sistema visual y estratégico que genera confianza, diferenciación y reconocimiento en cada punto de contacto, para marcas que buscan lanzarse o evolucionar su identidad.",
     ],
     includes: [
       "Estrategia de marca",
@@ -58,8 +57,7 @@ const services: Service[] = [
     title: "Campañas y Dirección de Arte",
     tagline: "Una idea poderosa. Todos los puntos de contacto.",
     desc: [
-      "Desarrollo conceptos creativos que viven de forma consistente a través de campañas digitales, contenido audiovisual, redes sociales, pauta y medios exteriores.",
-      "Cada campaña nace de una idea estratégica diseñada para captar atención, generar recordación y construir valor para el negocio.",
+      "Conceptos creativos consistentes en campañas digitales, audiovisual, redes, pauta y medios exteriores; cada uno nace de una idea estratégica para captar atención, generar recordación y construir valor.",
     ],
     includes: [
       "Concepto creativo",
@@ -80,8 +78,7 @@ const services: Service[] = [
     title: "Diseño de Producto y Experiencias Digitales",
     tagline: "Experiencias digitales que convierten",
     desc: [
-      "Diseño sitios web, landing pages e interfaces digitales enfocadas en mejorar la experiencia de usuario y aumentar conversiones.",
-      "Combino estrategia, UX, UI y pensamiento de producto para crear experiencias funcionales, intuitivas y alineadas con objetivos de negocio.",
+      "Sitios web, landing pages e interfaces enfocadas en mejorar la experiencia de usuario y aumentar conversiones, combinando estrategia, UX, UI y pensamiento de producto alineado al negocio.",
     ],
     includes: [
       "UX Audit",
