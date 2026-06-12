@@ -57,6 +57,6 @@ El proyecto se despliega sin configuración en **Vercel** (`vercel`), o como sit
 
 ## Contacto
 
-- Correo: jeds2493@gmail.com
+- Correo: hello@ernestodorantes.com
 - LinkedIn: [ernestodorantes2493](https://linkedin.com/in/ernestodorantes2493)
 - Ubicación: Toluca de Lerdo, México

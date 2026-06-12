@@ -3,7 +3,7 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import LavaBg from "@/components/LavaBg";
 
-const MAIL = "jeds2493@gmail.com";
+const MAIL = "hello@ernestodorantes.com";
 
 const LINKS: [string, string][] = [
   ["#sobre", "Sobre mí"],

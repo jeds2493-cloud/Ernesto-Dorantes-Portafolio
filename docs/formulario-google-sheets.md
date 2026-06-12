@@ -37,7 +37,7 @@ function doPost(e) {
     ]);
 
     // (opcional) avísame por correo en cada envío:
-    // MailApp.sendEmail("jeds2493@gmail.com",
+    // MailApp.sendEmail("hello@ernestodorantes.com",
     //   "Nuevo contacto — " + (p.nombre || ""),
     //   "Nombre: " + p.nombre + "\nEmail: " + p.email +
     //   "\nEmpresa: " + p.empresa + "\nTipo: " + p.tipo +

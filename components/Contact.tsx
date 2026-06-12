@@ -4,7 +4,7 @@ import { useRef } from "react";
 import type { MouseEvent } from "react";
 import ContactForm from "./ContactForm";
 
-const MAIL = "jeds2493@gmail.com";
+const MAIL = "hello@ernestodorantes.com";
 
 export default function Contact() {
   const ref = useRef<HTMLElement>(null);

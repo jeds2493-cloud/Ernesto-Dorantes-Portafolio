@@ -8,7 +8,7 @@ import type { FormEvent } from "react";
 const FORM_ENDPOINT =
   process.env.NEXT_PUBLIC_FORM_ENDPOINT ??
   "https://script.google.com/macros/s/AKfycbzSb1Ytz9pM47eDS5grx9AG65S7KozZBzqUgd4QLol9ZFeH0oT16XcXnxr-UNFo3nUD/exec";
-const MAIL = "jeds2493@gmail.com";
+const MAIL = "hello@ernestodorantes.com";
 
 const projectTypes = [
   "Branding e identidad",
