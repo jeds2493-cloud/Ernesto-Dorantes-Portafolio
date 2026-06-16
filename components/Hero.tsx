@@ -62,6 +62,19 @@ export default function Hero() {
   const media = MEDIA[icon];
   const useVideo = allowVideo && !!media.video;
 
+  // fuerza el autoplay en móvil: React no siempre aplica `muted` al DOM
+  // (necesario para que iOS/Android reproduzcan sin tap) y algunos navegadores
+  // requieren una llamada explícita a play()
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    const p = v.play();
+    if (p && typeof p.catch === "function") p.catch(() => {});
+  }, [useVideo, icon]);
+
   // parallax con el mouse (solo desktop)
   useEffect(() => {
     if (isMobile) return;
@@ -177,12 +190,20 @@ export default function Hero() {
   const media_el = useVideo ? (
     <video
       key={media.video}
+      ref={videoRef}
       autoPlay
       muted
       loop
       playsInline
+      preload="auto"
       poster={media.img}
       aria-hidden="true"
+      onCanPlay={(e) => {
+        const v = e.currentTarget;
+        v.muted = true;
+        const p = v.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      }}
     >
       <source src={media.video} type="video/mp4" />
     </video>

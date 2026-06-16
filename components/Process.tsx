@@ -80,7 +80,9 @@ export default function Process() {
   const [isMobile, setIsMobile] = useState(false);
   const [active, setActive] = useState(0);
   const [autoKey, setAutoKey] = useState(0);
+  const [inView, setInView] = useState(false);
   const [zoom, setZoom] = useState<number | null>(null);
+  const flowRef = useRef<HTMLDivElement>(null);
   const n = steps.length;
 
   // el cover flow del pipeline solo aplica en móvil
@@ -92,13 +94,34 @@ export default function Process() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // auto-avance continuo del cover flow (se reinicia al interactuar)
+  // el cover flow arranca (desde el paso 1) recién cuando entra en pantalla,
+  // para que el usuario no llegue y ya vaya por el paso 3 o 4
   useEffect(() => {
     if (!isMobile) return;
+    const el = flowRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setActive(0);
+          setInView(true);
+        } else {
+          setInView(false);
+        }
+      },
+      { threshold: 0.45 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [isMobile]);
+
+  // auto-avance continuo del cover flow (solo cuando está visible; se reinicia al interactuar)
+  useEffect(() => {
+    if (!isMobile || !inView) return;
     if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
     const id = setInterval(() => setActive((p) => (p + 1) % n), 3200);
     return () => clearInterval(id);
-  }, [isMobile, autoKey, n]);
+  }, [isMobile, inView, autoKey, n]);
 
   // fija una card y reinicia el temporizador
   const select = (idx: number) => {
@@ -173,6 +196,7 @@ export default function Process() {
         {isMobile ? (
           <div
             className="pipe-flow reveal"
+            ref={flowRef}
             onPointerDown={onDown}
             onPointerUp={onUp}
           >
