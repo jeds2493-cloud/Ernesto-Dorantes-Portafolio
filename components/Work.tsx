@@ -397,7 +397,6 @@ export default function Work() {
                       {c.title}
                       <span className="sub">{c.sub}</span>
                     </h3>
-                    <p className="flow-card-concept">{c.concept}</p>
                     <div className="flow-card-actions">
                       <button
                         type="button"
@@ -459,7 +458,7 @@ export default function Work() {
 
       {zoom !== null && (
         <div
-          className="img-modal"
+          className="img-modal img-modal-cap"
           role="dialog"
           aria-modal="true"
           aria-label="Visor de imagen"
@@ -506,8 +505,14 @@ export default function Work() {
               ›
             </button>
           )}
-          <div className="im-count">
-            {zoom + 1} / {total}
+          <div className="im-caption" onClick={(e) => e.stopPropagation()}>
+            <div className="im-cap-row">
+              <span className="im-cap-title">{current.title}</span>
+              <span className="im-cap-count">
+                {zoom + 1} / {total}
+              </span>
+            </div>
+            <p className="im-cap-text">{current.concept}</p>
           </div>
         </div>
       )}
