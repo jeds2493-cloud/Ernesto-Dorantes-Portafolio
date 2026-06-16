@@ -7,6 +7,7 @@ import {
   type CSSProperties,
   type PointerEvent,
 } from "react";
+import { createPortal } from "react-dom";
 import CasePlay from "@/components/CasePlay";
 
 type Leaf = { src: string; alt: string; contain?: boolean };
@@ -456,10 +457,12 @@ export default function Work() {
         </div>
       </div>
 
-      {zoom !== null && (
-        <div
-          className="img-modal img-modal-cap"
-          role="dialog"
+      {zoom !== null &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className="img-modal img-modal-cap"
+            role="dialog"
           aria-modal="true"
           aria-label="Visor de imagen"
           onClick={() => setZoom(null)}
@@ -514,8 +517,9 @@ export default function Work() {
             </div>
             <p className="im-cap-text">{current.concept}</p>
           </div>
-        </div>
-      )}
+        </div>,
+          document.body
+        )}
     </section>
   );
 }

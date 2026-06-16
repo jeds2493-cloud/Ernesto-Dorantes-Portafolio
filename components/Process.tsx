@@ -8,6 +8,7 @@ import {
   type CSSProperties,
   type PointerEvent,
 } from "react";
+import { createPortal } from "react-dom";
 
 type Step = { name: string; desc: string; ai?: boolean };
 
@@ -329,10 +330,12 @@ export default function Process() {
       </div>
 
       {/* Lightbox de anuncios */}
-      {zoom !== null && (
-        <div
-          className="img-modal"
-          role="dialog"
+      {zoom !== null &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className="img-modal"
+            role="dialog"
           aria-modal="true"
           aria-label="Creativa de la campaña"
           onClick={() => setZoom(null)}
@@ -390,8 +393,9 @@ export default function Process() {
           <div className="im-count">
             {zoom + 1} / {ads.length}
           </div>
-        </div>
-      )}
+        </div>,
+          document.body
+        )}
     </section>
   );
 }
