@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sora, Inter } from "next/font/google";
+import { Sora, Inter, Fraunces } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import ContactModal from "@/components/ContactModal";
 import "./globals.css";
@@ -15,6 +15,13 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800", "900"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -72,7 +79,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${sora.variable} ${inter.variable}`}>
+    <html lang="es" className={`${sora.variable} ${inter.variable} ${fraunces.variable}`}>
       <body>
         {children}
         <ContactModal />
