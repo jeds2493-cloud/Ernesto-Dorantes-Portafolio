@@ -61,6 +61,11 @@ export default function Contact() {
           Ernesto Dorantes · Director Creativo
           <span className="loc">Toluca de Lerdo, México</span>
         </p>
+        <p className="legal-note">
+          Las marcas y logotipos que aparecen en este sitio se incluyen
+          únicamente con fines ilustrativos de portafolio. Cada marca es
+          propiedad de su respectiva empresa.
+        </p>
       </div>
     </section>
   );

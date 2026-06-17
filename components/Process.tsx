@@ -75,6 +75,70 @@ const ads: AdItem[] = [
     src: "/assets/ads/ad-story2.jpg",
     alt: "Anuncio: Compramos casas de interés social",
   },
+  {
+    type: "video",
+    src: "/assets/ads/ad-cierreciclo1.mp4",
+    poster: "/assets/ads/ad-cierreciclo1-poster.jpg",
+    alt: "Spot de video: cierra el ciclo y vende tu casa de interés social",
+  },
+  {
+    type: "video",
+    src: "/assets/ads/ad-cierreciclo2.mp4",
+    poster: "/assets/ads/ad-cierreciclo2-poster.jpg",
+    alt: "Spot de video: cierra el ciclo y vende tu casa — versión 2",
+  },
+  {
+    type: "video",
+    src: "/assets/ads/ad-soluciondeuda1.mp4",
+    poster: "/assets/ads/ad-soluciondeuda1-poster.jpg",
+    alt: "Spot de video: solución a tu deuda vendiendo tu casa",
+  },
+  {
+    type: "video",
+    src: "/assets/ads/ad-soluciondeuda2.mp4",
+    poster: "/assets/ads/ad-soluciondeuda2-poster.jpg",
+    alt: "Spot de video: solución a tu deuda vendiendo tu casa — versión 2",
+  },
+  {
+    type: "image",
+    src: "/assets/ads/ad-transparencia1.png",
+    alt: "Anuncio: transparencia y seguridad en la compra de tu casa",
+  },
+  {
+    type: "image",
+    src: "/assets/ads/ad-transparencia2.png",
+    alt: "Anuncio: transparencia y seguridad — proceso claro y sin intermediarios",
+  },
+  {
+    type: "image",
+    src: "/assets/ads/ad-transparencia2b.png",
+    alt: "Anuncio: transparencia y seguridad — formato cuadrado",
+  },
+  {
+    type: "image",
+    src: "/assets/ads/ad-transparencia3.png",
+    alt: "Anuncio: transparencia y seguridad — vende con confianza",
+  },
+  {
+    type: "image",
+    src: "/assets/ads/ad-transparencia3b.png",
+    alt: "Anuncio: transparencia y seguridad — versión alterna",
+  },
+  {
+    type: "image",
+    src: "/assets/ads/ad-transparencia4.png",
+    alt: "Anuncio: transparencia y seguridad — compra directa y segura",
+  },
+  {
+    type: "image",
+    src: "/assets/ads/ad-transparencia4b.png",
+    alt: "Anuncio: transparencia y seguridad — versión alterna",
+  },
+  {
+    type: "image",
+    src: "/assets/ads/ad-transparencia5.png",
+    alt: "Anuncio: transparencia y seguridad — oferta justa por tu casa",
+  },
 ];
 
 export default function Process() {

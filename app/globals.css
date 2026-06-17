@@ -555,6 +555,7 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 .cta a.primary:hover{background:var(--orange-soft)}
 .contact .foot{font-size:13px;color:var(--muted);letter-spacing:.03em}
 .contact .foot .loc{display:block;margin-top:8px;color:var(--muted-dim)}
+.contact .legal-note{max-width:62ch;margin:clamp(20px,4vh,34px) auto 0;font-size:11px;line-height:1.5;color:var(--muted-dim);opacity:.7}
 @media(max-width:560px){.cf-row{grid-template-columns:1fr}}
 /* ----- Modal del formulario (Agenda una sesión) ----- */
 .contact-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:clamp(14px,4vw,40px);background:rgba(5,5,8,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);overflow-y:auto;animation:vmFade .3s ease}
