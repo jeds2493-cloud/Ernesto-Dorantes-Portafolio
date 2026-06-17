@@ -36,7 +36,7 @@ export default function Contact() {
       <div className="glow" aria-hidden="true" />
       <div className="wrap">
         <h2 className="reveal">
-          Trabajemos <span className="o">juntos</span>
+          Trabajemos <span className="o"><em>juntos</em></span>
         </h2>
         <p className="contact-sub reveal">
           Cuéntame lo esencial de tu proyecto y te respondo con los siguientes

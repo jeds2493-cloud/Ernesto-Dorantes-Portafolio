@@ -412,7 +412,9 @@ export default function Process() {
                   />
                   {ad.type === "video" && (
                     <span className="proof-ad-play" aria-hidden="true">
-                      ▶
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
                     </span>
                   )}
                 </button>
@@ -439,7 +441,9 @@ export default function Process() {
             onClick={() => setZoom(null)}
             aria-label="Cerrar"
           >
-            ✕
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18" />
+            </svg>
           </button>
           <button
             type="button"
@@ -450,7 +454,9 @@ export default function Process() {
             }}
             aria-label="Anterior"
           >
-            ‹
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M15 5l-7 7 7 7" />
+            </svg>
           </button>
           {ads[zoom].type === "video" ? (
             <video
@@ -481,7 +487,9 @@ export default function Process() {
             }}
             aria-label="Siguiente"
           >
-            ›
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
           </button>
           <div className="im-count">
             {zoom + 1} / {ads.length}

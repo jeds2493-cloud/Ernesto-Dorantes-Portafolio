@@ -9,7 +9,7 @@ export default function About() {
         <div className="eyebrow reveal">Sobre mí</div>
         <p className="lead reveal">
           Creo <span className="o">narrativas visuales</span> que hacen a las
-          marcas ser inolvidables.
+          marcas ser <em>inolvidables</em>.
         </p>
         <Skills />
       </div>

@@ -433,7 +433,9 @@ export default function Work() {
           onClick={() => go(-1)}
           aria-label="Caso anterior"
         >
-          ‹
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M15 5l-7 7 7 7" />
+          </svg>
         </button>
         <button
           type="button"
@@ -441,7 +443,9 @@ export default function Work() {
           onClick={() => go(1)}
           aria-label="Siguiente caso"
         >
-          ›
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
         </button>
 
         <div className="flow-dots">
@@ -473,7 +477,9 @@ export default function Work() {
             onClick={() => setZoom(null)}
             aria-label="Cerrar imagen"
           >
-            ✕
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18" />
+            </svg>
           </button>
           {total > 1 && (
             <button
@@ -485,7 +491,9 @@ export default function Work() {
               }}
               aria-label="Imagen anterior"
             >
-              ‹
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M15 5l-7 7 7 7" />
+              </svg>
             </button>
           )}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -505,7 +513,9 @@ export default function Work() {
               }}
               aria-label="Imagen siguiente"
             >
-              ›
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           )}
           <div className="im-caption" onClick={(e) => e.stopPropagation()}>
