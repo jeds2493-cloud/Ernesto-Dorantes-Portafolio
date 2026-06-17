@@ -237,7 +237,10 @@ export default function Hero() {
             </div>
           </div>
           <h1 className="hero-name">
-            <span className="ln1">Ernesto</span>
+            <span className="hero-name-top">
+              <span className="ln1">Ernesto</span>
+              <NeonBulb variant={icon} />
+            </span>
             <span className="ln2 accent">Dorantes</span>
           </h1>
           <div className="hero-bottom">
@@ -245,7 +248,6 @@ export default function Hero() {
               Diseño <b>campañas, marcas y experiencias visuales</b> que
               convierten ideas en <b>sistemas memorables</b>.
             </p>
-            <NeonBulb variant={icon} />
           </div>
         </div>
       ) : (
