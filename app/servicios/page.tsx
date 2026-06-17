@@ -159,7 +159,7 @@ function Check() {
 
 export default function Servicios() {
   return (
-    <main className="svc">
+    <main className="svc" id="top" tabIndex={-1}>
       <header className="svc-nav">
         <Link href="/" className="brand">
           {/* eslint-disable-next-line @next/next/no-img-element */}

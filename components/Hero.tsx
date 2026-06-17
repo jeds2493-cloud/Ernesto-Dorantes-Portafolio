@@ -279,6 +279,9 @@ export default function Hero() {
           </div>
         </>
       )}
+      <span className="scroll-cue" aria-hidden="true">
+        <span />
+      </span>
     </header>
   );
 }

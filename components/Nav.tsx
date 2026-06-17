@@ -14,6 +14,25 @@ const LINKS: [string, string][] = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+
+  // resalta en el nav la sección visible (scrollspy)
+  useEffect(() => {
+    const sections = LINKS.map(([h]) => h)
+      .filter((h) => h.startsWith("#"))
+      .map((h) => document.getElementById(h.slice(1)))
+      .filter((el): el is HTMLElement => !!el);
+    if (!sections.length) return;
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive("#" + e.target.id);
+        }),
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, []);
 
   // bloquea el scroll y cierra con Escape mientras el menú está abierto
   useEffect(() => {
@@ -68,7 +87,13 @@ export default function Nav() {
         </a>
         <div className="links">
           {LINKS.map(([href, label]) => (
-            <a key={href} href={href} onClick={goTo(href)}>
+            <a
+              key={href}
+              href={href}
+              onClick={goTo(href)}
+              className={active === href ? "active" : undefined}
+              aria-current={active === href ? "true" : undefined}
+            >
               {label}
             </a>
           ))}

@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Sora, Inter, Fraunces } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import ContactModal from "@/components/ContactModal";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0c",
+};
 
 const sora = Sora({
   subsets: ["latin"],
@@ -82,9 +86,39 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${sora.variable} ${inter.variable} ${fraunces.variable}`}>
       <body>
+        <a href="#top" className="skip-link">
+          Saltar al contenido
+        </a>
         {children}
         <ContactModal />
         <Analytics />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Ernesto Dorantes",
+              jobTitle: "Director Creativo",
+              url: siteUrl,
+              email: "hello@ernestodorantes.com",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Toluca de Lerdo",
+                addressRegion: "Estado de México",
+                addressCountry: "MX",
+              },
+              sameAs: ["https://linkedin.com/in/ernestodorantes2493"],
+              knowsAbout: [
+                "Dirección de arte",
+                "Branding",
+                "Campañas 360°",
+                "UI/UX",
+                "IA aplicada al diseño",
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   );
