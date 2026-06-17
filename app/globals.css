@@ -279,9 +279,16 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 .proof{margin-top:clamp(34px,6vh,60px);border:1px solid var(--line);border-radius:18px;padding:clamp(22px,3vw,34px);background:linear-gradient(160deg,rgba(255,92,26,.06),transparent 60%),var(--bg-card)}
 .proof-head{font-family:var(--display);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:clamp(18px,2.6vh,26px)}
 .proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,28px)}
-.proof-kpi{display:flex;flex-direction:column;gap:4px;border-left:2px solid rgba(255,92,26,.5);padding-left:14px}
+.proof-kpi{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;border:0;border-left:2px solid rgba(255,92,26,.5);background:none;margin:0;padding:2px 0 2px 14px;font:inherit;text-align:left;cursor:help;-webkit-appearance:none;appearance:none;transition:border-color .3s}
+.proof-kpi:hover,.proof-kpi:focus-visible{border-left-color:var(--orange);outline:none}
 .proof-v{font-family:var(--display);font-weight:700;font-size:clamp(26px,4vw,42px);line-height:1;letter-spacing:-.02em;color:var(--fg)}
 .proof-l{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+/* tooltip "¿por qué es bueno?" sobre cada dato */
+.proof-tip{position:absolute;left:0;bottom:calc(100% + 12px);z-index:20;width:max-content;max-width:min(240px,76vw);padding:11px 14px;border-radius:12px;background:#1c1c22;border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 44px -16px rgba(0,0,0,.8);font-family:var(--sans);font-weight:400;font-size:12.5px;line-height:1.45;letter-spacing:normal;text-transform:none;color:rgba(255,255,255,.92);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease;pointer-events:none}
+.proof-tip::after{content:"";position:absolute;top:100%;left:20px;border:7px solid transparent;border-top-color:#1c1c22}
+.proof-kpi:nth-child(even) .proof-tip{left:auto;right:0}
+.proof-kpi:nth-child(even) .proof-tip::after{left:auto;right:20px}
+.proof-kpi:hover .proof-tip,.proof-kpi:focus .proof-tip,.proof-kpi:focus-visible .proof-tip{opacity:1;visibility:visible}
 .proof-highlight{display:flex;align-items:center;gap:clamp(14px,2vw,22px);margin:clamp(20px,3vh,28px) 0 0;padding:clamp(16px,2vw,22px);border:1px solid rgba(255,92,26,.4);border-radius:14px;background:linear-gradient(120deg,rgba(255,92,26,.12),transparent 70%)}
 .ph-value{font-family:var(--display);font-weight:800;font-size:clamp(34px,5vw,52px);line-height:.95;letter-spacing:-.02em;color:var(--orange);flex:0 0 auto}
 .ph-text{font-size:14px;line-height:1.55;color:rgba(255,255,255,.84)}
@@ -291,7 +298,11 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 .proof-note b{color:var(--fg);font-weight:600}
 .proof-learning{font-size:14px;line-height:1.6;color:var(--muted);margin:14px 0 0;max-width:68ch}
 .proof-learning b{color:var(--orange);font-weight:600}
-@media(min-width:760px){.proof-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:760px){
+  .proof-grid{grid-template-columns:repeat(3,1fr)}
+  .proof-tip,.proof-kpi:nth-child(even) .proof-tip{left:50%;right:auto;transform:translateX(-50%)}
+  .proof-tip::after,.proof-kpi:nth-child(even) .proof-tip::after{left:50%;right:auto;margin-left:-7px}
+}
 /* Cover flow del pipeline (solo móvil) */
 .pipe-flow{position:relative;touch-action:pan-y;margin-top:6px}
 .pipe-stage{position:relative;height:min(78vw,340px);perspective:1100px}

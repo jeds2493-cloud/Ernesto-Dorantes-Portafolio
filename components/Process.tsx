@@ -21,13 +21,39 @@ const steps: Step[] = [
   { name: "Optimización", desc: "Iteración y A/B testing" },
 ];
 
-const proof = [
-  { label: "Impresiones", value: "671,966" },
-  { label: "Clics", value: "8,802" },
-  { label: "Leads", value: "710+" },
-  { label: "Clic → Lead", value: "8.07%" },
-  { label: "CPL promedio", value: "$84.50" },
-  { label: "CPC promedio", value: "$6.82" },
+type Kpi = { label: string; value: string; tip: string };
+
+const proof: Kpi[] = [
+  {
+    label: "Impresiones",
+    value: "671,966",
+    tip: "Las veces que los anuncios aparecieron en pantalla: el alcance total de la campaña.",
+  },
+  {
+    label: "Clics",
+    value: "8,802",
+    tip: "Personas que tocaron un anuncio para conocer más. El primer paso del embudo.",
+  },
+  {
+    label: "Leads",
+    value: "710+",
+    tip: "El objetivo era generar oportunidades de venta: más de 700 personas dejaron sus datos para ser contactadas.",
+  },
+  {
+    label: "Clic → Lead",
+    value: "8.07%",
+    tip: "De cada 100 personas que hicieron clic, ~8 dejaron sus datos. Para campañas de generación de leads es una tasa bastante sólida.",
+  },
+  {
+    label: "CPL promedio",
+    value: "$84.50",
+    tip: "Conseguir un prospecto costó alrededor de $84. Mientras más bajo sea —manteniendo la calidad del lead— mejor rinde la campaña.",
+  },
+  {
+    label: "CPC promedio",
+    value: "$6.82",
+    tip: "Costo promedio por cada clic: ayuda a medir qué tan eficiente fue la inversión en pauta.",
+  },
 ];
 
 type AdItem = {
@@ -334,10 +360,13 @@ export default function Process() {
           <div className="proof-head">El proceso, en resultados de negocio</div>
           <div className="proof-grid">
             {proof.map((p) => (
-              <div className="proof-kpi" key={p.label}>
+              <button type="button" className="proof-kpi" key={p.label}>
                 <span className="proof-v">{p.value}</span>
                 <span className="proof-l">{p.label}</span>
-              </div>
+                <span className="proof-tip" role="tooltip">
+                  {p.tip}
+                </span>
+              </button>
             ))}
           </div>
           <div className="proof-highlight">
