@@ -23,6 +23,10 @@ em{font-style:italic}
 .flow-arrow svg{width:22px;height:22px}
 .flow-arrow{padding-bottom:0}
 .proof-ad-play svg{width:15px;height:15px;margin-left:1px}
+/* transición de entrada entre páginas (re-montada por template.tsx) */
+.page-tx{animation:pageIn .45s ease both}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.page-tx{animation:none}}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(20px,5vw,60px);backdrop-filter:blur(12px);background:rgba(10,10,12,.55);border-bottom:1px solid var(--line-soft)}
 nav .brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:600;font-size:15px}
 .brand-logo{height:27px;width:auto;display:block;flex:none}
@@ -480,6 +484,7 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 @keyframes lava3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(14%,-28%) scale(1.22)}}
 @keyframes lava4{0%,100%{transform:translate(0,0) scale(.9)}50%{transform:translate(-12%,26%) scale(1.15)}}
 @media(prefers-reduced-motion:reduce){.lava span{animation:none}}
+@media(max-width:760px){.lava{filter:blur(22px) saturate(1.12)}.lava span:nth-child(4){display:none}}
 .timeline{border-top:1px solid var(--line)}
 .job{display:grid;grid-template-columns:130px 1fr auto;gap:24px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline;transition:padding-left .4s ease}
 .job:hover{padding-left:14px}
