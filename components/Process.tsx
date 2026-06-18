@@ -127,42 +127,42 @@ const ads: AdItem[] = [
   },
   {
     type: "image",
-    src: "/assets/ads/ad-transparencia1.png",
+    src: "/assets/ads/ad-transparencia1.webp",
     alt: "Anuncio: transparencia y seguridad en la compra de tu casa",
   },
   {
     type: "image",
-    src: "/assets/ads/ad-transparencia2.png",
+    src: "/assets/ads/ad-transparencia2.webp",
     alt: "Anuncio: transparencia y seguridad — proceso claro y sin intermediarios",
   },
   {
     type: "image",
-    src: "/assets/ads/ad-transparencia2b.png",
+    src: "/assets/ads/ad-transparencia2b.webp",
     alt: "Anuncio: transparencia y seguridad — formato cuadrado",
   },
   {
     type: "image",
-    src: "/assets/ads/ad-transparencia3.png",
+    src: "/assets/ads/ad-transparencia3.webp",
     alt: "Anuncio: transparencia y seguridad — vende con confianza",
   },
   {
     type: "image",
-    src: "/assets/ads/ad-transparencia3b.png",
+    src: "/assets/ads/ad-transparencia3b.webp",
     alt: "Anuncio: transparencia y seguridad — versión alterna",
   },
   {
     type: "image",
-    src: "/assets/ads/ad-transparencia4.png",
+    src: "/assets/ads/ad-transparencia4.webp",
     alt: "Anuncio: transparencia y seguridad — compra directa y segura",
   },
   {
     type: "image",
-    src: "/assets/ads/ad-transparencia4b.png",
+    src: "/assets/ads/ad-transparencia4b.webp",
     alt: "Anuncio: transparencia y seguridad — versión alterna",
   },
   {
     type: "image",
-    src: "/assets/ads/ad-transparencia5.png",
+    src: "/assets/ads/ad-transparencia5.webp",
     alt: "Anuncio: transparencia y seguridad — oferta justa por tu casa",
   },
 ];
