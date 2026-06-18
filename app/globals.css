@@ -37,12 +37,11 @@ nav .links a::after{content:"";position:absolute;left:0;right:0;bottom:-5px;heig
 nav .links a:hover::after,nav .links a.active::after{transform:scaleX(1)}
 nav .links a.active{color:var(--fg)}
 /* indicador de scroll en el hero (solo desktop) */
-.hero .scroll-cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:27px;height:44px;border:2px solid rgba(255,122,66,.6);border-radius:16px;display:flex;justify-content:center;padding-top:8px;z-index:3;pointer-events:none;animation:scrollPulse 2.4s ease-in-out infinite}
-.hero .scroll-cue span{width:4px;height:9px;border-radius:3px;background:var(--orange);box-shadow:0 0 12px 1px rgba(255,92,26,.9);animation:scrollCue 1.7s cubic-bezier(.65,0,.35,1) infinite}
-@keyframes scrollCue{0%{transform:translateY(0);opacity:0}20%{opacity:1}80%{opacity:1}100%{transform:translateY(16px);opacity:0}}
-@keyframes scrollPulse{0%,100%{border-color:rgba(255,122,66,.5);box-shadow:0 0 18px -6px rgba(255,92,26,.45),inset 0 0 12px -7px rgba(255,122,66,.4)}50%{border-color:rgba(255,150,90,.85);box-shadow:0 0 32px -2px rgba(255,92,26,.7),inset 0 0 14px -5px rgba(255,122,66,.6)}}
+.hero .scroll-cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:2px;height:50px;background:linear-gradient(rgba(255,122,66,.3),transparent);overflow:hidden;z-index:3;pointer-events:none}
+.hero .scroll-cue span{position:absolute;top:0;left:-1.5px;width:5px;height:11px;border-radius:3px;background:var(--orange);box-shadow:0 0 12px 2px rgba(255,92,26,.85);animation:scrollCue 1.7s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes scrollCue{0%{transform:translateY(-12px);opacity:0}25%{opacity:1}80%{opacity:1}100%{transform:translateY(50px);opacity:0}}
 @media(max-width:760px){.hero .scroll-cue{display:none}}
-@media(prefers-reduced-motion:reduce){.hero .scroll-cue,.hero .scroll-cue span{animation:none}}
+@media(prefers-reduced-motion:reduce){.hero .scroll-cue span{animation:none}}
 /* subrayado animado en enlaces de texto secundarios */
 .svc-final-cta a:not(.primary),.svc-back{position:relative}
 .svc-final-cta a:not(.primary)::after,.svc-back::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;opacity:.55;transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
