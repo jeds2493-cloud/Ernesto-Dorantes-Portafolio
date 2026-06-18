@@ -262,15 +262,17 @@ export default function Hero() {
             </div>
           </div>
           <div className="hero-inner">
-            <NeonBulb variant={icon} />
             <span className="tag">
               <span className="sq" />
               Portafolio 2026
             </span>
-            <p className="sup">
-              Diseño <b>campañas, marcas y experiencias visuales</b> que
-              convierten ideas en <b>sistemas memorables</b>.
-            </p>
+            <div className="hero-lead">
+              <NeonBulb variant={icon} />
+              <p className="sup">
+                Diseño <b>campañas, marcas y experiencias visuales</b> que
+                convierten ideas en <b>sistemas memorables</b>.
+              </p>
+            </div>
             <h1>
               <span className="ln1">Ernesto</span>
               <span className="ln2 accent">Dorantes</span>

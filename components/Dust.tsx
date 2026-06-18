@@ -41,7 +41,7 @@ export default function Dust() {
       r: Math.random() * 1.6 + 0.4,
       vx: (Math.random() - 0.5) * 0.12,
       vy: -(Math.random() * 0.18 + 0.04),
-      a: Math.random() * 0.5 + 0.2,
+      a: Math.random() * 0.55 + 0.28,
       ph: Math.random() * Math.PI * 2,
       sp: Math.random() * 0.6 + 0.3,
     });
@@ -74,8 +74,11 @@ export default function Dust() {
         }
         // más visible hacia la derecha (la luz cálida)
         const side = 0.18 + (p.x / w) * 0.95;
-        const twinkle = animated ? 0.7 + Math.sin(t * 1.5 * p.sp + p.ph) * 0.3 : 1;
-        const alpha = Math.min(0.7, p.a * side * twinkle);
+        const twinkle = animated ? 0.5 + Math.sin(t * 1.9 * p.sp + p.ph) * 0.65 : 1;
+        const alpha = Math.min(0.95, p.a * side * twinkle);
+        // las motas más brillantes "destellan" con un halo cálido
+        ctx.shadowBlur = alpha > 0.5 ? p.r * 4 : 0;
+        ctx.shadowColor = "rgba(255,176,120,0.95)";
         ctx.beginPath();
         ctx.fillStyle = `rgba(255,236,214,${alpha})`;
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
