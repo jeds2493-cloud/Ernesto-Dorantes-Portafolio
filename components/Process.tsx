@@ -407,6 +407,8 @@ export default function Process() {
                   <img
                     src={ad.type === "video" ? ad.poster : ad.src}
                     alt={ad.alt}
+                    width={1080}
+                    height={1080}
                     loading="lazy"
                     decoding="async"
                   />

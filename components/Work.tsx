@@ -387,6 +387,8 @@ export default function Work() {
                   <img
                     src={c.cover}
                     alt={c.title}
+                    width={1000}
+                    height={1500}
                     draggable={false}
                     loading="lazy"
                     decoding="async"

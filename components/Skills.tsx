@@ -59,6 +59,8 @@ export default function Skills() {
               className="cert-badge"
               src={c.img}
               alt={c.alt}
+              width={120}
+              height={120}
               loading="lazy"
               decoding="async"
             />

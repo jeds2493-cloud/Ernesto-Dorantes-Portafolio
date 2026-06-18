@@ -1,8 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 import NeonBulb, { type NeonVariant } from "@/components/NeonBulb";
 import Dust from "@/components/Dust";
+
+// precarga el poster inicial del hero (elemento LCP) con prioridad alta
+ReactDOM.preload("/assets/hero-arte-poster.webp", {
+  as: "image",
+  fetchPriority: "high",
+});
 
 const CYCLE: NeonVariant[] = ["arte", "story", "campanas"];
 
