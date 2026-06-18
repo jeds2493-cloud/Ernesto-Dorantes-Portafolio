@@ -10,21 +10,21 @@ export const viewport: Viewport = {
 
 const sora = Sora({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sora",
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
+  weight: ["600", "700", "800"],
   style: ["normal", "italic"],
   variable: "--font-fraunces",
   display: "swap",

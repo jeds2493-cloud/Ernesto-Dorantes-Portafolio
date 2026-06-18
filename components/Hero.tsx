@@ -195,7 +195,7 @@ export default function Hero() {
       muted
       loop
       playsInline
-      preload="auto"
+      preload="metadata"
       poster={media.img}
       aria-hidden="true"
       onCanPlay={(e) => {

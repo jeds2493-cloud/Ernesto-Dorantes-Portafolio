@@ -33,7 +33,7 @@ type Case = {
 // genera una galería de N piezas con nombre secuencial
 const gen = (prefix: string, count: number, alt: string): GItem[] =>
   Array.from({ length: count }, (_, i) => ({
-    src: `/assets/casos/${prefix}${i + 1}.jpg`,
+    src: `/assets/casos/${prefix}${i + 1}.webp`,
     alt: `${alt} ${i + 1}`,
   }));
 
@@ -44,38 +44,38 @@ const COORD_CONCEPT =
 const cases: Case[] = [
   {
     accent: "#ff7a42",
-    cover: "/assets/casos/compramos-portada.jpg",
+    cover: "/assets/casos/compramos-portada.webp",
     gallery: [
       {
-        src: "/assets/casos/compramos1.jpg",
+        src: "/assets/casos/compramos1.webp",
         alt: "Stand, roll-up banner y flyers de Compramos Tu Casa",
       },
       {
-        src: "/assets/casos/compramos2.jpg",
+        src: "/assets/casos/compramos2.webp",
         alt: "Flotador inflable con el logo de Compramos Tu Casa en una alberca",
       },
       {
-        src: "/assets/casos/compramos3.jpg",
+        src: "/assets/casos/compramos3.webp",
         alt: "Tapete de bienvenida con el logo de Compramos Tu Casa",
       },
       {
-        src: "/assets/casos/compramos4.jpg",
+        src: "/assets/casos/compramos4.webp",
         alt: "Espectacular: ¿Qué tal unas vacaciones? Véndenos tu casa",
       },
       {
-        src: "/assets/casos/compramos5.jpg",
+        src: "/assets/casos/compramos5.webp",
         alt: "Espectacular: ¿Buscando la casa de tus sueños?",
       },
       {
-        src: "/assets/casos/compramos6.jpg",
+        src: "/assets/casos/compramos6.webp",
         alt: "Familia feliz en la oficina de Compramos Tu Casa",
       },
       {
-        src: "/assets/casos/compramos7.jpg",
+        src: "/assets/casos/compramos7.webp",
         alt: "Anuncio luchador vs coyote: vende a la segura y con confianza",
       },
       {
-        src: "/assets/casos/compramos8.jpg",
+        src: "/assets/casos/compramos8.webp",
         alt: "Anuncio: Vende tu casa rápido sin perder el tiempo",
       },
     ],
@@ -94,19 +94,19 @@ const cases: Case[] = [
   },
   {
     accent: "#8ee84a",
-    cover: "/assets/casos/poison-portada.jpg",
+    cover: "/assets/casos/poison-portada.webp",
     gallery: [
-      { src: "/assets/casos/poison1.jpg", alt: "Lata Poison Energy Drink" },
+      { src: "/assets/casos/poison1.webp", alt: "Lata Poison Energy Drink" },
       {
-        src: "/assets/casos/poison2.jpg",
+        src: "/assets/casos/poison2.webp",
         alt: "Esqueleto sosteniendo la lata de Poison",
       },
       {
-        src: "/assets/casos/poison3.jpg",
+        src: "/assets/casos/poison3.webp",
         alt: "Billboard de Poison — Pure Raw Energy",
       },
       {
-        src: "/assets/casos/poison4.jpg",
+        src: "/assets/casos/poison4.webp",
         alt: "Mupi de Poison en la ciudad de noche",
       },
     ],
@@ -119,26 +119,26 @@ const cases: Case[] = [
   },
   {
     accent: "#3b9ae0",
-    cover: "/assets/casos/dogi-portada.jpg",
+    cover: "/assets/casos/dogi-portada.webp",
     gallery: [
       {
-        src: "/assets/casos/dogi1.jpg",
+        src: "/assets/casos/dogi1.webp",
         alt: "Labrador descansando panza arriba en cama dogi-dogi",
       },
       {
-        src: "/assets/casos/dogi2.jpg",
+        src: "/assets/casos/dogi2.webp",
         alt: "Señalización digital dogi-dogi en plaza — Where pets truly rest",
       },
       {
-        src: "/assets/casos/dogi3.jpg",
+        src: "/assets/casos/dogi3.webp",
         alt: "Playera polo dogi-dogi con la mascota",
       },
       {
-        src: "/assets/casos/dogi4.jpg",
+        src: "/assets/casos/dogi4.webp",
         alt: "Schnauzer relajado en cama dogi-dogi",
       },
       {
-        src: "/assets/casos/dogi-mascota.jpg",
+        src: "/assets/casos/dogi-mascota.webp",
         alt: "Personaje de marca dogi-dogi en varias poses",
       },
       {
@@ -146,17 +146,17 @@ const cases: Case[] = [
         bg: "dark",
         cols: 3,
         collage: [
-          { src: "/assets/casos/dogi-p1.jpg", alt: "Cama dogi-dogi azul plush" },
-          { src: "/assets/casos/dogi-p2.jpg", alt: "Cama dogi-dogi rosa" },
+          { src: "/assets/casos/dogi-p1.webp", alt: "Cama dogi-dogi azul plush" },
+          { src: "/assets/casos/dogi-p2.webp", alt: "Cama dogi-dogi rosa" },
           {
-            src: "/assets/casos/dogi-p3.jpg",
+            src: "/assets/casos/dogi-p3.webp",
             alt: "Cama dogi-dogi rojo con azul marino",
           },
           {
-            src: "/assets/casos/dogi-p4.jpg",
+            src: "/assets/casos/dogi-p4.webp",
             alt: "Cama dogi-dogi azul con borrega gris",
           },
-          { src: "/assets/casos/dogi-p5.jpg", alt: "Cojín dogi-dogi gris" },
+          { src: "/assets/casos/dogi-p5.webp", alt: "Cojín dogi-dogi gris" },
         ],
       },
     ],
@@ -168,19 +168,19 @@ const cases: Case[] = [
   },
   {
     accent: "#f4cf52",
-    cover: "/assets/casos/pocho-portada.jpg",
+    cover: "/assets/casos/pocho-portada.webp",
     gallery: [
-      { src: "/assets/casos/pocho6.jpg", alt: "Niños modelando pijamas Pochokino" },
+      { src: "/assets/casos/pocho6.webp", alt: "Niños modelando pijamas Pochokino" },
       {
-        src: "/assets/casos/pocho3.jpg",
+        src: "/assets/casos/pocho3.webp",
         alt: "Pijama Pochokino que brilla en la oscuridad",
       },
-      { src: "/assets/casos/pocho4.jpg", alt: "Pijama infantil Pochokino" },
-      { src: "/assets/casos/pocho5.jpg", alt: "Pijama infantil Pochokino" },
-      { src: "/assets/casos/pocho7.jpg", alt: "Pieza de campaña Pochokino" },
-      { src: "/assets/casos/pocho8.jpg", alt: "Pieza de campaña Pochokino" },
-      { src: "/assets/casos/pocho1.jpg", alt: "Pieza de campaña Pochokino" },
-      { src: "/assets/casos/pocho2.jpg", alt: "Pieza de campaña Pochokino" },
+      { src: "/assets/casos/pocho4.webp", alt: "Pijama infantil Pochokino" },
+      { src: "/assets/casos/pocho5.webp", alt: "Pijama infantil Pochokino" },
+      { src: "/assets/casos/pocho7.webp", alt: "Pieza de campaña Pochokino" },
+      { src: "/assets/casos/pocho8.webp", alt: "Pieza de campaña Pochokino" },
+      { src: "/assets/casos/pocho1.webp", alt: "Pieza de campaña Pochokino" },
+      { src: "/assets/casos/pocho2.webp", alt: "Pieza de campaña Pochokino" },
     ],
     caseNo: "Caso 04",
     title: "Pochokino",
@@ -190,7 +190,7 @@ const cases: Case[] = [
   },
   {
     accent: "#e8443a",
-    cover: "/assets/casos/ag-portada.jpg",
+    cover: "/assets/casos/ag-portada.webp",
     gallery: gen("ag", 11, "Campaña Action Gear — pieza"),
     caseNo: "Caso 05",
     title: "Action Gear",
@@ -199,7 +199,7 @@ const cases: Case[] = [
   },
   {
     accent: "#62c9c0",
-    cover: "/assets/casos/bopt-portada.jpg",
+    cover: "/assets/casos/bopt-portada.webp",
     gallery: gen("bopt", 13, "Campaña Baby Optima — pieza"),
     caseNo: "Caso 06",
     title: "Baby Optima",
@@ -208,7 +208,7 @@ const cases: Case[] = [
   },
   {
     accent: "#e3242b",
-    cover: "/assets/casos/baby-portada.jpg",
+    cover: "/assets/casos/baby-portada.webp",
     gallery: gen("baby", 8, "Campaña Baby Creysi — pieza"),
     caseNo: "Caso 07",
     title: "Baby Creysi",
@@ -217,7 +217,7 @@ const cases: Case[] = [
   },
   {
     accent: "#e6dcc4",
-    cover: "/assets/casos/skiny-portada.jpg",
+    cover: "/assets/casos/skiny-portada.webp",
     gallery: gen("skiny", 7, "Campaña Skiny — pieza"),
     caseNo: "Caso 08",
     title: "Skiny",
@@ -226,7 +226,7 @@ const cases: Case[] = [
   },
   {
     accent: "#f3a08a",
-    cover: "/assets/casos/tb-portada.jpg",
+    cover: "/assets/casos/tb-portada.webp",
     gallery: gen("tb", 23, "Campaña Tops & Bottoms — pieza"),
     caseNo: "Caso 09",
     title: "Tops & Bottoms",
