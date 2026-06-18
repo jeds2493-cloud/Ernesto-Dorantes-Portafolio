@@ -13,17 +13,19 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <Hero />
-      <Brands />
-      <About />
-      {/* Casos + Pipeline + Carrera comparten un fondo continuo con una sola lava */}
-      <div className="work-exp">
-        <LavaBg />
-        <Work />
-        <Process />
-        <Experience />
-      </div>
-      <Contact />
+      <main>
+        <Hero />
+        <Brands />
+        <About />
+        {/* Casos + Pipeline + Carrera comparten un fondo continuo con una sola lava */}
+        <div className="work-exp">
+          <LavaBg />
+          <Work />
+          <Process />
+          <Experience />
+        </div>
+        <Contact />
+      </main>
       <ScrollReveal />
     </>
   );

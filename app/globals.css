@@ -1,6 +1,6 @@
 :root{
   --bg:#0a0a0c;--bg-soft:#121216;--bg-card:#16161b;--fg:#f5f4f2;
-  --muted:#9a9a9f;--muted-dim:#65656b;--orange:#ff5c1a;--orange-soft:#ff7a42;--orange-deep:#d8430e;
+  --muted:#9a9a9f;--muted-dim:#8b8b91;--orange:#ff5c1a;--orange-soft:#ff7a42;--orange-deep:#d8430e;
   --ink:#0a0a0c;
   --line:rgba(255,255,255,.08);--line-soft:rgba(255,255,255,.05);
   --display:var(--font-sora),system-ui,sans-serif;--sans:var(--font-inter),system-ui,sans-serif;
@@ -400,9 +400,9 @@ nav .nav-toggle.open span:nth-child(3){top:11px;transform:rotate(-45deg)}
 .work .flow-card.is-active .flow-card-info{opacity:1;pointer-events:auto}
 .work .flow-card-info h3{font-family:var(--serif);font-weight:700;font-size:clamp(22px,2.6vw,30px);line-height:1.02;letter-spacing:-.02em;color:#fff;margin:0}
 .work .flow-card-info h3 .sub{display:block;font-family:var(--sans);font-weight:400;font-size:clamp(11px,1.2vw,13px);color:var(--accent);margin-top:7px;line-height:1.32}
-.work .flow-card-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.work .flow-card-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
 .work .flow-card-actions .flow-gallery-btn,
-.work .flow-card-actions .play-btn{height:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.01em;line-height:1;padding:7px 13px;border-radius:30px;cursor:pointer;color:#fff;white-space:nowrap;background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(12px) saturate(1.6);backdrop-filter:blur(12px) saturate(1.6);border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 4px 12px rgba(0,0,0,.32);transition:transform .3s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s,box-shadow .3s}
+.work .flow-card-actions .play-btn{min-height:34px;display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.01em;line-height:1;padding:9px 15px;border-radius:30px;cursor:pointer;color:#fff;white-space:nowrap;background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(12px) saturate(1.6);backdrop-filter:blur(12px) saturate(1.6);border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 4px 12px rgba(0,0,0,.32);transition:transform .3s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s,box-shadow .3s}
 .work .flow-card-actions .flow-gallery-btn{background:linear-gradient(160deg,rgba(255,140,76,.44),rgba(255,92,26,.28));border-color:rgba(255,152,94,.5)}
 .work .flow-card-actions .play-btn .play-ic{width:10px;height:10px}
 .work .flow-card-actions .play-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.15);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 20px rgba(0,0,0,.4)}

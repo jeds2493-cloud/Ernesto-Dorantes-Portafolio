@@ -7,10 +7,10 @@ export default function About() {
       <div className="wrap">
         <TubeMan />
         <div className="eyebrow reveal">Sobre mí</div>
-        <p className="lead reveal">
+        <h2 className="lead reveal">
           Creo <span className="o">narrativas visuales</span> que hacen a las
           marcas ser <em>inolvidables</em>.
-        </p>
+        </h2>
         <Skills />
       </div>
     </section>
