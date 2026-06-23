@@ -148,7 +148,7 @@ export default function ContactForm() {
         aria-hidden="true"
       />
       <button type="submit" className="cf-submit" disabled={status === "sending"}>
-        {status === "sending" ? "Enviando…" : "Enviar mensaje"}
+        {status === "sending" ? "Enviando…" : "Solicitar diagnóstico creativo"}
       </button>
       {status === "error" && (
         <p className="cf-error">No se pudo enviar. Escríbeme a {MAIL}.</p>

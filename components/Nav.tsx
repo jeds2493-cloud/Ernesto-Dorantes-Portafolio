@@ -6,9 +6,10 @@ import LavaBg from "@/components/LavaBg";
 const MAIL = "hello@ernestodorantes.com";
 
 const LINKS: [string, string][] = [
+  ["/servicios", "Servicios"],
   ["#sobre", "Sobre mí"],
   ["#trabajo", "Casos"],
-  ["#experiencia", "Carrera"],
+  ["#resultados", "Resultados"],
   ["#contacto", "Contacto"],
 ];
 

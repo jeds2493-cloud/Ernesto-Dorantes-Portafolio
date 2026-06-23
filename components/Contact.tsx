@@ -39,8 +39,9 @@ export default function Contact() {
           Trabajemos <span className="o"><em>juntos</em></span>
         </h2>
         <p className="contact-sub reveal">
-          Cuéntame lo esencial de tu proyecto y te respondo con los siguientes
-          pasos. Solo lo básico — sin formularios eternos.
+          Cuéntame lo esencial de tu proyecto y te respondo <b>en menos de 24 h</b>{" "}
+          con un diagnóstico y los siguientes pasos. Solo lo básico — sin
+          formularios eternos.
         </p>
 
         <ContactForm />

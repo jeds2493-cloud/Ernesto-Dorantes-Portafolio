@@ -28,6 +28,7 @@ type Case = {
   title: string;
   sub: string;
   concept: string;
+  story?: { label: string; text: string }[];
 };
 
 // genera una galería de N piezas con nombre secuencial
@@ -91,6 +92,24 @@ const cases: Case[] = [
     sub: "PropTech · Lead Content, Graphics & Product Designer",
     concept:
       "Lideré branding, UI/UX y campañas potenciadas con IA: implementé flujos que recortaron los tiempos de producción de creatividades y desarrollé anuncios optimizados para A/B testing, con conceptos como “Más rápido que comprar una pizza”.",
+    story: [
+      {
+        label: "Reto",
+        text: "Generar leads calificados en un mercado inmobiliario de alta desconfianza, donde había que explicar compra directa, seguridad y rapidez.",
+      },
+      {
+        label: "Insight",
+        text: "Las creatividades centradas en personas y beneficios reales conectaban mucho mejor que las piezas genéricas de oferta.",
+      },
+      {
+        label: "Solución",
+        text: "Un sistema de mensajes, visuales y formatos multicanal para Meta, Google y TikTok, con iteración creativa apoyada por IA.",
+      },
+      {
+        label: "Resultado",
+        text: "700+ leads, CPL promedio de $84.50 MXN y un mejor segmento con 39.37% de conversión (≈5× el promedio).",
+      },
+    ],
   },
   {
     accent: "#8ee84a",
@@ -429,37 +448,40 @@ export default function Work() {
           </div>
         </div>
 
-        <button
-          type="button"
-          className="flow-arrow prev"
-          onClick={() => go(-1)}
-          aria-label="Caso anterior"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M15 5l-7 7 7 7" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          className="flow-arrow next"
-          onClick={() => go(1)}
-          aria-label="Siguiente caso"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+        <div className="flow-controls">
+          <button
+            type="button"
+            className="flow-arrow prev"
+            onClick={() => go(-1)}
+            aria-label="Caso anterior"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M15 5l-7 7 7 7" />
+            </svg>
+          </button>
 
-        <div className="flow-dots">
-          {cases.map((c, idx) => (
-            <button
-              key={c.caseNo}
-              type="button"
-              className={idx === active ? "on" : ""}
-              onClick={() => setActive(idx)}
-              aria-label={`Ir a ${c.title}`}
-            />
-          ))}
+          <div className="flow-dots">
+            {cases.map((c, idx) => (
+              <button
+                key={c.caseNo}
+                type="button"
+                className={idx === active ? "on" : ""}
+                onClick={() => setActive(idx)}
+                aria-label={`Ir a ${c.title}`}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="flow-arrow next"
+            onClick={() => go(1)}
+            aria-label="Siguiente caso"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -527,7 +549,18 @@ export default function Work() {
                 {zoom + 1} / {total}
               </span>
             </div>
-            <p className="im-cap-text">{current.concept}</p>
+            {current.story ? (
+              <div className="im-cap-story">
+                {current.story.map((s) => (
+                  <p key={s.label} className="im-cap-part">
+                    <span className="im-cap-label">{s.label}</span>
+                    {s.text}
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <p className="im-cap-text">{current.concept}</p>
+            )}
           </div>
         </div>,
           document.body

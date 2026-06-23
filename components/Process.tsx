@@ -356,7 +356,7 @@ export default function Process() {
         </p>
 
         {/* Respaldo con datos reales de un ecosistema de campañas */}
-        <div className="proof reveal">
+        <div className="proof reveal" id="resultados" style={{ scrollMarginTop: "80px" }}>
           <div className="proof-head">El proceso, en resultados de negocio</div>
           <div className="proof-grid">
             {proof.map((p) => (
