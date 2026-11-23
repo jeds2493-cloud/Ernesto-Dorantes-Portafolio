@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Inter, Fraunces } from "next/font/google";
+import { Sora, Inter, Fraunces, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import ContactModal from "@/components/ContactModal";
 import "./globals.css";
@@ -30,16 +30,30 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["300", "600", "700"],
+  variable: "--font-inter-tight",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://ernestodorantes.com";
 
 const description =
-  "Portafolio de Ernesto Dorantes, Director Creativo con más de 7 años de experiencia en campañas 360°, dirección de arte, UI/UX e IA aplicada al diseño.";
+  "Diseño web y contenido para redes para negocios que venden por citas y mensajes: consultorios, inmobiliarias, despachos y marcas locales. Atiendo todo México.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Ernesto Dorantes — Director Creativo",
+    default: "Ernesto Dorantes — Diseño web y contenido",
     template: "%s · Ernesto Dorantes",
   },
   description,
@@ -63,12 +77,12 @@ export const metadata: Metadata = {
     locale: "es_MX",
     url: siteUrl,
     siteName: "Ernesto Dorantes",
-    title: "Ernesto Dorantes — Director Creativo",
+    title: "Ernesto Dorantes — Diseño web y contenido",
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ernesto Dorantes — Director Creativo",
+    title: "Ernesto Dorantes — Diseño web y contenido",
     description,
   },
   robots: {
@@ -84,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${sora.variable} ${inter.variable} ${fraunces.variable}`}>
+    <html lang="es" className={`${sora.variable} ${inter.variable} ${fraunces.variable} ${interTight.variable} ${mono.variable}`}>
       <body>
         <a href="#top" className="skip-link">
           Saltar al contenido

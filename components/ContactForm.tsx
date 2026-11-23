@@ -11,16 +11,15 @@ const FORM_ENDPOINT =
 const MAIL = "hello@ernestodorantes.com";
 
 const projectTypes = [
-  "Branding e identidad",
-  "Campaña y dirección de arte",
-  "Producto y experiencias digitales",
-  "Creative partner (continuo)",
-  "Otro",
+  "Landing page",
+  "Sitio web completo",
+  "Contenido mensual para redes",
+  "Todavía no sé",
 ];
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-export default function ContactForm() {
+export default function ContactForm({ defaultTipo }: { defaultTipo?: string }) {
   const [status, setStatus] = useState<Status>("idle");
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -31,12 +30,20 @@ export default function ContactForm() {
 
     setStatus("sending");
     const payload = new URLSearchParams();
-    data.forEach((v, k) => payload.append(k, String(v)));
+    data.forEach((v, k) => {
+      // El WhatsApp va también dentro del mensaje, por si la hoja no tiene esa columna.
+      if (k === "mensaje") {
+        payload.append(k, `WhatsApp: ${data.get("whatsapp") ?? ""}\n${String(v)}`);
+      } else {
+        payload.append(k, String(v));
+      }
+    });
     payload.append("origen", "ernestodorantes.com");
     payload.append("fecha", new Date().toLocaleString("es-MX"));
 
     try {
       if (!FORM_ENDPOINT) throw new Error("sin-endpoint");
+      // no-cors: el navegador no deja leer la respuesta; solo detectamos fallas de red.
       await fetch(FORM_ENDPOINT, {
         method: "POST",
         mode: "no-cors",
@@ -46,35 +53,25 @@ export default function ContactForm() {
       setStatus("sent");
       form.reset();
     } catch {
-      // respaldo: si aún no hay hoja conectada, abre el correo con los datos
-      const subject = `Nuevo proyecto — ${data.get("nombre") ?? ""}`;
-      const body =
-        `Nombre: ${data.get("nombre") ?? ""}\n` +
-        `Email: ${data.get("email") ?? ""}\n` +
-        `Empresa: ${data.get("empresa") ?? ""}\n` +
-        `Tipo de proyecto: ${data.get("tipo") ?? ""}\n\n` +
-        `${data.get("mensaje") ?? ""}`;
-      window.location.href = `mailto:${MAIL}?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-      setStatus("idle");
+      // Sin red o sin endpoint: no fingimos que se envió y no borramos lo escrito.
+      setStatus("error");
     }
   };
 
   if (status === "sent") {
     return (
-      <div className="contact-ok">
-        <span className="contact-ok-ic">✓</span>
-        <h3>¡Gracias! Mensaje recibido.</h3>
+      <div className="contact-ok" role="status">
+        <span className="contact-ok-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12.5l4.5 4.5L19 7.5" />
+          </svg>
+        </span>
+        <h3>¡Gracias! Ya lo envié.</h3>
         <p>
-          Te contactaré muy pronto. Si es urgente, escríbeme directo a{" "}
-          <a href={`mailto:${MAIL}`}>{MAIL}</a>.
+          Te escribo por WhatsApp en menos de 24 h. Si para entonces no te llegó
+          nada, escríbeme a <a href={`mailto:${MAIL}`}>{MAIL}</a>.
         </p>
-        <button
-          type="button"
-          className="contact-reset"
-          onClick={() => setStatus("idle")}
-        >
+        <button type="button" className="contact-reset" onClick={() => setStatus("idle")}>
           Enviar otro mensaje
         </button>
       </div>
@@ -86,38 +83,30 @@ export default function ContactForm() {
       <div className="cf-row">
         <label className="cf-field">
           <span>Nombre *</span>
-          <input
-            name="nombre"
-            type="text"
-            required
-            autoComplete="name"
-            placeholder="Tu nombre"
-          />
+          <input name="nombre" type="text" required autoComplete="name" placeholder="Tu nombre" />
         </label>
         <label className="cf-field">
-          <span>Email *</span>
+          <span>WhatsApp *</span>
           <input
-            name="email"
-            type="email"
+            name="whatsapp"
+            type="tel"
             required
-            autoComplete="email"
-            placeholder="tu@correo.com"
+            inputMode="tel"
+            autoComplete="tel"
+            pattern="[0-9 +()\-]{10,}"
+            title="Escribe tu número a 10 dígitos"
+            placeholder="722 123 4567"
           />
         </label>
       </div>
       <div className="cf-row">
         <label className="cf-field">
-          <span>Empresa o marca</span>
-          <input
-            name="empresa"
-            type="text"
-            autoComplete="organization"
-            placeholder="Opcional"
-          />
+          <span>Correo</span>
+          <input name="email" type="email" autoComplete="email" placeholder="Opcional" />
         </label>
         <label className="cf-field">
-          <span>Tipo de proyecto</span>
-          <select name="tipo" defaultValue="">
+          <span>¿Qué necesitas?</span>
+          <select name="tipo" defaultValue={defaultTipo ?? ""}>
             <option value="" disabled>
               Selecciona…
             </option>
@@ -130,28 +119,25 @@ export default function ContactForm() {
         </label>
       </div>
       <label className="cf-field">
-        <span>Cuéntame sobre tu proyecto *</span>
+        <span>¿A qué se dedica tu negocio? *</span>
         <textarea
           name="mensaje"
           required
-          rows={4}
-          placeholder="Objetivo, alcance, fechas aproximadas… lo que tengas en mente."
+          rows={3}
+          placeholder="Ej.: consultorio dental en Metepec, quiero más citas por WhatsApp."
         />
       </label>
       {/* honeypot — invisible para humanos */}
-      <input
-        type="text"
-        name="website"
-        tabIndex={-1}
-        autoComplete="off"
-        className="cf-hp"
-        aria-hidden="true"
-      />
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="cf-hp" aria-hidden="true" />
       <button type="submit" className="cf-submit" disabled={status === "sending"}>
-        {status === "sending" ? "Enviando…" : "Solicitar diagnóstico creativo"}
+        {status === "sending" ? "Enviando…" : "Pedir mi diagnóstico gratis"}
       </button>
       {status === "error" && (
-        <p className="cf-error">No se pudo enviar. Escríbeme a {MAIL}.</p>
+        <p className="cf-error" role="alert">
+          No se pudo enviar. Revisa tu conexión e inténtalo de nuevo; lo que
+          escribiste sigue aquí. También puedes escribirme a{" "}
+          <a href={`mailto:${MAIL}`}>{MAIL}</a>.
+        </p>
       )}
     </form>
   );

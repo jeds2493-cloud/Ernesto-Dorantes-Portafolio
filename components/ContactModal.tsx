@@ -4,12 +4,17 @@ import { useEffect, useState } from "react";
 import ContactForm from "./ContactForm";
 
 // Modal global del formulario de contacto.
-// Se abre disparando el evento `window.dispatchEvent(new Event("open-contact"))`.
+// Se abre con `window.dispatchEvent(new CustomEvent("open-contact", { detail: { tipo } }))`;
+// `tipo` (opcional) preselecciona el servicio.
 export default function ContactModal() {
   const [open, setOpen] = useState(false);
+  const [tipo, setTipo] = useState<string | undefined>();
 
   useEffect(() => {
-    const onOpen = () => setOpen(true);
+    const onOpen = (e: Event) => {
+      setTipo((e as CustomEvent<{ tipo?: string } | null>).detail?.tipo);
+      setOpen(true);
+    };
     window.addEventListener("open-contact", onOpen);
     return () => window.removeEventListener("open-contact", onOpen);
   }, []);
@@ -35,7 +40,7 @@ export default function ContactModal() {
       className="contact-modal"
       role="dialog"
       aria-modal="true"
-      aria-label="Agenda una sesión"
+      aria-label="Pide tu diagnóstico gratis"
       onClick={() => setOpen(false)}
     >
       <div className="contact-modal-box" onClick={(e) => e.stopPropagation()}>
@@ -50,13 +55,13 @@ export default function ContactModal() {
           </svg>
         </button>
         <h3 className="contact-modal-title">
-          Agenda una <span className="o">sesión</span>
+          Pide tu <span className="o">diagnóstico</span>
         </h3>
         <p className="contact-modal-sub">
-          Cuéntame lo esencial de tu proyecto y te respondo con los siguientes
-          pasos. Solo lo básico.
+          Déjame tu WhatsApp y en menos de 24 h te propongo una llamada de 20
+          minutos. Sin costo y sin compromiso.
         </p>
-        <ContactForm />
+        <ContactForm key={tipo ?? "general"} defaultTipo={tipo} />
       </div>
     </div>
   );
