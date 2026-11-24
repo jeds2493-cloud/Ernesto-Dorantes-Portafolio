@@ -40,8 +40,9 @@ function doPost(e) {
     // (opcional) avísame por correo en cada envío (el origen dice qué botón lo abrió):
     // MailApp.sendEmail("hello@ernestodorantes.com",
     //   "Nuevo contacto — " + (p.nombre || ""),
-    //   "Nombre: " + p.nombre + "\nEmail: " + p.email +
-    //   "\nEmpresa: " + p.empresa + "\nTipo: " + p.tipo +
+    //   "Nombre: " + p.nombre + "\nWhatsApp: " + p.whatsapp +
+    //   "\nCorreo: " + (p.email || "") + "\nTipo: " + (p.tipo || "") +
+    //   "\nCombinación: " + (p.combinacion || "") + "\nOrigen: " + (p.origen || "") +
     //   "\n\n" + p.mensaje);
 
     return ContentService

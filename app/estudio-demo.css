@@ -112,7 +112,38 @@
 .sf:not(.is-live) .sf-fit,
 .sf:not(.is-live) .sf-fit *,
 .sf:not(.is-live) .sf-fit *::before,
-.sf:not(.is-live) .sf-fit *::after { animation-play-state: paused; }
+.sf:not(.is-live) .sf-fit *::after,
+.sf.is-paused .sf-fit,
+.sf.is-paused .sf-fit *,
+.sf.is-paused .sf-fit *::before,
+.sf.is-paused .sf-fit *::after { animation-play-state: paused !important; }
+/* botón de pausa (WCAG 2.2.2): junto al indicador, fuera del teléfono */
+.sf { position: relative; }
+.sf-pause {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: calc(50% - (300px + var(--sf-l) + var(--sf-r)) * var(--sf-s) / 2 + (var(--sf-l) + 300px) * var(--sf-s) + 10px);
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--line2);
+  border-radius: 999px;
+  background: rgba(11, 12, 14, 0.72);
+  color: var(--ink);
+  font: 500 11px/1 var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+@media (max-width: 640px) {
+  /* en celular no cabe junto al indicador: va en una fila propia arriba */
+  .sf-pause { position: static; order: -1; margin-bottom: -4px; }
+}
+.sf-pause:hover { border-color: var(--ink); }
+.sf-pause:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .sf-rig::before,
 .sf-rig::after {
   content: "";

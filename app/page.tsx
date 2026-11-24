@@ -17,6 +17,7 @@ import { AGENDA_URL, CASO, CUPOS, MAIL, PRECIOS, waLink } from "@/lib/estudio";
 import "./estudio.css";
 import "./estudio-demo.css";
 import "./estudio-fx.css";
+import "./estudio-pruebas.css";
 
 const DESC =
   "Páginas web, tiendas en línea y contenido para redes con estrategia y datos, para que más gente te escriba, agende o compre. Trato directo, en todo México.";
@@ -89,9 +90,9 @@ type Pack = {
 
 const packages: Pack[] = [
   {
-    name: "Landing que convierte",
+    name: "Landing page",
     tipo: "Landing page",
-    cta: "Cotizar landing",
+    cta: "Cotiza tu landing",
     price: mxn(PRECIOS.landing),
     unit: "MXN",
     pitch: "Una página enfocada en una sola acción: que te escriban o agenden.",
@@ -106,11 +107,11 @@ const packages: Pack[] = [
   {
     name: "Sitio web completo",
     tipo: "Sitio web completo",
-    cta: "Cotizar sitio",
+    cta: "Cotiza tu sitio",
     price: mxn(PRECIOS.sitio),
     unit: "MXN",
     pitch: "Tu negocio completo en línea, listo para que te encuentren en Google.",
-    badge: "El más completo",
+    badge: "El que más recomiendo",
     items: [
       "Todo lo de la landing",
       "5 a 7 secciones",
@@ -123,7 +124,7 @@ const packages: Pack[] = [
   {
     name: "Tienda en línea",
     tipo: "Tienda en línea",
-    cta: "Cotizar tienda",
+    cta: "Cotiza tu tienda",
     unit: "según tu catálogo",
     pitch: "Vende en línea con la plataforma que sí le queda a tu negocio.",
     items: [
@@ -137,7 +138,7 @@ const packages: Pack[] = [
   {
     name: "Contenido mensual para redes",
     tipo: "Contenido mensual para redes",
-    cta: "Cotizar contenido",
+    cta: "Cotiza tu contenido",
     price: mxn(PRECIOS.contenido),
     unit: "MXN / mes",
     pitch: "Redes constantes, con estrategia y un diseño que se reconoce.",
@@ -152,6 +153,13 @@ const packages: Pack[] = [
 ];
 
 // Solo testimonios reales, con permiso del cliente. Vacío = la sección no se muestra.
+const CERTS: { id: string; name: string; img: string; url: string; visible: boolean }[] = [
+  { id: "ads", name: "Google Ads · Creatividades", img: "/assets/certs/google-ads-creative.png", url: "https://www.credential.net/fd1adad0-eea7-47b8-a03b-53f94bd7bb4e", visible: true },
+  { id: "ga", name: "Google Analytics", img: "/assets/certs/google-analytics.png", url: "https://www.credential.net/81d55265-b3a7-474e-bba1-b486e90dab45", visible: true },
+  { id: "hs", name: "HubSpot · Content Marketing", img: "/assets/certs/hubspot-content-marketing.png", url: "https://app.hubspot.com/academy/achievements/pwyy5x46/en/1/ernesto-soto/content-marketing-certified", visible: true },
+];
+const CLIENTES = ["What Now? Creative Studio", "Avante Textil", "Baby Creysi", "dogi-dogi", "Skiny", "Tops & Bottoms", "Action Gear", "Pochokino"];
+
 const testimonials: { quote: string; name: string; role: string }[] = [];
 
 const faqs = [
@@ -347,7 +355,7 @@ export default function Home() {
                   <span>
                     <span className="es-show-sm"><span lang="en">Creative Partner</span> · </span>
                     <span className="es-hide-sm">Ernesto Dorantes · </span>
-                    8+ años<span className="es-hide-sm"> · respuesta en menos de 24&nbsp;h</span>
+                    8+ años<span className="es-hide-sm"> · 710 contactos en un caso real</span>
                   </span>
                   <LiveStatus label={AVAILABILITY} />
                 </p>
@@ -553,7 +561,7 @@ export default function Home() {
               </h2>
               <p className="es-about-lead">
                 Soy Ernesto Dorantes. Diseño, escribo y mido cada proyecto yo
-                mismo, para negocios de todo México. Sin juniors, sin
+                mismo, para negocios de todo México. Sin practicantes, sin
                 intermediarios y sin que tu proyecto pase de mano en mano.
               </p>
               <dl className="es-about-facts">
@@ -566,10 +574,26 @@ export default function Home() {
                   <dd>de la primera llamada a la entrega</dd>
                 </div>
                 <div>
-                  <dt>24 h</dt>
-                  <dd>como máximo para responderte</dd>
+                  <dt>4 oficios</dt>
+                  <dd>arte, creativo, SEO y datos</dd>
                 </div>
               </dl>
+              <div className="es-proof">
+                <ul className="es-proof-certs">
+                  {CERTS.filter((c) => c.visible).map((c) => (
+                    <li key={c.id}>
+                      <Image src={c.img} alt="" width={28} height={28} loading="lazy" />
+                      <span>{c.name}</span>
+                      <a href={c.url} target="_blank" rel="noopener" aria-label={`Verificar certificación ${c.name} (se abre en otra pestaña)`}>
+                        Verificar ↗
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <p className="es-proof-clients">
+                  <b>He trabajado con:</b> {CLIENTES.join(" · ")}
+                </p>
+              </div>
               <div className="es-ctas">
                 <AgendaCta className="es-btn es-btn--signal es-btn--lg" />
                 <a

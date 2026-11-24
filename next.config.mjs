@@ -4,6 +4,15 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // La página vieja de servicios y el CV en PDF se retiraron (24-nov-2026):
+  // los enlaces guardados llegan a los paquetes o al inicio.
+  async redirects() {
+    return [
+      { source: "/servicios", destination: "/#servicios", permanent: true },
+      { source: "/servicios/:path*", destination: "/#servicios", permanent: true },
+      { source: "/Curriculum_Ernesto_Dorantes.pdf", destination: "/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

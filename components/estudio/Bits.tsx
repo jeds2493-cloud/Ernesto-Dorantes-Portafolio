@@ -50,6 +50,20 @@ export function StickyCta({ label, wa }: { label: string; wa: string }) {
     window.addEventListener("builder-picks", onPicks);
     return () => window.removeEventListener("builder-picks", onPicks);
   }, []);
+  // el botón del header va de contorno mientras el CTA del hero se ve
+  useEffect(() => {
+    const root = document.documentElement;
+    const cta = document.querySelector(".es-hero .es-ctas");
+    if (!cta) return;
+    const io = new IntersectionObserver(([e]) => {
+      root.classList.toggle("es-hero-cta-in", e.isIntersecting);
+    });
+    io.observe(cta);
+    return () => {
+      io.disconnect();
+      root.classList.remove("es-hero-cta-in");
+    };
+  }, []);
   useEffect(() => {
     const hero = document.querySelector(".es-hero .es-ctas");
     const end = document.querySelector(".es-final");

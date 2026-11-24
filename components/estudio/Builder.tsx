@@ -80,8 +80,8 @@ export default function Builder() {
       <div className="es-builder-head">
         <h3>¿No encaja ninguno? Ármalo a tu medida.</h3>
         <p>
-          Marca lo que necesitas. Me llega tu lista y en menos de 24 h te
-          escribo con una cotización cerrada.
+          Marca lo que necesitas. Me llega tu lista y te escribo con una
+          cotización cerrada.
         </p>
         <button
           type="button"

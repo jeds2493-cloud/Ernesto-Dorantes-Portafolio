@@ -133,8 +133,8 @@ export default function ContactModal() {
         {!sent && (
           <p className="contact-modal-sub">
             {wa
-              ? "Déjame tu número y en menos de 24 h te escribo. Si tienes una duda, ponla abajo y te la contesto ahí."
-              : "Déjame tu WhatsApp y en menos de 24 h te propongo una llamada de 20 minutos. Sin costo y sin compromiso."}
+              ? "Déjame tu número y te escribo. Si tienes una duda, ponla abajo y te la contesto ahí."
+              : "Déjame tu WhatsApp y te propongo una llamada de 20 minutos. Sin costo y sin compromiso."}
           </p>
         )}
         <ContactForm

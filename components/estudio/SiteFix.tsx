@@ -87,6 +87,7 @@ export default function SiteFix() {
   const [step, setStep] = useState(0);
   const [live, setLive] = useState(false); // en pantalla y con la pestaña visible
   const [still, setStill] = useState(false); // «reducir movimiento»
+  const [paused, setPaused] = useState(false); // pausa manual (WCAG 2.2.2)
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -97,18 +98,30 @@ export default function SiteFix() {
     const ioHero = new IntersectionObserver(([e]) => hero?.classList.toggle("is-off", !e.isIntersecting));
     if (hero) ioHero.observe(hero);
 
+    const mobile = window.matchMedia("(max-width: 640px)");
+    let ratio = 0;
     let seen = false;
     let shown = !document.hidden;
     const sync = () => setLive(seen && shown);
     // Corre solo con más de la mitad del teléfono a la vista: en celular, donde
     // al cargar apenas asoma, arranca cuando la persona baja hasta él (así ve
     // el ciclo desde el principio y la carga inicial no compite con la animación).
+    // En celular exige 80 % de la tarjeta a la vista y que la persona ya haya
+    // bajado (scroll > 0); en escritorio basta con 55 %.
+    const evalSeen = () => {
+      seen = mobile.matches ? ratio >= 0.8 && window.scrollY > 8 : ratio >= 0.55;
+      sync();
+    };
+    const onScroll = () => {
+      if (mobile.matches && !seen) evalSeen();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     const io = new IntersectionObserver(
       ([e]) => {
-        seen = e.intersectionRatio >= 0.55;
-        sync();
+        ratio = e.intersectionRatio;
+        evalSeen();
       },
-      { threshold: [0, 0.55] },
+      { threshold: [0, 0.55, 0.8] },
     );
     if (ref.current) io.observe(ref.current);
     const onVis = () => {
@@ -118,6 +131,7 @@ export default function SiteFix() {
     document.addEventListener("visibilitychange", onVis);
 
     return () => {
+      window.removeEventListener("scroll", onScroll);
       mq.removeEventListener("change", onMq);
       io.disconnect();
       ioHero.disconnect();
@@ -127,10 +141,10 @@ export default function SiteFix() {
   }, []);
 
   useEffect(() => {
-    if (!live || still) return;
+    if (!live || still || paused) return;
     const t = window.setTimeout(() => setStep((s) => (s + 1) % STEPS.length), STEPS[step]);
     return () => window.clearTimeout(t);
-  }, [step, live, still]);
+  }, [step, live, still, paused]);
 
   // Con «reducir movimiento» se muestra el resultado final, quieto.
   const at = still ? LAST : step;
@@ -140,6 +154,7 @@ export default function SiteFix() {
   if (still) cls.push("is-still");
   // Fuera de pantalla (o con la pestaña oculta) todas las animaciones se pausan.
   if (live) cls.push("is-live");
+  if (paused && !still) cls.push("is-paused");
   const phase = at === 0 || at > LAST ? 0 : at < 5 ? 1 : 2; // antes · en arreglo · después
 
   return (
@@ -150,6 +165,17 @@ export default function SiteFix() {
         (dirección de arte, creativo, SEO y datos) y al terminar empieza a
         recibir mensajes de WhatsApp, citas y solicitudes de cotización.
       </p>
+
+      {!still && (
+        <button
+          type="button"
+          className="sf-pause"
+          aria-pressed={paused}
+          onClick={() => setPaused((v) => !v)}
+        >
+          {paused ? "Reanudar animación" : "Pausar animación"}
+        </button>
+      )}
 
       <div className="sf-fit" aria-hidden="true">
         <div className="sf-stage">
