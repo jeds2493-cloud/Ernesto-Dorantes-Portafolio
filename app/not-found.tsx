@@ -1,28 +1,28 @@
 import Link from "next/link";
-import LavaBg from "@/components/LavaBg";
+import "./estudio.css";
+import "./not-found.css";
 
 export default function NotFound() {
   return (
-    <main className="nf">
-      <LavaBg />
-      <div className="nf-inner">
-        <span className="nf-eyebrow">Error 404</span>
-        <h1 className="nf-title">
+    <div className="es es-nf">
+      <main className="es-nf-inner" id="top">
+        <span className="es-nf-eyebrow">Error 404</span>
+        <h1 className="es-nf-title">
           Esta página se salió del <em>cuadro</em>.
         </h1>
-        <p className="nf-sub">
+        <p className="es-nf-sub">
           El enlace que buscas no existe o se movió de lugar. Volvamos a lo que
           importa.
         </p>
-        <div className="nf-cta">
-          <Link href="/" className="nf-primary">
+        <div className="es-nf-cta">
+          <Link href="/" className="es-btn es-btn--signal">
             Volver al inicio
           </Link>
-          <Link href="/servicios" className="nf-link">
-            Ver servicios ↗
+          <Link href="/#servicios" className="es-btn es-btn--ghost">
+            Ver paquetes
           </Link>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }

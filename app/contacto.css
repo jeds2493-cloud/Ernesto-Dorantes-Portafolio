@@ -1,0 +1,89 @@
+/* Formulario de contacto y su ventana (paquete A). Lo importa ContactModal.tsx.
+   Los selectores llevan más peso que globals.css porque este archivo carga antes. */
+
+/* 16 px: con menos, iOS hace zoom al enfocar el campo. */
+.contact-form .cf-field input,
+.contact-form .cf-field select,
+.contact-form .cf-field textarea {
+  font-size: 16px;
+}
+
+.cf-help {
+  font-size: 13px;
+  line-height: 1.3;
+  color: inherit;
+  opacity: 0.78;
+}
+
+/* Título de la ventana oculto a la vista cuando ya se envió (sigue nombrando el diálogo). */
+.contact-modal-title.cm-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.cf-submit[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.contact-modal-box:focus {
+  outline: none;
+}
+
+.contact-ok h3:focus {
+  outline: none;
+}
+.contact-ok .cf-done {
+  margin-top: 14px;
+  align-self: stretch;
+}
+
+body:has(.es) .cf-field > span,
+body:has(.es) .skip-link {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+body:has(.es) .contact-reset {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* «Enviar otro mensaje» pasa a enlace secundario. */
+body:has(.es) .contact-ok .contact-reset {
+  border: 0;
+  background: none;
+  min-height: 44px;
+  padding: 0 8px;
+  margin-top: 4px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: #a4a6ad;
+}
+body:has(.es) .contact-ok .contact-reset:hover {
+  color: #f2f2ec;
+}
+.es-form-card .contact-ok .contact-reset {
+  color: inherit;
+}
+
+/* Error: borde coral también en el área de texto y la lista. */
+body:has(.es) .cf-field input:user-invalid,
+body:has(.es) .cf-field textarea:user-invalid,
+body:has(.es) .cf-field select:user-invalid {
+  border-color: #ff7a59;
+}
+
+/* Anillo de foco lima para todo lo enfocable de la ventana (vive fuera de .es). */
+body .contact-modal .contact-modal-box :is(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #c6ff2e;
+  outline-offset: 3px;
+}
+body .contact-modal .contact-modal-box:focus,
+body .contact-modal .contact-modal-box:focus-visible,
+body .contact-modal .contact-ok h3:focus-visible {
+  outline: none;
+}

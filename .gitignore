@@ -29,3 +29,4 @@ yarn-error.log*
 
 # Entorno
 .env*.local
+.impeccable/

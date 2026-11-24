@@ -1,10 +1,9 @@
 import type { ReactNode } from "react";
 import AgendaButton from "@/components/AgendaButton";
-import { AGENDA_URL, MAIL, waLink } from "@/lib/estudio";
+import { AGENDA_URL, waLink } from "@/lib/estudio";
 
-// CTA principal: con agendador real dice "Agenda…" y abre el calendario;
-// sin él dice "Pide…" y abre el formulario (no prometemos una cita que no existe).
-export const CTA_LABEL = AGENDA_URL ? "Agenda un diagnóstico gratis" : "Pide tu diagnóstico gratis";
+// CTA principal: con agendador real abre el calendario; sin él, el formulario.
+export const CTA_LABEL = AGENDA_URL ? "Agenda una llamada" : "Cotiza tu proyecto";
 
 export function AgendaCta({
   className = "es-btn es-btn--signal",
@@ -30,7 +29,8 @@ export function AgendaCta({
   );
 }
 
-// CTA secundario: WhatsApp si hay número; si no, correo.
+// CTA de WhatsApp. Con número abre el chat; mientras no haya número en
+// lib/estudio.ts abre el formulario, donde la persona deja su WhatsApp.
 export function WhatsCta({
   className = "es-btn es-btn--ghost",
 }: {
@@ -41,14 +41,15 @@ export function WhatsCta({
     return (
       <a className={className} href={wa} target="_blank" rel="noopener">
         <WaIcon />
-        Escríbeme por WhatsApp
+        <span className="es-wa-l">Escríbeme por WhatsApp</span>
       </a>
     );
   }
   return (
-    <a className={className} href={`mailto:${MAIL}`}>
-      Escríbeme por correo
-    </a>
+    <AgendaButton className={className} motivo="whatsapp">
+      <WaIcon />
+      <span className="es-wa-l">Déjame tu WhatsApp</span>
+    </AgendaButton>
   );
 }
 

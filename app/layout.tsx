@@ -2,10 +2,12 @@ import type { Metadata, Viewport } from "next";
 import { Sora, Inter, Fraunces, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import ContactModal from "@/components/ContactModal";
+import { PRECIOS } from "@/lib/estudio";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0c",
+  themeColor: "#0b0c0e",
 };
 
 const sora = Sora({
@@ -13,6 +15,7 @@ const sora = Sora({
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sora",
   display: "swap",
+  preload: false,
 });
 
 const inter = Inter({
@@ -28,6 +31,7 @@ const fraunces = Fraunces({
   style: ["normal", "italic"],
   variable: "--font-fraunces",
   display: "swap",
+  preload: false,
 });
 
 const interTight = Inter_Tight({
@@ -42,10 +46,8 @@ const mono = JetBrains_Mono({
   weight: ["500"],
   variable: "--font-mono",
   display: "swap",
+  preload: false,
 });
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ernestodorantes.com";
 
 const description =
   "Diseño web y contenido para redes para negocios que venden por citas y mensajes: consultorios, inmobiliarias, despachos y marcas locales. Atiendo todo México.";
@@ -58,24 +60,22 @@ export const metadata: Metadata = {
   },
   description,
   keywords: [
+    "diseño web",
+    "diseño de páginas web",
+    "landing page",
+    "contenido para redes sociales",
+    "diseño web para consultorios",
+    "diseño web para dentistas",
+    "marketing para inmobiliarias",
+    "tienda en línea",
     "Ernesto Dorantes",
-    "director creativo",
-    "dirección de arte",
-    "publicidad",
-    "campañas 360",
-    "branding",
-    "UI/UX",
-    "IA aplicada al diseño",
-    "portafolio",
     "México",
   ],
   authors: [{ name: "Ernesto Dorantes" }],
   creator: "Ernesto Dorantes",
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "es_MX",
-    url: siteUrl,
     siteName: "Ernesto Dorantes",
     title: "Ernesto Dorantes — Diseño web y contenido",
     description,
@@ -98,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${sora.variable} ${inter.variable} ${fraunces.variable} ${interTight.variable} ${mono.variable}`}>
+    <html lang="es-MX" className={`${sora.variable} ${inter.variable} ${fraunces.variable} ${interTight.variable} ${mono.variable}`}>
       <body>
         <a href="#top" className="skip-link">
           Saltar al contenido
@@ -111,24 +111,31 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
+              "@type": "ProfessionalService",
+              "@id": `${siteUrl}/#estudio`,
               name: "Ernesto Dorantes",
-              jobTitle: "Director Creativo",
+              slogan: "Diseño web y contenido para redes",
+              description,
               url: siteUrl,
+              logo: `${siteUrl}/icon.png`,
+              image: `${siteUrl}/opengraph-image`,
+              priceRange: `Desde $${PRECIOS.contenido.toLocaleString("en-US")} MXN`,
               email: "hello@ernestodorantes.com",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Toluca de Lerdo",
-                addressRegion: "Estado de México",
-                addressCountry: "MX",
+              address: { "@type": "PostalAddress", addressCountry: "MX" },
+              areaServed: { "@type": "Country", name: "México" },
+              founder: {
+                "@type": "Person",
+                name: "Ernesto Dorantes",
+                jobTitle: "Creative Partner · diseñador web y director de arte",
+                sameAs: ["https://linkedin.com/in/ernestodorantes2493"],
               },
               sameAs: ["https://linkedin.com/in/ernestodorantes2493"],
               knowsAbout: [
-                "Dirección de arte",
-                "Branding",
-                "Campañas 360°",
-                "UI/UX",
-                "IA aplicada al diseño",
+                "Diseño web",
+                "Landing pages",
+                "Contenido para redes sociales",
+                "SEO local",
+                "Publicidad en Meta y Google",
               ],
             }),
           }}

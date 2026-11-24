@@ -1,16 +1,29 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
-export const alt = "Ernesto Dorantes — Director Creativo";
+// Imagen que aparece al compartir el enlace (WhatsApp, Facebook, X).
+// Misma identidad del home: noche, hueso y lima.
+export const alt =
+  "Ernesto Dorantes — Diseño web y contenido para negocios que venden por citas y mensajes";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+const NOCHE = "#0b0c0e";
+const HUESO = "#f2f2ec";
+const LIMA = "#c6ff2e";
+const GRIS = "#a4a6ad";
+
 export default async function Image() {
-  const [fraunces, inter] = await Promise.all([
+  const logo = `data:image/png;base64,${(
+    await readFile(join(process.cwd(), "public/assets/ed-logo.png"))
+  ).toString("base64")}`;
+  const [tight, inter] = await Promise.all([
     fetch(
-      "https://cdn.jsdelivr.net/npm/@fontsource/fraunces/files/fraunces-latin-900-normal.woff"
+      "https://cdn.jsdelivr.net/npm/@fontsource/inter-tight@5.1.0/files/inter-tight-latin-700-normal.woff"
     ).then((r) => r.arrayBuffer()),
     fetch(
-      "https://cdn.jsdelivr.net/npm/@fontsource/inter/files/inter-latin-600-normal.woff"
+      "https://cdn.jsdelivr.net/npm/@fontsource/inter@5.1.0/files/inter-latin-600-normal.woff"
     ).then((r) => r.arrayBuffer()),
   ]);
 
@@ -22,71 +35,66 @@ export default async function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          backgroundColor: "#0a0a0c",
-          padding: "0 90px",
-          position: "relative",
+          justifyContent: "space-between",
+          backgroundColor: NOCHE,
+          padding: "64px 72px",
           fontFamily: "Inter",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: -140,
-            right: -40,
-            width: 640,
-            height: 640,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(255,92,26,0.45), rgba(255,92,26,0) 62%)",
-            display: "flex",
-          }}
-        />
-        <div style={{ display: "flex", width: 52, height: 4, backgroundColor: "#ff5c1a", marginBottom: 20 }} />
-        <div
-          style={{
-            display: "flex",
-            fontSize: 26,
-            letterSpacing: 7,
-            color: "#ff7a42",
-            fontWeight: 600,
-          }}
-        >
-          PORTAFOLIO 2026
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logo} width={54} height={64} alt="" />
+          <div
+            style={{
+              display: "flex",
+              marginLeft: 18,
+              fontFamily: "Inter Tight",
+              fontWeight: 700,
+              fontSize: 30,
+              letterSpacing: -1,
+              color: HUESO,
+            }}
+          >
+            Ernesto Dorantes
+          </div>
         </div>
+
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            fontFamily: "Fraunces",
-            fontWeight: 900,
-            lineHeight: 0.9,
-            marginTop: 14,
+            fontFamily: "Inter Tight",
+            fontWeight: 700,
+            fontSize: 88,
+            lineHeight: 0.96,
+            letterSpacing: -4,
           }}
         >
-          <div style={{ display: "flex", fontSize: 140, color: "#f5f4f2" }}>
-            Ernesto
-          </div>
-          <div style={{ display: "flex", fontSize: 140, color: "#ff5c1a" }}>
-            Dorantes
-          </div>
+          <div style={{ display: "flex", color: HUESO }}>Tu sitio y tus redes</div>
+          <div style={{ display: "flex", color: HUESO }}>deberían traerte clientes,</div>
+          <div style={{ display: "flex", color: LIMA }}>no solo verse bien.</div>
         </div>
+
         <div
           style={{
             display: "flex",
-            fontSize: 30,
-            color: "#9a9a9f",
-            marginTop: 34,
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderTop: "2px solid rgba(242,242,236,0.22)",
+            paddingTop: 26,
+            fontSize: 28,
+            color: GRIS,
           }}
         >
-          Director Creativo · Dirección de arte · IA aplicada al diseño
+          <div style={{ display: "flex" }}>Sitios web, tiendas en línea y contenido para redes</div>
+          <div style={{ display: "flex", color: HUESO }}>Atiendo todo México</div>
         </div>
       </div>
     ),
     {
       ...size,
       fonts: [
-        { name: "Fraunces", data: fraunces, weight: 900, style: "normal" },
+        { name: "Inter Tight", data: tight, weight: 700, style: "normal" },
         { name: "Inter", data: inter, weight: 600, style: "normal" },
       ],
     }

@@ -164,6 +164,8 @@ const Magnet = ({
     const inner = innerRef.current;
     if (!wrapper || !inner) return undefined;
 
+    // Sin puntero con hover (celular) el imán no se registra.
+    if (window.matchMedia?.('(hover: none)').matches) return undefined;
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
     const current: Motion = { x: 0, y: 0, tiltX: 0, tiltY: 0, scale: 1 };
     const velocity: Motion = { x: 0, y: 0, tiltX: 0, tiltY: 0, scale: 0 };
@@ -230,6 +232,7 @@ const Magnet = ({
         entry.active = engaged;
         if (engaged) wrapper.setAttribute('data-magnet-active', '');
         else wrapper.removeAttribute('data-magnet-active');
+        inner.style.willChange = engaged ? 'transform' : '';
         settingsRef.current.onActiveChange?.(engaged);
       }
       const steps = Math.ceil(dt / (1 / 120));
@@ -281,7 +284,7 @@ const Magnet = ({
       style={{ position: 'relative', display: 'inline-block', ...style }}
       {...props}
     >
-      <div ref={innerRef} className={innerClassName} style={{ willChange: 'transform' }}>
+      <div ref={innerRef} className={innerClassName}>
         {children}
       </div>
     </div>

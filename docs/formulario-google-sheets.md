@@ -1,10 +1,11 @@
 # Conectar el formulario de contacto a Google Sheets
 
-El formulario de la sección **"Trabajemos juntos"** (componente `components/Contact.tsx`)
-envía los datos a un **Google Apps Script** que los escribe en una hoja de cálculo de Google.
+El formulario (componente `components/ContactForm.tsx`, en la ventana `ContactModal` y en el cierre
+de la página) manda los datos a la ruta del propio sitio **`/api/contacto`**, y esa ruta los reenvía
+desde el servidor a un **Google Apps Script** que los escribe en una hoja de Google.
 
-Mientras no haya un endpoint configurado, el formulario **abre el correo** con los datos
-como respaldo, así que nunca se pierde un mensaje.
+La persona ve «¡Gracias!» solo si el script contestó 2xx y no trae `{"ok":false}`. Si no, ve el
+mensaje de error, con lo que escribió intacto y el correo de respaldo.
 
 ## Pasos (una sola vez, ~5 min)
 
@@ -21,7 +22,7 @@ function doPost(e) {
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
         "Fecha", "Nombre", "Email", "Empresa",
-        "Tipo de proyecto", "Mensaje", "Origen"
+        "Tipo de proyecto", "Mensaje", "Origen"   // origen: «ernestodorantes.com · hero»
       ]);
     }
 
@@ -36,7 +37,7 @@ function doPost(e) {
       p.origen  || ""
     ]);
 
-    // (opcional) avísame por correo en cada envío:
+    // (opcional) avísame por correo en cada envío (el origen dice qué botón lo abrió):
     // MailApp.sendEmail("hello@ernestodorantes.com",
     //   "Nuevo contacto — " + (p.nombre || ""),
     //   "Nombre: " + p.nombre + "\nEmail: " + p.email +
@@ -65,18 +66,26 @@ function doPost(e) {
 
 ## Conectarla al sitio
 
-Agrega la URL como variable de entorno en Vercel:
+La URL vive solo en el servidor. La ruta `/api/contacto` busca, en este orden:
+`FORM_ENDPOINT`, `NEXT_PUBLIC_FORM_ENDPOINT` (la configuración anterior de Vercel sigue sirviendo)
+y, si no hay ninguna, la URL `/exec` que trae el código.
 
 1. Vercel → proyecto → **Settings → Environment Variables**.
-2. Nombre: `NEXT_PUBLIC_FORM_ENDPOINT`
+2. Nombre: `FORM_ENDPOINT`
    Valor: *(la URL `/exec`)*
    Entornos: Production (y Preview si quieres).
-3. **Redeploy** del proyecto.
+3. **Redeploy** del proyecto. Ya puedes borrar `NEXT_PUBLIC_FORM_ENDPOINT`.
 
-Para probar en local, crea un archivo `.env.local` en la raíz con:
+Para probar en local, crea `.env.local` en la raíz. **Apunta a un servidor de prueba, no a la hoja real:**
 
 ```
-NEXT_PUBLIC_FORM_ENDPOINT=https://script.google.com/macros/s/XXXX/exec
+FORM_ENDPOINT=http://127.0.0.1:3399/exec
 ```
+
+## Qué guarda cada fila
+
+`origen` trae el botón que abrió el formulario: `ernestodorantes.com · header`, `hero`,
+`paquete-<tipo>`, `quien`, `preguntas`, `sticky`, `cierre` o `armador`. El WhatsApp va también al
+inicio del mensaje, por si la hoja no tiene esa columna.
 
 Listo: cada envío del formulario aparecerá como una fila nueva en tu hoja.

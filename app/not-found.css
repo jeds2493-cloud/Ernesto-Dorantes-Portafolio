@@ -1,0 +1,46 @@
+/* 404 en Noche y lima: usa los tokens y botones de estudio.css */
+.es.es-nf {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: var(--bg);
+  color: var(--ink);
+}
+.es-nf-inner {
+  max-width: 640px;
+  text-align: center;
+}
+.es-nf-eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.es-nf-title {
+  margin: 0 0 16px;
+  font-family: var(--font-inter-tight), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+.es-nf-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+.es-nf-sub {
+  margin: 0 0 28px;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.es-nf-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
